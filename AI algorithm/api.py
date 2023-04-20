@@ -11,9 +11,9 @@ app = FastAPI()
 algorithm.initialize()
 
 
-@app.get("/")
-async def status() -> dict[str, str]:
-    return {"message": "Intersection AI API is ready"}
+@app.get("/", response_model=str)
+async def status() -> Any:
+    return "Intersection - Algorithm API is ready"
 
 
 @app.post("/convert", response_model=list[float], status_code=200)
@@ -47,4 +47,12 @@ async def recommend_jobs():
 async def recommend_candidates():
     # Input: job offer ID, max number of candidates
     # Output: sorted list of candidates
+    ...
+
+
+@app.get("/recompute")
+async def recompute_embeddings():
+    # Input: None
+    # Output: None
+    # For each CV and Job Offer in the DB, recompute their embedding
     ...

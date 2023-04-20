@@ -9,7 +9,7 @@ import nltk
 import numpy as np
 import pdfplumber
 from sentence_transformers import SentenceTransformer, util
-from torch import Tensor
+from torch import tensor
 
 
 def initialize() -> None:
@@ -42,6 +42,6 @@ def encode(sentences: list[str], progress_bar: bool = False) -> np.ndarray:
     return np.mean(np.array(sentences_enc), axis=0)
 
 
-def compute_relevance(a: Tensor, b: Tensor) -> np.ndarray:
+def compute_relevance(a: tensor, b: tensor) -> np.ndarray:
     """ Use the embeddings to compute the relevance between two or more documents """
-    return util.cos_sim(Tensor(a), Tensor(b)).numpy()
+    return util.cos_sim(tensor(a), tensor(b)).numpy()
