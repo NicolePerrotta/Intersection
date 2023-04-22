@@ -11,10 +11,12 @@ import pdfplumber
 from sentence_transformers import SentenceTransformer, util
 from torch import tensor
 
+model_name = 'distiluse-base-multilingual-cased-v1'
+
 
 def initialize() -> None:
     """ Download the AI model and NLTK's tokens """
-    SentenceTransformer('distiluse-base-multilingual-cased-v1', device='cpu')
+    SentenceTransformer(model_name, device='cpu')
     nltk.download('punkt')
 
 
@@ -37,9 +39,9 @@ def pre_process(text: str) -> list[str]:
 
 def encode(sentences: list[str], progress_bar: bool = False) -> np.ndarray:
     """ Compute the embedding that represents all the text of a document """
-    model: SentenceTransformer = SentenceTransformer('distiluse-base-multilingual-cased-v1', device='cpu')
+    model = SentenceTransformer(model_name, device='cpu')
     sentences_enc: np.ndarray = model.encode(sentences, show_progress_bar=progress_bar, convert_to_numpy=True)
-    return np.mean(np.array(sentences_enc), axis=0)
+    return np.mean(sentences_enc, axis=0)
 
 
 def compute_relevance(a: tensor, b: tensor) -> np.ndarray:
