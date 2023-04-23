@@ -14,9 +14,9 @@ $dbconn = pg_connect("host=containers-us-west-28.railway.app port=5622 dbname=ra
     else
     {
         $email=$_POST['emailRA'];
-        $q1="select * from azienda where email=$1";
+        $q1="select * from company where email=$1";
         $result=pg_query_params($dbconn,$q1,array($email));
-        $q2="select * from utente where email=$1";
+        $q2="select * from worker where email=$1";
         $r=pg_query_params($dbconn,$q2,array($email));
         if(($line=pg_fetch_array($result,null,PGSQL_ASSOC)) || ($line=pg_fetch_array($r,null,PGSQL_ASSOC)))
         {
@@ -25,9 +25,9 @@ $dbconn = pg_connect("host=containers-us-west-28.railway.app port=5622 dbname=ra
         else
         {
             $user=$_POST['username'];
-            $q3="select * from azienda where username=$1";
+            $q3="select * from company where username=$1";
             $result1=pg_query_params($dbconn,$q3,array($user));
-            $q4="select * from utente where username=$1";
+            $q4="select * from worker where username=$1";
             $r1=pg_query_params($dbconn,$q4,array($user));
             if(($line=pg_fetch_array($result1,null,PGSQL_ASSOC)) || ($line=pg_fetch_array($r1,null,PGSQL_ASSOC)))
             {
@@ -36,9 +36,9 @@ $dbconn = pg_connect("host=containers-us-west-28.railway.app port=5622 dbname=ra
             else
             {
                 $password=md5($_POST['passwordRA']);
-                $q5="select * from azienda where pwd=$1";
+                $q5="select * from company where password=$1";
                 $result2=pg_query_params($dbconn,$q5,array($password));
-                $q6="select * from utente where pwd=$1";
+                $q6="select * from worker where password=$1";
                 $r2=pg_query_params($dbconn,$q6,array($password));
                 if(($line=pg_fetch_array($result2,null,PGSQL_ASSOC)) || ($line=pg_fetch_array($r2,null,PGSQL_ASSOC)))
                 {
@@ -47,7 +47,7 @@ $dbconn = pg_connect("host=containers-us-west-28.railway.app port=5622 dbname=ra
                 else
                 {
                   $iva=$_POST['partitaIva'];
-                  $q7="select * from azienda where partita_iva=$1";
+                  $q7="select * from company where vat_number=$1";
                   $result7=pg_query_params($dbconn,$q7,array($iva));
                   if(($line=pg_fetch_array($result7,null,PGSQL_ASSOC)))
                   {
@@ -63,7 +63,7 @@ $dbconn = pg_connect("host=containers-us-west-28.railway.app port=5622 dbname=ra
                     $iva=$_POST['partitaIva'];
                     $emailC=$_POST['emailC'];
                     $telefono=$_POST['telefono'];
-                    $q7="insert into azienda values (DEFAULT,$1,$2,$3,$4,$5,$6,$7,$8,$9, $10, $11)";
+                    $q7="insert into company values (DEFAULT,$1,$2,$3,$4,$5,$6,$7,$8,$9, $10, $11)";
                     $data=pg_query_params($dbconn,$q7,array($ragione,$user,$email,$password,$iva,$indirizzo,$citta,$nazione,$des, $emailC, $telefono));
                     if($data)
                     {
