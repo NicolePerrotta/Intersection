@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Union, BinaryIO
 import nltk
 import numpy as np
+import pandas as pd
 import pdfplumber
 from sentence_transformers import SentenceTransformer, util
 from torch import tensor
@@ -33,8 +34,12 @@ def extract_from_pdf(file: Union[str, Path, BinaryIO]) -> str:
 def pre_process(text: str) -> list[str]:
     """ Pre-process the text so that it can be given as input to the model """
     sentences: list[str] = nltk.sent_tokenize(text)
-    sentences = [re.sub('•', '', sentence) for sentence in sentences]
-    return [re.sub('\n', ' ', sentence) for sentence in sentences]
+
+    def regex(sentence: str) -> str:
+        sentence = re.sub(r'•\s', '', sentence)
+        return re.sub('\n', ' ', sentence)
+
+    return list(map(regex, sentences))
 
 
 def encode(sentences: list[str], progress_bar: bool = False) -> np.ndarray:
@@ -44,6 +49,14 @@ def encode(sentences: list[str], progress_bar: bool = False) -> np.ndarray:
     return np.mean(sentences_enc, axis=0)
 
 
-def compute_relevance(a: tensor, b: tensor) -> np.ndarray:
+def compute_relevance(a: np.ndarray, b: np.ndarray) -> np.ndarray:
     """ Use the embeddings to compute the relevance between two or more documents """
-    return util.cos_sim(tensor(a), tensor(b)).numpy()
+    return util.cos_sim(tensor(a), tensor(b)).numpy().transpose()
+
+
+def sort_by_relevance(df1: pd.DataFrame, df2: pd.DataFrame) -> pd.DataFrame:
+    """ Process the embeddings contained in two dataframes and return another dataframe with sorted relevance scores """
+    df = pd.DataFrame(columns=["id", "relevance"])
+    df["id"] = df2.iloc[:, 0]
+    df["relevance"] = compute_relevance(np.stack(df1["embedding"]), np.stack(df2["embedding"]))
+    return df.sort_values(by='relevance', ascending=False)
