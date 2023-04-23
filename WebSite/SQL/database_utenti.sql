@@ -34,5 +34,3 @@ CREATE TABLE Azienda
    EmailDiContatto email UNIQUE,
    NumeroDiContatto varchar(75)
 );
-
-k
