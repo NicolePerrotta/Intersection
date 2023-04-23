@@ -417,8 +417,8 @@ session_start();
     </div>
     <br>
     <div>
-        <label for="foto">Foto profilo</label> <br>
-        <input type="file" id="foto" name="foto" class="custom-file-upload">
+        <label for="picture">Foto profilo</label> <br>
+        <input type="file" id="picture" name="picture" class="custom-file-upload">
     </div>
     <div class="text-center">
       <button type="submit" name="registrationButton" class="btn-lg" id="register-button">Invia</button>

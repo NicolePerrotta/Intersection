@@ -1,6 +1,12 @@
 <?php
+    $env = parse_ini_file('.env');
+    $PGHOST = $env['PGHOST'];
+    $PGPORT = $env['PGPORT'];
+    $PGDATABASE = $env['PGDATABASE'];
+    $PGUSER = $env['PGUSER'];
+    $PGPASSWORD = $env['PGPASSWORD'];
 session_start();
-$dbconn = pg_connect("host=containers-us-west-28.railway.app port=5622 dbname=railway user=postgres password=4jydJNhTKikgVEnDhUlv")  or header("Location: ../app/indexErrore.php?er=100");
+$dbconn = pg_connect("host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER password=$PGPASSWORD")  or header("Location: ../app/indexErrore.php?er=100");
 ?>
 <html>
     <head></head>
@@ -13,9 +19,9 @@ $dbconn = pg_connect("host=containers-us-west-28.railway.app port=5622 dbname=ra
     else
     {
         $email=$_POST['email'];
-        $q1="select * from company where email=$1";
+        $q1="select * from azienda where email=$1";
         $result=pg_query_params($dbconn,$q1,array($email));
-        $q2="select * from worker where email=$1";
+        $q2="select * from utente where email=$1";
         $r=pg_query_params($dbconn,$q2,array($email));
         if(!(($line=pg_fetch_array($result,null,PGSQL_ASSOC)) || ($line=pg_fetch_array($r,null,PGSQL_ASSOC))))
         { 
@@ -24,9 +30,9 @@ $dbconn = pg_connect("host=containers-us-west-28.railway.app port=5622 dbname=ra
         else
         {
             $password=md5($_POST['password']);
-                $q5="select * from company where password=$1";
+                $q5="select * from azienda where pwd=$1";
                 $result2=pg_query_params($dbconn,$q5,array($password));
-                $q6="select * from worker where password=$1";
+                $q6="select * from utente where pwd=$1";
                 $r2=pg_query_params($dbconn,$q6,array($password));
             if(!(($array=pg_fetch_array($result2,null,PGSQL_ASSOC)) || ($line=pg_fetch_array($r2,null,PGSQL_ASSOC))))
             {
@@ -35,18 +41,18 @@ $dbconn = pg_connect("host=containers-us-west-28.railway.app port=5622 dbname=ra
             else
             {
                 
-                $q7="select * from company where email=$1";
+                $q7="select * from azienda where email=$1";
                 $result3=pg_query_params($dbconn,$q7,array($email));
                 if(!($c=pg_fetch_array($result3,null,PGSQL_ASSOC)))
                 {
                     $_SESSION["sa"]=0;
-                    $_SESSION["uid"]=$line['worker_id'];
+                    $_SESSION["uid"]=$line['id_user'];
                     $_SESSION["user"]=$line['username'];
                 }
                 else
                 {
                     $_SESSION["sa"]=1;
-                    $_SESSION["uid"]=$array['company_id'];
+                    $_SESSION["uid"]=$array['id_azienda'];
                     $_SESSION["user"]=$array['username'];
                 }
                 if(isset($r)) pg_free_result($r);

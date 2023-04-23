@@ -97,7 +97,7 @@ input[type="text"]:not(:placeholder-shown) + .placeholder:before {
   height: 37px;
 }
 
-#foto { /*grandezza foto*/
+#picture { /*grandezza foto*/
   width: 90%;
   height: 37px;
 }
