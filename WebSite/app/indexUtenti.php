@@ -94,7 +94,7 @@ session_start();
             {
               $dbconn = pg_connect("host=localhost port=5432 dbname=Urbs user=postgres password=BIAR") or die("Impossibile connettersi: " . pg_last_error());
               $uid=$_GET['uid'];
-              $query="SELECT * FROM utente where id_user=$1";
+              $query= "SELECT * FROM worker where worker_id=$1";
               $result=pg_query_params($dbconn,$query,array($uid));
               if(pg_num_rows($result)==0)
               {
@@ -166,7 +166,7 @@ session_start();
             {
               $dbconn = pg_connect("host=localhost port=5432 dbname=Urbs user=postgres password=BIAR") or die("Impossibile connettersi: " . pg_last_error());
               $uid=$_GET['uid'];
-              $query="SELECT * FROM azienda where id_azienda=$1";
+              $query="SELECT * FROM company where company_id=$1";
               $result=pg_query_params($dbconn,$query,array($uid));
               if(pg_num_rows($result)==0)
               {
