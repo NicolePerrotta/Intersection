@@ -2,21 +2,42 @@
     This file contains the main code of the API.
     It relies on functions from other scripts in order to execute the methods.
 """
-
-from typing import Any
+from contextlib import asynccontextmanager
+from enum import Enum
+from typing import Any, Union
 from fastapi import FastAPI, UploadFile, HTTPException
 import algorithm
+import db
 
-app = FastAPI()
-algorithm.initialize()
+
+class Status(str, Enum):
+    init = "Intersection - Algorithm API is initializing..."
+    ready = "Intersection - Algorithm API is ready"
+    busy = "Intersection - Algorithm API is busy updating the database..."
+    shutdown = "Intersection - Algorithm API is shutting down..."
+
+
+@asynccontextmanager
+async def lifespan(app_: FastAPI):
+    # Execute at init
+    app_.state.status = Status.init
+    algorithm.initialize()
+    app_.state.status = Status.ready
+    yield
+    # Execute at shutdown
+    app_.state.status = Status.shutdown
+
+
+app = FastAPI(lifespan=lifespan)
 
 
 @app.get("/", response_model=str)
 async def status() -> Any:
-    return "Intersection - Algorithm API is ready"
+    """ Get the current status of the API, to check that it is ready to receive requests. """
+    return app.state.status
 
 
-@app.post("/convert", response_model=list[float], status_code=200)
+@app.post("/convert", response_model=list[float])
 async def convert_to_embedding(file: UploadFile) -> Any:
     """
     Extract the text of a PDF file and convert it to a single embedding (i.e. a vector of real numbers)
@@ -29,30 +50,57 @@ async def convert_to_embedding(file: UploadFile) -> Any:
     return algorithm.encode(sentences).tolist()
 
 
-@app.get("/ranking")
-async def ranking():
-    # Input: job offer ID
-    # Output: sorted list of candidates that have applied
-    ...
+@app.get("/ranking/{job_offer_id}", response_model=dict[str, list[Any]])
+async def ranking(job_offer_id: int, max_number: Union[int, None] = None) -> Any:
+    """
+    Given the ID of a job offer in the database, compute the relevance of each candidate that applied to the offer.
+    Return a dictionary with the ID and the relevance score of the candidates, sorted in descending order.
+    """
+    job, candidates = db.get_offer_embeddings(job_offer_id)
+    if job.empty:
+        raise HTTPException(status_code=404, detail="The requested job offer does not exist")
+    df = algorithm.sort_by_relevance(job, candidates).head(max_number)
+    return {"ids": df['id'].to_list(), "relevance": df['relevance'].to_list()}
 
 
-@app.get("/recommend/jobs")
-async def recommend_jobs():
-    # Input: candidate ID, max number of job offers
-    # Output: sorted list of job offers
-    ...
+@app.get("/recommend/jobs/{worker_id}", response_model=dict[str, list[Any]])
+async def recommend_jobs(worker_id: int, max_number: Union[int, None] = None) -> Any:
+    """
+    Given the ID of a worker in the database, find job offers to recommend based on their profile.
+    Return a dictionary with the ID and the relevance score of the job offers, sorted in descending order.
+    """
+    worker = db.get_worker_embedding(worker_id)
+    if worker.empty:
+        raise HTTPException(status_code=404, detail="The requested worker does not exist")
+    jobs = db.get_all_jobs_embeddings()
+    df = algorithm.sort_by_relevance(worker, jobs).head(max_number)
+    return {"ids": df['id'].to_list(), "relevance": df['relevance'].to_list()}
 
 
-@app.get("/recommend/candidates")
-async def recommend_candidates():
-    # Input: job offer ID, max number of candidates
-    # Output: sorted list of candidates
-    ...
+@app.get("/recommend/candidates/{job_offer_id}", response_model=dict[str, list[Any]])
+async def recommend_candidates(job_offer_id: int, max_number: Union[int, None] = None) -> Any:
+    """
+    Given the ID of a job offer in the database, find suitable workers to recommend based on their profile.
+    Return a dictionary with the ID and the relevance score of the workers, sorted in descending order.
+    """
+    job = db.get_offer_embedding(job_offer_id)
+    if job.empty:
+        raise HTTPException(status_code=404, detail="The requested job offer does not exist")
+    workers = db.get_all_cv_embeddings()
+    df = algorithm.sort_by_relevance(job, workers).head(max_number)
+    return {"ids": df['id'].to_list(), "relevance": df['relevance'].to_list()}
 
 
-@app.get("/recompute")
-async def recompute_embeddings():
+@app.get("/recompute", response_model=None)
+async def recompute_embeddings() -> Any:
+    """
+    Recompute the embeddings for every worker and for every job offer.
+    This operation is meant to be used only when the model changes or when data is corrupted.
+    """
     # Input: None
     # Output: None
     # For each CV and Job Offer in the DB, recompute their embedding
+    app.state.status = Status.busy
+    pass
+    app.state.status = Status.ready
     ...
