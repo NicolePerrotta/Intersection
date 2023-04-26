@@ -56,7 +56,7 @@ async def ranking(job_offer_id: int, max_number: Union[int, None] = None) -> Any
     Given the ID of a job offer in the database, compute the relevance of each candidate that applied to the offer.
     Return a dictionary with the ID and the relevance score of the candidates, sorted in descending order.
     """
-    job, candidates = db.get_offer_embeddings(job_offer_id)
+    job, candidates = db.get_applicants_emb(job_offer_id)
     if job.empty:
         raise HTTPException(status_code=404, detail="The requested job offer does not exist")
     df = algorithm.sort_by_relevance(job, candidates).head(max_number)
@@ -69,10 +69,10 @@ async def recommend_jobs(worker_id: int, max_number: Union[int, None] = None) ->
     Given the ID of a worker in the database, find job offers to recommend based on their profile.
     Return a dictionary with the ID and the relevance score of the job offers, sorted in descending order.
     """
-    worker = db.get_worker_embedding(worker_id)
+    worker = db.get_worker_emb(worker_id)
     if worker.empty:
         raise HTTPException(status_code=404, detail="The requested worker does not exist")
-    jobs = db.get_all_jobs_embeddings()
+    jobs = db.get_all_offers_emb()
     df = algorithm.sort_by_relevance(worker, jobs).head(max_number)
     return {"ids": df['id'].to_list(), "relevance": df['relevance'].to_list()}
 
@@ -83,10 +83,10 @@ async def recommend_candidates(job_offer_id: int, max_number: Union[int, None] =
     Given the ID of a job offer in the database, find suitable workers to recommend based on their profile.
     Return a dictionary with the ID and the relevance score of the workers, sorted in descending order.
     """
-    job = db.get_offer_embedding(job_offer_id)
+    job = db.get_offer_emb(job_offer_id)
     if job.empty:
         raise HTTPException(status_code=404, detail="The requested job offer does not exist")
-    workers = db.get_all_cv_embeddings()
+    workers = db.get_all_workers_emb()
     df = algorithm.sort_by_relevance(job, workers).head(max_number)
     return {"ids": df['id'].to_list(), "relevance": df['relevance'].to_list()}
 
