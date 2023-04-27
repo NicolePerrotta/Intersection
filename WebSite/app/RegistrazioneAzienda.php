@@ -69,8 +69,9 @@ $dbconn = pg_connect("host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER 
                     $iva=$_POST['partitaIva'];
                     $emailC=$_POST['emailC'];
                     $telefono=$_POST['telefono'];
-                    $q7="insert into company values (DEFAULT,$1,$2,$3,$4,$5,$6,$7,$8,$9, $10, $11)";
-                    $data=pg_query_params($dbconn,$q7,array($ragione,$user,$email,$password,$iva,$indirizzo,$citta,$nazione,$des, $emailC, $telefono));
+                    $logo=$_POST['logo'];
+                    $q7="insert into company values (DEFAULT,$1,$2,$3,$4,$5,$6,$7,$8,$9, $10, $11, $12)";
+                    $data=pg_query_params($dbconn,$q7,array($ragione,$user,$email,$password,$iva,$indirizzo,$citta,$nazione,$des, $emailC, $telefono, $logo));
                     if($data)
                     {
                       if(isset($r)) pg_free_result($r);

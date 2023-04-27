@@ -79,6 +79,11 @@ session_start();
         <div class="container">
           <br>
           <h2 class="text-uppercase text-black spaced">SECTION 1</h2>
+
+          </div>
+          <a class="bg-sm" href="../app/indexJobOffer.php">Job Offers</a>
+          </div>
+
           <br>
         </div>
       </section>
