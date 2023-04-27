@@ -6,7 +6,7 @@ $PGDATABASE = $env['PGDATABASE'];
 $PGUSER = $env['PGUSER'];
 $PGPASSWORD = $env['PGPASSWORD'];
 session_start();
-$dbconn = pg_connect("host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER password=$PGPASSWORD")  or header("Location: ../app/indexErrore.php?er=100");
+$dbconn = pg_connect("host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER password=$PGPASSWORD")  or header("Location: indexErrore.php?er=100");
 ?>
 
 <html>

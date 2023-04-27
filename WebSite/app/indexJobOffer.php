@@ -14,13 +14,13 @@ session_start();
         <meta name="generator" content="Visual Studio Code">
 
         <title>Intersection</title>
-        <link rel="icon" href="../Images/favicon.jpg" type="favicon">
+        <link rel="icon" href="Images/favicon.jpg" type="favicon">
 
-        <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"> <!--BOOTSTRAP CI SERVE?-->
+        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"> <!--BOOTSTRAP CI SERVE?-->
         <link rel="stylesheet" type="text/css" href="JobOffer/style.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css"> <!--FONTAWESOME CI SERVE?-->
 
-        <script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script> <!--BOOTSTRAP CI SERVE?-->
+        <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script> <!--BOOTSTRAP CI SERVE?-->
 
         <!--Titles font-->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -35,8 +35,8 @@ session_start();
       echo '  <div class=" container fixed-top" id="navbar">
       <nav class="navbar navbar-dark navbar-expand-md py-1" id="upper-nav">
         <div class="container-fluid">
-          <a class="navbar-brand me-auto" href="../app/index.php" id="titolo">
-                 <img src="../Images/logo.jpg" id="logae">
+          <a class="navbar-brand me-auto" href="index.php" id="titolo">
+                 <img src="Images/logo.jpg" id="logae">
               INTERSECTION
           </a>
           
@@ -47,7 +47,7 @@ session_start();
                   IT
               </a>
               <ul id="lang-menu" class="dropdown-menu" aria-labelledby="navbarDropdownMenu">
-                <li><a class="dropdown-item" href="../app/indexErrore.php?er=0">EN</a></li>
+                <li><a class="dropdown-item" href="indexErrore.php?er=0">EN</a></li>
               </ul>
             </div>
           </div> 
@@ -56,14 +56,14 @@ session_start();
                 <li class="nav-item">';
                 if(!isset($_SESSION['uid']))
                 {
-                  $logged="<a class='nav-link text-uppercase text-black' href='../app/indexLogin.php'><i class='fa-solid fa-user'></i> Login</a>";
+                  $logged="<a class='nav-link text-uppercase text-black' href='indexLogin.php'><i class='fa-solid fa-user'></i> Login</a>";
                 }
                 else
                 {
                   $uid=$_SESSION['uid'];
                   $sa=$_SESSION['sa'];
                   $username=$_SESSION['user'];
-                  $logged="<a class='nav-link text-uppercase text-black' href='../app/indexUtenti.php?uid=".$uid."&sa=".$sa."'><i class='fa-solid fa-user'></i> ".$username."</a>";
+                  $logged="<a class='nav-link text-uppercase text-black' href='indexUtenti.php?uid=".$uid."&sa=".$sa."'><i class='fa-solid fa-user'></i> ".$username."</a>";
                 }
                 echo $logged;
                 echo '</li>
@@ -83,7 +83,7 @@ session_start();
             $PGDATABASE = $env['PGDATABASE'];
             $PGUSER = $env['PGUSER'];
             $PGPASSWORD = $env['PGPASSWORD'];
-            $dbconn = pg_connect("host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER password=$PGPASSWORD")  or header("Location: ../app/indexErrore.php?er=100");
+            $dbconn = pg_connect("host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER password=$PGPASSWORD")  or header("Location: indexErrore.php?er=100");
             
             $company_id=$_SESSION['uid'];
             $query = "SELECT * FROM job_offer WHERE company_id=$1 ORDER BY title";
@@ -104,7 +104,7 @@ session_start();
               if(pg_num_rows($result19)>0)
               {
                 $co=pg_fetch_assoc($result19);
-                echo '<p><a class="nav-link text-uppercase text-white" href="../app/indexUtenti.php?uid='.$company_id.'&sa=1">Company: '.$co['username'].'</a><p>';
+                echo '<p><a class="nav-link text-uppercase text-white" href="indexUtenti.php?uid='.$company_id.'&sa=1">Company: '.$co['username'].'</a><p>';
               }
               else{}
               echo"
@@ -140,7 +140,7 @@ session_start();
                         }
                         else
                         {
-                          echo      '  <form action="../app/application.php" class="form-signin" method="POST" name="formPartecipazione" id="form-partecipazione">
+                          echo      '  <form action="application.php" class="form-signin" method="POST" name="formPartecipazione" id="form-partecipazione">
                               <div>
                               <input type="hidden" class="form-control" id="eid" name="eid" value='.$offer_id.'>
                               </div>';
@@ -165,8 +165,8 @@ session_start();
             $uida=$_SESSION['uid'];
             if(isset($_SESSION['uid']) && $uida==$uid)
             {
-              echo "<div class='group-bottoni'><a href='../app/indexCreateJobOffer.php'><button class='btn gold-button shadow-none'><i class='fa-solid fa-circle-plus'></i> Create Job Offer</button></a><br>";
-              echo "<a href='../app/indexLogout.php'><button class='btn gold-button shadow-none'><i class='fa-solid fa-right-from-bracket'></i> Logout</button></a></div>";
+              echo "<div class='group-bottoni'><a href='indexCreateJobOffer.php'><button class='btn gold-button shadow-none'><i class='fa-solid fa-circle-plus'></i> Create Job Offer</button></a><br>";
+              echo "<a href='indexLogout.php'><button class='btn gold-button shadow-none'><i class='fa-solid fa-right-from-bracket'></i> Logout</button></a></div>";
             }
             else {
             }
@@ -200,7 +200,7 @@ session_start();
        </div>
      </div>
      <div class="text-center p-2" id="copyright">
-       &copy;2023 Intersection <br><img src="../Images/favicon.jpg" id="favi">
+       &copy;2023 Intersection <br><img src="Images/favicon.jpg" id="favi">
      </div>
    </footer>';
         ?>

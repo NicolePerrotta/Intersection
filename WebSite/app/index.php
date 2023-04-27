@@ -81,7 +81,7 @@ session_start();
           <h2 class="text-uppercase text-black spaced">SECTION 1</h2>
 
           </div>
-          <a class="bg-sm" href="../app/indexJobOffer.php">Job Offers</a>
+          <a class="bg-sm" href="indexJobOffer.php">Job Offers</a>
           </div>
 
           <br>

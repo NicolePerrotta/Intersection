@@ -6,7 +6,7 @@ $PGDATABASE = $env['PGDATABASE'];
 $PGUSER = $env['PGUSER'];
 $PGPASSWORD = $env['PGPASSWORD'];
 session_start();
-$dbconn = pg_connect("host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER password=$PGPASSWORD")  or header("Location: ../app/indexErrore.php?er=100");
+$dbconn = pg_connect("host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER password=$PGPASSWORD")  or header("Location: indexErrore.php?er=100");
 ?>
 
 <html>
@@ -15,13 +15,13 @@ $dbconn = pg_connect("host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER 
     <?php 
     if(!(isset($_POST["creationButton"])))
     {
-        header("Location: ../app/index.php");
+        header("Location: index.php");
     }
     else
     {
         if(!isset($_SESSION['uid']) || (isset($_SESSION['sa']) && $_SESSION['sa']==0))
         {
-            header("Location: ../app/index.php");
+            header("Location: index.php");
         }
         else
         {
@@ -34,11 +34,11 @@ $dbconn = pg_connect("host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER 
             $line=pg_query_params($dbconn,$q1,array($company_id,$title,$description,$salary,$period));
             if($line)
             {           
-                header("Location: ../app/indexUtenti.php?uid=".$uid."&sa=1");
+                header("Location: indexUtenti.php?uid=".$uid."&sa=1");
             }
             else
             {
-                header("Location: ../app/indexErrore.php?er=7");
+                header("Location: indexErrore.php?er=7");
             }
     }
     if(isset($line)) pg_free_result($line);  
