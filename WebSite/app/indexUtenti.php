@@ -76,14 +76,6 @@ session_start();
 <!--BODY-->
       <section id="section1">
         <div class="container">
-          <br>
-          <h2 class="text-uppercase text-black spaced">BODY</h2>
-
-
-
-
-
-
           <div id="content">
           <?php
             if(!(isset($_GET["sa"])) || !(isset($_GET["uid"])))
@@ -92,7 +84,13 @@ session_start();
             }
             else if($_GET["sa"]==0) //PROFILO UTENTE
             {
-              $dbconn = pg_connect("host=localhost port=5432 dbname=Urbs user=postgres password=BIAR") or die("Impossibile connettersi: " . pg_last_error());
+              $env = parse_ini_file('.env');
+              $PGHOST = $env['PGHOST'];
+              $PGPORT = $env['PGPORT'];
+              $PGDATABASE = $env['PGDATABASE'];
+              $PGUSER = $env['PGUSER'];
+              $PGPASSWORD = $env['PGPASSWORD'];
+              $dbconn = pg_connect("host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER password=$PGPASSWORD")  or header("Location: ../app/indexErrore.php?er=100");
               $uid=$_GET['uid'];
               $query= "SELECT * FROM worker where worker_id=$1";
               $result=pg_query_params($dbconn,$query,array($uid));
@@ -135,21 +133,8 @@ session_start();
                             <p class='mb-2'><span class='grassetto' id='nazione2'>Nazione: </span> <span class='testo-grigio' id='nazione'>$nazione</span></p>
                         </div>
                         </div>
-                  </div>
-                  <div class='col-sm m-3 my-auto'>
-                    <div class='mt-3'>
-                    <h6 class='m-5 text-gold'><span class='grassetto'>Eventi a cui partecipi:<br><br></span>";
-                    $query1 = "SELECT * FROM Eventi WHERE id_evento in (select id_evento from partecipazione where id_user=$1)";
-                    $result1=pg_query_params($dbconn,$query1,array($uid));
-                    while ($line1=pg_fetch_array($result1, null, PGSQL_ASSOC)) 
-                    {
-                          $nome=$line1['nome'];
-                          $citta=$line1['citta'];
-                          echo "<p>".$nome." (".$citta.")</p>";
-                    }             
-
-                echo  "</h6></div>  
-              </div></div>";
+                  </div>";
+                echo  "</div>";
               pg_free_result($result);
               pg_close($dbconn);
               $uida=$_SESSION['uid'];
@@ -164,10 +149,16 @@ session_start();
           }
             else //PROFILO AZIENDA
             {
-              $dbconn = pg_connect("host=localhost port=5432 dbname=Urbs user=postgres password=BIAR") or die("Impossibile connettersi: " . pg_last_error());
-              $uid=$_GET['uid'];
+              $env = parse_ini_file('.env');
+              $PGHOST = $env['PGHOST'];
+              $PGPORT = $env['PGPORT'];
+              $PGDATABASE = $env['PGDATABASE'];
+              $PGUSER = $env['PGUSER'];
+              $PGPASSWORD = $env['PGPASSWORD'];
+              $dbconn = pg_connect("host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER password=$PGPASSWORD")  or header("Location: ../app/indexErrore.php?er=100");
+              $company_id=$_SESSION['uid'];
               $query="SELECT * FROM company where company_id=$1";
-              $result=pg_query_params($dbconn,$query,array($uid));
+              $result=pg_query_params($dbconn,$query,array($company_id));
               if(pg_num_rows($result)==0)
               {
                 echo "<h1>Profilo non trovato!</h1>
@@ -177,13 +168,15 @@ session_start();
               {
               echo "\n";
               $line=pg_fetch_assoc($result);
-              $ragsociale=$line["ragione_sociale"];
+              $company_name=$line["company_name"];
               $username=$line["username"];
-              $iva=$line["partita_iva"];
-              $indirizzo=$line["indirizzo"];
-              $citta=$line["citta"];
-              $nazione=$line["nazione"];
-              $descrizione=$line["descrizione"];
+              $vat_number=$line["vat_number"];
+              $address=$line["address"];
+              $city=$line["city"];
+              $country=$line["country"];
+              $description=$line["description"];
+              $contact_email=$line["contact_email"];
+              $telephone_number=$line["telephone_number"];
               echo " <div class='grid'>
               <div class='row'>
                   <div class='col-sm-4 my-auto text-left m-3'>
@@ -193,36 +186,23 @@ session_start();
                             <img src='../Images/azienda.jpg' id='foto' class='rounded-circle avatar-lg img-thumbnail' alt='profile-image'>
                             <div class='mt-3'>
                                 <p class='mb-2'><span class='grassetto' id='username2'>Username: </span> <span class='testo-grigio'>$username</span></p>
-                                <p class='mb-2'><span class='grassetto'>Ragione sociale: </span><span class='testo-grigio'>$ragsociale</span></p>
-                                <p class='mb-2'><span class='grassetto'>Partita IVA: </span> <span class='testo-grigio'>$iva</span></p>
-                                <p class='mb-2'><span class='grassetto' id='indirizzo2'>Indirizzo: </span> <span class='testo-grigio' id='indirizzo' name='nomeNazione'>$indirizzo</span></p>
-                                <p class='mb-2'><span class='grassetto' id='citta2'>Città: </span> <span class='testo-grigio' id='citta'>$citta</span></p>
-                                <p class='mb-2'><span class='grassetto' id='nazione2'>Nazione: </span> <span class='testo-grigio' id='nazione'>$nazione</span></p>
-                                <p class='mb-2'><span class='grassetto'>Descrizione: </span> <span class='testo-grigio'>$descrizione</span></p>
+                                <p class='mb-2'><span class='grassetto'>Ragione sociale: </span><span class='testo-grigio'>$company_name</span></p>
+                                <p class='mb-2'><span class='grassetto'>Partita IVA: </span> <span class='testo-grigio'>$vat_number</span></p>
+                                <p class='mb-2'><span class='grassetto' id='indirizzo2'>Indirizzo: </span> <span class='testo-grigio' id='indirizzo' name='nomeNazione'>$address</span></p>
+                                <p class='mb-2'><span class='grassetto' id='citta2'>Città: </span> <span class='testo-grigio' id='citta'>$city</span></p>
+                                <p class='mb-2'><span class='grassetto' id='nazione2'>Nazione: </span> <span class='testo-grigio' id='nazione'>$country</span></p>
+                                <p class='mb-2'><span class='grassetto'>Descrizione: </span> <span class='testo-grigio'>$description</span></p>
+                                <p class='mb-2'><span class='grassetto'>Contact email: </span> <span class='testo-grigio'>$contact_email</span></p>
+                                <p class='mb-2'><span class='grassetto'>Telephone number: </span> <span class='testo-grigio'>$telephone_number</span></p>
                             </div>
                     </div>
-                    </div>
-
-                  <div class='col-sm m-3 my-auto'>
-                    <div class='mt-3'>
-                    <h6 class='m-5 text-gold'><span class='grassetto'>Eventi creati:<br><br></span>";
-                    $query1 = "SELECT * FROM Eventi WHERE creatore=$1";
-                    $result1=pg_query_params($dbconn,$query1,array($uid));
-                    while ($line1=pg_fetch_array($result1, null, PGSQL_ASSOC)) 
-                    {
-                          $nome=$line1['nome'];
-                          $citta=$line1['citta'];
-                          echo "<p>".$nome." (".$citta.")</p><br>";
-                    }             
-
-                echo  "</h6></div></div>
-              </div></div>";
+                    </div>";
+                echo  "</h6></div></div>";
               pg_free_result($result);
               pg_close($dbconn);
               $uida=$_SESSION['uid'];
                     if(isset($_SESSION['uid']) && $uida==$uid)
                     {
-                      echo "<div class='group-bottoni'><a href='../Eventi/creazione.php'><button class='btn gold-button shadow-none'><i class='fa-solid fa-circle-plus'></i> Crea evento</button></a><br>";
                       echo "<a href='../app/logout.php'><button class='btn gold-button shadow-none'><i class='fa-solid fa-right-from-bracket'></i> Logout</button></a></div>";
                     }
                     else {
@@ -232,18 +212,6 @@ session_start();
           }
         ?>
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
           <br>
         </div>
       </section>

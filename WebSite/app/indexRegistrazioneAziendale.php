@@ -28,7 +28,7 @@ session_start();
 
         <!--PER LA REGISTRAZIONE--> 
         <script type="application/javascript" src="reveal.js"></script>
-        <script src="validaRegistrazioni.js" type="application/javascript"> </script>
+        <script src="../Registrazione/validaRegistrazioni.js" type="application/javascript"> </script>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
      <script>
           window.onload = function() {
@@ -406,8 +406,8 @@ session_start();
     </div>
     <br>
     <div>
-        <label for="foto">Foto profilo</label> <br>
-        <input type="file" id="foto" name="foto" class="custom-file-upload">
+        <label for="logo">Foto profilo</label> <br>
+        <input type="file" id="logo" name="logo" class="custom-file-upload">
     </div>
     <div class="text-center">
       <button type="submit" name="registrationButton" class="btn-lg" id="register-button">Invia</button>

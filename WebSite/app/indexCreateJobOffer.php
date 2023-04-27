@@ -2,9 +2,9 @@
 session_start();
 ?>
 <!DOCTYPE html>
-  <html>
-    <!--HEADER-->
-    <head>
+<html>
+  <!--HEADER-->
+<head>
         <meta charset="UTF-8"/>
         <meta name="description" content="Intersection between professionals and companies site"/>
         <meta name="keywords" content="HTML, CSS, JavaScript, PHP">
@@ -16,10 +16,26 @@ session_start();
         <link rel="icon" href="../Images/favicon.jpg" type="favicon">
 
         <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"> <!--BOOTSTRAP CI SERVE?-->
-        <link rel="stylesheet" type="text/css" href="../Home/style.css">
+        <link rel="stylesheet" type="text/css" href="../CreateJobOffer/style.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css"> <!--FONTAWESOME CI SERVE?-->
 
         <script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script> <!--BOOTSTRAP CI SERVE?-->
+        <script>
+          window.onload = function() {
+            var textarea = document.getElementsByClassName("extensible");
+            var limit = 500;
+
+            textarea[0].oninput = function() {
+              textarea[0].style.height = "";
+              textarea[0].style.height = Math.min(textarea[0].scrollHeight, limit) + "px";
+            }
+
+            textarea[1].oninput = function() {
+              textarea[1].style.height = "";
+              textarea[1].style.height = Math.min(textarea[1].scrollHeight, limit) + "px";
+            }
+          }
+        </script>
 
         <!--Titles font-->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -72,48 +88,47 @@ session_start();
         </div>
       </nav>
     </div>
-
-<!--BODY-->      
-      <a class="anchor" name="post"></a>
-      <section id="section1">
-        <div class="container">
-          <br>
-          <h2 class="text-uppercase text-black spaced">SECTION 1</h2>
-
-          </div>
-          <a class="bg-sm" href="../app/indexJobOffer.php">Job Offers</a>
-          </div>
-
-          <br>
+      <!--BODY-->
+      <form action="../app/createJobOffer.php" class="form-signin bg-light" method="POST" name="formCreazione">
+        <h4 class="mb-3 text-uppercase gold-text">Crea Nuova Offerta di lavoro</h4>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control form-field" id="title" name="title" placeholder="." minlength="2" maxlength="100" size="100" required>
+            <label for="title">Title*</label>
         </div>
-      </section>
-
-      <section id="section2">
-        <div class="container">
-          <br>
-          <h2 class="text-uppercase text-black spaced">SECTION 2</h2>
-          <br>
+        <div class="form-floating mb-3">
+          <textarea class="form-control form-field extensible" id="description" name="description" placeholder="," rows="5" cols="75" maxlength="2000"></textarea>
+          <label for="description">Description*</label>
         </div>
-      </section>
-
-      <section id="section3">
-        <div class="container">
-          <br>
-          <h2 class="text-uppercase text-black spaced">SECTION 3</h2>
-          <br>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control form-field" id="salary" name="salary" placeholder="," minlength="3" maxlength="100" size="100" required>
+            <label for="salary">Salary*</label>
         </div>
-      </section>
-
-      <section id="section4">
-        <div class="container">
-          <br>
-          <h2 class="text-uppercase text-black spaced">SECTION 4</h2>
-          <br>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control form-field" id="period" name="period" placeholder="," minlength="3" maxlength="100" size="100" required>
+            <label for="period">Period*</label>
         </div>
-      </section>
-
+        <br>  
+        <h2 id="end">I campi contrassegnati con * sono obbligatori</h2>
+        <div class="text-center">
+        <?php
+          if(!isset($_SESSION['uid']) || ($_SESSION['sa']==0))
+          {
+           echo '<div id="errore" class="mt-3"><i class="fa-solid fa-triangle-exclamation"></i> Login come Company per creare una job offer</div>';
+          }
+          else
+          {
+           echo '<div>
+           <input type="hidden" class="form-control form-field" id="uid" name="uid" value="'.$_SESSION["uid"].'">
+           </div>
+           <button type="submit" name="creationButton" class="btn-lg round-button">Send</button>';
+          }
+      ?>
+        </div>
+        <br>
+      </form>
+      
 <!--FOOTER-->
-      <footer class="text-center text-white">
+<footer class="text-center text-white">
         <div class="grid" id="footer-grid">
           <div class="row">
             <div class="col-md-1"></div>
