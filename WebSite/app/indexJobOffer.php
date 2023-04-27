@@ -77,7 +77,23 @@ session_start();
      <!--BODY-->
       <div class="container main">
           <?php 
-            $env = parse_ini_file('.env');
+            try {
+              // per il sito in locale
+              $env = parse_ini_file('.env');
+          
+              $PGHOST = $env['PGHOST'];
+              $PGPORT = $env['PGPORT'];
+              $PGDATABASE = $env['PGDATABASE'];
+              $PGUSER = $env['PGUSER'];
+              $PGPASSWORD = $env['PGPASSWORD'];
+          } catch (Exception $e) {
+              // per il sito deployato
+              $PGHOST = getenv('PGHOST');
+              $PGPORT = getenv('PGPORT');
+              $PGDATABASE = getenv('PGDATABASE');
+              $PGUSER = getenv('PGUSER');
+              $PGPASSWORD = getenv('PGPASSWORD');
+          }
             $PGHOST = $env['PGHOST'];
             $PGPORT = $env['PGPORT'];
             $PGDATABASE = $env['PGDATABASE'];
