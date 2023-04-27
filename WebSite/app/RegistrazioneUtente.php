@@ -1,4 +1,5 @@
 <?php
+    ob_start();
     if (false) {
         // per il sito in locale
         $env = parse_ini_file('.env');
@@ -107,7 +108,8 @@ $dbconn = pg_connect("host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER 
                 }
             }
         }
-    }    
+    }
+    ob_end_flush();    
     ?>
     </body>
 </html>
