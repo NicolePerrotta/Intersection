@@ -19,7 +19,6 @@ if (file_exists('.env')) {
 session_start();
 $dbconn = pg_connect("host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER password=$PGPASSWORD")  or header("Location: indexErrore.php?er=100");
 ?>
-
 <html>
     <head></head>
 <body>

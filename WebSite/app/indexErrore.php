@@ -113,8 +113,6 @@ session_start();
     ?>
     <a id="back-home" href="index.php"><button id="tornaHome">Torna alla home</button></a>
     </div>
-
-
 <!--FOOTER-->
 <footer class="text-center text-white">
         <div class="grid" id="footer-grid">
