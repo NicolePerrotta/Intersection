@@ -1,6 +1,6 @@
 <?php
     ob_start();
-    if (false) {
+    if(file_exists('.env')) {
         // per il sito in locale
         $env = parse_ini_file('.env');
 
