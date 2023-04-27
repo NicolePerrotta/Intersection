@@ -5,11 +5,11 @@
     //$PGDATABASE = $env['PGDATABASE'];
     //$PGUSER = $env['PGUSER'];
     //$PGPASSWORD = $env['PGPASSWORD'];
-    $PGHOST = getenv('PGHOST');
-    $PGPORT = getenv('PGPORT');
-    $PGDATABASE = getenv('PGDATABASE');
-    $PGUSER = getenv('PGUSER');
-    $PGPASSWORD = getenv('PGPASSWORD');
+    $PGHOST = "containers-us-west-164.railway.app";
+    $PGPORT = "7962";
+    $PGDATABASE = "railway";
+    $PGUSER = "postgres";
+    $PGPASSWORD = "NYU6QxtLsLy0blbbpH81";
 session_start();
 $dbconn = pg_connect("host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER password=$PGPASSWORD")  or header("Location: indexErrore.php?er=100");
 ?>
