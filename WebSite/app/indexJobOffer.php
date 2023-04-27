@@ -17,7 +17,7 @@ session_start();
         <link rel="icon" href="../Images/favicon.jpg" type="favicon">
 
         <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"> <!--BOOTSTRAP CI SERVE?-->
-        <link rel="stylesheet" type="text/css" href="../JobOffer/style.css">
+        <link rel="stylesheet" type="text/css" href="JobOffer/style.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css"> <!--FONTAWESOME CI SERVE?-->
 
         <script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script> <!--BOOTSTRAP CI SERVE?-->

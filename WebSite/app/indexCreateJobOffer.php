@@ -16,7 +16,7 @@ session_start();
         <link rel="icon" href="../Images/favicon.jpg" type="favicon">
 
         <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"> <!--BOOTSTRAP CI SERVE?-->
-        <link rel="stylesheet" type="text/css" href="../CreateJobOffer/style.css">
+        <link rel="stylesheet" type="text/css" href="CreateJobOffer/style.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css"> <!--FONTAWESOME CI SERVE?-->
 
         <script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script> <!--BOOTSTRAP CI SERVE?-->
@@ -89,7 +89,7 @@ session_start();
       </nav>
     </div>
       <!--BODY-->
-      <form action="../app/createJobOffer.php" class="form-signin bg-light" method="POST" name="formCreazione">
+      <form action="createJobOffer.php" class="form-signin bg-light" method="POST" name="formCreazione">
         <h4 class="mb-3 text-uppercase gold-text">Crea Nuova Offerta di lavoro</h4>
         <div class="form-floating mb-3">
             <input type="text" class="form-control form-field" id="title" name="title" placeholder="." minlength="2" maxlength="100" size="100" required>
