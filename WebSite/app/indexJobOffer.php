@@ -77,7 +77,7 @@ session_start();
      <!--BODY-->
       <div class="container main">
           <?php 
-            if (file_exists('.env')) {
+            if (false) {
               // per il sito in locale
               $env = parse_ini_file('.env');
           

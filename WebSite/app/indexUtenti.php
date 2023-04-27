@@ -84,7 +84,7 @@ session_start();
             }
             else if($_GET["sa"]==0) //PROFILO UTENTE
             {
-              if (file_exists('.env')) {
+              if (false) {
                 // per il sito in locale
                 $env = parse_ini_file('.env');
             
@@ -160,7 +160,7 @@ session_start();
           }
             else //PROFILO AZIENDA
             {
-              if (file_exists('.env')) {
+              if (false) {
                 // per il sito in locale
                 $env = parse_ini_file('.env');
             

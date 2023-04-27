@@ -1,5 +1,5 @@
 <?php
-if (file_exists('.env')) {
+if (false) {
     // per il sito in locale
     $env = parse_ini_file('.env');
 
