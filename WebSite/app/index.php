@@ -13,7 +13,7 @@ session_start();
         <meta name="generator" content="Visual Studio Code">
 
         <title>Intersection</title>
-        <link rel="icon" href="../Images/favicon.jpg" type="favicon">
+        <link rel="icon" href="Images/favicon.jpg" type="favicon">
 
         <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"> <!--BOOTSTRAP CI SERVE?-->
         <link rel="stylesheet" type="text/css" href="../Home/style.css">
@@ -33,8 +33,8 @@ session_start();
       <nav class="navbar navbar-dark navbar-expand-md py-1" id="upper-nav">
         <div class="container-fluid">
           <a class="navbar-brand me-auto" href="../app/index.php" id="titolo">
-                 <img src="../Images/logo.jpg" id="logae">
-              INTERSECTION
+                 <img src="Images/logo.jpg" id="logae">
+              INTERSECTION il logo a sinistra dovrebbe funzionare
           </a>
           
           <div class="navbar-nav ms-auto">
@@ -129,7 +129,7 @@ session_start();
           </div>
         </div>
         <div class="text-center p-2" id="copyright">
-          &copy;2023 Intersection <br><img src="../Images/favicon.jpg" id="favi">
+          &copy;2023 Intersection <br><img src="Images/favicon.jpg" id="favi">
         </div>
       </footer>
     </body>

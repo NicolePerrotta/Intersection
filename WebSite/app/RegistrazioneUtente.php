@@ -66,12 +66,12 @@ $dbconn = pg_connect("host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER 
 
 
                     $filename = $_POST['curriculum'];
-                    $handler = fopen($filename, 'rb');
-                    if (false === $handler) {
-                        printf('Impossibile aprire il file %s', $filename);
-                        exit;
-                    }
-                    fclose($handler);
+                    //$handler = fopen($filename, 'rb');
+                    //if (false === $handler) {
+                    //    printf('Impossibile aprire il file %s', $filename);
+                    //    exit;
+                    //}
+                    //fclose($handler);
 
 
 
@@ -80,12 +80,12 @@ $dbconn = pg_connect("host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER 
 
 
                     $filename = $_POST['picture'];
-                    $handler = fopen($filename, 'rb');
-                    if (false === $handler) {
-                        printf('Impossibile aprire il file %s', $filename);
-                        exit;
-                    }
-                    fclose($handler);
+                    //$handler = fopen($filename, 'rb');
+                    //if (false === $handler) {
+                    //    printf('Impossibile aprire il file %s', $filename);
+                    //    exit;
+                    //}
+                    //fclose($handler);
 
 
 
