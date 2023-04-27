@@ -17,7 +17,7 @@ CREATE TABLE worker
    genre VARCHAR(50),
    contact_email EMAIL,
    telephone_number VARCHAR(50),
-   -- curriculum ??? NOT NULL,
+   curriculum BYTEA, -- NOT NUL
    embedding FLOAT4 ARRAY[512] --NOT NULL
 );
 
@@ -26,7 +26,7 @@ CREATE TABLE job_offer
    -- company_id SERIAL REFERENCES company(company_id),
    offer_id SERIAL PRIMARY KEY,
    title VARCHAR(50) NOT NULL,
-   -- file ??? NOT NULL,
+   file BYTEA, -- NOT NULL
    embedding FLOAT4 ARRAY[512] -- NOT NULL
 );
 

@@ -3,6 +3,7 @@
 """
 
 import re
+from io import BytesIO
 from pathlib import Path
 from typing import Union, BinaryIO
 import nltk
@@ -21,7 +22,7 @@ def initialize() -> None:
     nltk.download('punkt')
 
 
-def extract_from_pdf(file: Union[str, Path, BinaryIO]) -> str:
+def extract_from_pdf(file: Union[str, Path, BinaryIO, BytesIO]) -> str:
     """ Given a PDF or its path, extract all the text into a string """
     # Open the file
     with pdfplumber.open(file) as pdf:
