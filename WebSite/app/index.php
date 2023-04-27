@@ -34,7 +34,7 @@ session_start();
         <div class="container-fluid">
           <a class="navbar-brand me-auto" href="index.php" id="titolo">
                  <img src="Images/logo.jpg" id="logae">
-              INTERSECTION il logo a sinistra dovrebbe funzionare
+              INTERSECTION
           </a>
           
           <div class="navbar-nav ms-auto">
