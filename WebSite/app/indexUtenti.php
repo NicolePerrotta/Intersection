@@ -84,7 +84,7 @@ session_start();
             }
             else if($_GET["sa"]==0) //PROFILO UTENTE
             {
-              try {
+              if (file_exists('.env')) {
                 // per il sito in locale
                 $env = parse_ini_file('.env');
             
@@ -93,7 +93,7 @@ session_start();
                 $PGDATABASE = $env['PGDATABASE'];
                 $PGUSER = $env['PGUSER'];
                 $PGPASSWORD = $env['PGPASSWORD'];
-            } catch (Exception $e) {
+            } else {
                 // per il sito deployato
                 $PGHOST = getenv('PGHOST');
                 $PGPORT = getenv('PGPORT');
@@ -101,11 +101,6 @@ session_start();
                 $PGUSER = getenv('PGUSER');
                 $PGPASSWORD = getenv('PGPASSWORD');
             }
-              $PGHOST = $env['PGHOST'];
-              $PGPORT = $env['PGPORT'];
-              $PGDATABASE = $env['PGDATABASE'];
-              $PGUSER = $env['PGUSER'];
-              $PGPASSWORD = $env['PGPASSWORD'];
               $dbconn = pg_connect("host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER password=$PGPASSWORD")  or header("Location: indexErrore.php?er=100");
               $uid=$_GET['uid'];
               $query= "SELECT * FROM worker where worker_id=$1";
@@ -165,7 +160,7 @@ session_start();
           }
             else //PROFILO AZIENDA
             {
-              try {
+              if (file_exists('.env')) {
                 // per il sito in locale
                 $env = parse_ini_file('.env');
             
@@ -174,7 +169,7 @@ session_start();
                 $PGDATABASE = $env['PGDATABASE'];
                 $PGUSER = $env['PGUSER'];
                 $PGPASSWORD = $env['PGPASSWORD'];
-            } catch (Exception $e) {
+            } else {
                 // per il sito deployato
                 $PGHOST = getenv('PGHOST');
                 $PGPORT = getenv('PGPORT');
@@ -182,11 +177,6 @@ session_start();
                 $PGUSER = getenv('PGUSER');
                 $PGPASSWORD = getenv('PGPASSWORD');
             }
-              $PGHOST = $env['PGHOST'];
-              $PGPORT = $env['PGPORT'];
-              $PGDATABASE = $env['PGDATABASE'];
-              $PGUSER = $env['PGUSER'];
-              $PGPASSWORD = $env['PGPASSWORD'];
               $dbconn = pg_connect("host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER password=$PGPASSWORD")  or header("Location: indexErrore.php?er=100");
               $company_id=$_SESSION['uid'];
               $query="SELECT * FROM company where company_id=$1";

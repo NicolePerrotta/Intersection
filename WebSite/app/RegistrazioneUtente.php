@@ -1,5 +1,5 @@
 <?php
-    try {
+    if (file_exists('.env')) {
         // per il sito in locale
         $env = parse_ini_file('.env');
     
@@ -8,7 +8,7 @@
         $PGDATABASE = $env['PGDATABASE'];
         $PGUSER = $env['PGUSER'];
         $PGPASSWORD = $env['PGPASSWORD'];
-    } catch (Exception $e) {
+    } else {
         // per il sito deployato
         $PGHOST = getenv('PGHOST');
         $PGPORT = getenv('PGPORT');
