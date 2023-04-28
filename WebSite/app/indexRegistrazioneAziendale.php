@@ -28,7 +28,7 @@ session_start();
 
         <!--PER LA REGISTRAZIONE--> 
         <script type="application/javascript" src="reveal.js"></script>
-        <script src="../Registrazione/validaRegistrazioni.js" type="application/javascript"> </script>
+        <script src="Registrazione/validaRegistrazioni.js" type="application/javascript"> </script>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
      <script>
           window.onload = function() {
