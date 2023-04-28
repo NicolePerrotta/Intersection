@@ -151,7 +151,7 @@ session_start();
               $uida=$_SESSION['uid'];
               if(isset($_SESSION['uid']) && $uida==$uid)
               {
-                echo "<div class='group-bottoni'><a href='Logout.php'><button class='btn gold-button shadow-none'><i class='fa-solid fa-right-from-bracket'></i> Logout</button></a></div>";
+                echo "<div class='group-bottoni'><a href='logout.php'><button class='btn gold-button shadow-none'><i class='fa-solid fa-right-from-bracket'></i> Logout</button></a></div>";
               }
               else {
 
