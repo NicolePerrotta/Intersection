@@ -177,7 +177,7 @@ session_start();
             if(isset($_SESSION['uid']) && $uida==$uid)
             {
               echo "<div class='group-bottoni'><a href='indexCreateJobOffer.php'><button class='btn gold-button shadow-none'><i class='fa-solid fa-circle-plus'></i> Create Job Offer</button></a><br>";
-              echo "<a href='indexLogout.php'><button class='btn gold-button shadow-none'><i class='fa-solid fa-right-from-bracket'></i> Logout</button></a></div>";
+              echo "<a href='Logout.php'><button class='btn gold-button shadow-none'><i class='fa-solid fa-right-from-bracket'></i> Logout</button></a></div>";
             }
             else {
             }
