@@ -1,4 +1,5 @@
 <?php
+ob_start();
 if(file_exists('.env')) {
     // per il sito in locale
     $env = parse_ini_file('.env');
@@ -44,7 +45,7 @@ $dbconn = pg_connect("host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER 
             $line=pg_query_params($dbconn,$q1,array($company_id,$title,$description,$salary,$period));
             if($line)
             {           
-                header("Location: indexUtenti.php?uid=".$uid."&sa=1");
+                header("Location: indexUtenti.php?uid=".$company_id."&sa=1");
             }
             else
             {
@@ -52,7 +53,8 @@ $dbconn = pg_connect("host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER 
             }
     }
     if(isset($line)) pg_free_result($line);  
-    pg_close($dbconn);  
+    pg_close($dbconn); 
+    ob_end_flush(); 
     }  
     ?>
     </body>
