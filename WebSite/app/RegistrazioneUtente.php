@@ -1,21 +1,32 @@
 <?php
-    $env = parse_ini_file('.env');
-    $PGHOST = $env['PGHOST'];
-    $PGPORT = $env['PGPORT'];
-    $PGDATABASE = $env['PGDATABASE'];
-    $PGUSER = $env['PGUSER'];
-    $PGPASSWORD = $env['PGPASSWORD'];
-session_start();
-$dbconn = pg_connect("host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER password=$PGPASSWORD")  or header("Location: ../app/indexErrore.php?er=100");
-?>
+    ob_start();
+    if(file_exists('.env')) {
+        // per il sito in locale
+        $env = parse_ini_file('.env');
 
+        $PGHOST = $env['PGHOST'];
+        $PGPORT = $env['PGPORT'];
+        $PGDATABASE = $env['PGDATABASE'];
+        $PGUSER = $env['PGUSER'];
+        $PGPASSWORD = $env['PGPASSWORD'];
+    } else {
+        // per il sito deployato
+        $PGHOST = getenv('PGHOST');
+        $PGPORT = getenv('PGPORT');
+        $PGDATABASE = getenv('PGDATABASE');
+        $PGUSER = getenv('PGUSER');
+        $PGPASSWORD = getenv('PGPASSWORD');
+    }
+session_start();
+$dbconn = pg_connect("host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER password=$PGPASSWORD")  or header("Location: indexErrore.php?er=100");
+?>
 <html>
     <head></head>
 <body>
     <?php 
     if(!(isset($_POST["registrationButton"])))
     {
-        header("Location: ../app/index.php");
+        header("Location: index.php");
     }
     else
     {
@@ -26,7 +37,7 @@ $dbconn = pg_connect("host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER 
         $r=pg_query_params($dbconn,$q2,array($email));
         if(($line=pg_fetch_array($result,null,PGSQL_ASSOC)) || ($line=pg_fetch_array($r,null,PGSQL_ASSOC)))
         {
-          header("Location: ../app/indexErrore.php?er=1");
+          header("Location: indexErrore.php?er=1");
         }
         else
         {
@@ -37,7 +48,7 @@ $dbconn = pg_connect("host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER 
             $r1=pg_query_params($dbconn,$q4,array($user));
             if(($line=pg_fetch_array($result1,null,PGSQL_ASSOC)) || ($line=pg_fetch_array($r1,null,PGSQL_ASSOC)))
             {
-              header("Location: ../app/indexErrore.php?er=2");
+              header("Location: indexErrore.php?er=2");
             }  
             else
             {
@@ -48,7 +59,7 @@ $dbconn = pg_connect("host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER 
                 $r2=pg_query_params($dbconn,$q6,array($password));
                 if(($line=pg_fetch_array($result2,null,PGSQL_ASSOC)) || ($line=pg_fetch_array($r2,null,PGSQL_ASSOC)))
                 {
-                  header("Location: ../app/indexErrore.php?er=3");
+                  header("Location: indexErrore.php?er=3");
                 }
                 else
                 { 
@@ -92,12 +103,13 @@ $dbconn = pg_connect("host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER 
                       if(isset($r2)) pg_free_result($r2);
                       if(isset($data)) pg_free_result($data);
                       pg_close($dbconn); 
-                      header("Location: ../app/indexLogin.php");
+                      header("Location: indexLogin.php");
                     }
                 }
             }
         }
-    }    
+    }
+    ob_end_flush();    
     ?>
     </body>
 </html>

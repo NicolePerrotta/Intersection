@@ -1,14 +1,25 @@
 <?php
-$env = parse_ini_file('.env');
-$PGHOST = $env['PGHOST'];
-$PGPORT = $env['PGPORT'];
-$PGDATABASE = $env['PGDATABASE'];
-$PGUSER = $env['PGUSER'];
-$PGPASSWORD = $env['PGPASSWORD'];
-session_start();
-$dbconn = pg_connect("host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER password=$PGPASSWORD")  or header("Location: ../app/indexErrore.php?er=100");
-?>
+ob_start();
+if(file_exists('.env')) {
+    // per il sito in locale
+    $env = parse_ini_file('.env');
 
+    $PGHOST = $env['PGHOST'];
+    $PGPORT = $env['PGPORT'];
+    $PGDATABASE = $env['PGDATABASE'];
+    $PGUSER = $env['PGUSER'];
+    $PGPASSWORD = $env['PGPASSWORD'];
+} else {
+    // per il sito deployato
+    $PGHOST = getenv('PGHOST');
+    $PGPORT = getenv('PGPORT');
+    $PGDATABASE = getenv('PGDATABASE');
+    $PGUSER = getenv('PGUSER');
+    $PGPASSWORD = getenv('PGPASSWORD');
+}
+session_start();
+$dbconn = pg_connect("host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER password=$PGPASSWORD")  or header("Location: indexErrore.php?er=100");
+?>
 <html>
     <head></head>
 <body>
@@ -49,7 +60,8 @@ $dbconn = pg_connect("host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER 
               header('Location: ' . $_SERVER['HTTP_REFERER']);
             }
         }
-    }    
+    }
+    ob_end_flush();    
     ?>
     </body>
 </html>

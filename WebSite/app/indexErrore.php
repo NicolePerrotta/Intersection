@@ -13,13 +13,13 @@ session_start();
         <meta name="generator" content="Visual Studio Code">
 
         <title>Intersection</title>
-        <link rel="icon" href="../Images/favicon.jpg" type="favicon">
+        <link rel="icon" href="Images/favicon.jpg" type="favicon">
 
-        <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"> <!--BOOTSTRAP CI SERVE?-->
-        <link rel="stylesheet" type="text/css" href="../Errore/style.css">
+        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"> <!--BOOTSTRAP CI SERVE?-->
+        <link rel="stylesheet" type="text/css" href="Errore/style.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css"> <!--FONTAWESOME CI SERVE?-->
 
-        <script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script> <!--BOOTSTRAP CI SERVE?-->
+        <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script> <!--BOOTSTRAP CI SERVE?-->
 
         <!--Titles font-->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,8 +32,8 @@ session_start();
       <div class=" container fixed-top" id="navbar">
       <nav class="navbar navbar-dark navbar-expand-md py-1" id="upper-nav">
         <div class="container-fluid">
-          <a class="navbar-brand me-auto" href="../app/index.php" id="titolo">
-                 <img src="../Images/logo.jpg" id="logae">
+          <a class="navbar-brand me-auto" href="index.php" id="titolo">
+                 <img src="Images/logo.jpg" id="logae">
               INTERSECTION
           </a>
           
@@ -44,7 +44,7 @@ session_start();
                   IT
               </a>
               <ul id="lang-menu" class="dropdown-menu" aria-labelledby="navbarDropdownMenu">
-                <li><a class="dropdown-item" href="../app/indexErrore.php?er=0">EN</a></li>
+                <li><a class="dropdown-item" href="indexErrore.php?er=0">EN</a></li>
               </ul>
             </div>
           </div> 
@@ -54,14 +54,14 @@ session_start();
                 <?php
                 if(!isset($_SESSION['uid']))
                 {
-                  $logged="<a class='nav-link text-uppercase text-black' href='../app/indexLogin.php'><i class='fa-solid fa-user'></i> Login</a>";
+                  $logged="<a class='nav-link text-uppercase text-black' href='indexLogin.php'><i class='fa-solid fa-user'></i> Login</a>";
                 }
                 else
                 {
                   $uid=$_SESSION['uid'];
                   $sa=$_SESSION['sa'];
                   $username=$_SESSION['user'];
-                  $logged="<a class='nav-link text-uppercase text-black' href='../app/indexUtenti.php?uid=".$uid."&sa=".$sa."'><i class='fa-solid fa-user'></i> ".$username."</a>";
+                  $logged="<a class='nav-link text-uppercase text-black' href='indexUtenti.php?uid=".$uid."&sa=".$sa."'><i class='fa-solid fa-user'></i> ".$username."</a>";
                 }
                 echo $logged;
                 ?>   
@@ -111,10 +111,8 @@ session_start();
                 
                 
     ?>
-    <a id="back-home" href="../app/index.php"><button id="tornaHome">Torna alla home</button></a>
+    <a id="back-home" href="index.php"><button id="tornaHome">Torna alla home</button></a>
     </div>
-
-
 <!--FOOTER-->
 <footer class="text-center text-white">
         <div class="grid" id="footer-grid">
@@ -137,7 +135,7 @@ session_start();
           </div>
         </div>
         <div class="text-center p-2" id="copyright">
-          &copy;2023 Intersection <br><img src="../Images/favicon.jpg" id="favi">
+          &copy;2023 Intersection <br><img src="Images/favicon.jpg" id="favi">
         </div>
       </footer>
     </body>
