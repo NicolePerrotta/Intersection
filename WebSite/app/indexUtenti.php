@@ -136,31 +136,26 @@ ob_start();
               //decode
               $unescapedString = pg_unescape_bytea($curriculum);
 
-              // Set headers to force download
-              header("Content-Type: application/pdf");
-              header("Content-Disposition: inline; filename=example.pdf");
+              // Write the data to a temporary file
+              $tempFile = tempnam(sys_get_temp_dir(), 'pdf');
+              file_put_contents($tempFile, $unescapedString);
 
-              // Output the file contents
-              echo($unescapedString);
+              // Use FPDF to generate a PDF file from the temporary file
+              require('fpdf/fpdf.php');
+              $pdf = new FPDF();
+              $pdf->AddPage();
+              $pdf->SetFont('Arial', 'B', 16);
+              $pdf->Cell(40, 10, 'Hello World!');
+              $pdf->Output($tempFile, 'F');
 
-              // Verify that the PDF data is not corrupted
-              //if (substr($pdf_data, 0, 4) != '%PDF') {
-              //    die('The PDF data is corrupted.');
-              //}
+              // Read the PDF file contents and output it to the browser
+              $pdfData = file_get_contents($tempFile);
+              header("Content-type: application/pdf");
+              header("Content-Disposition: inline; filename=mydocument.pdf");
+              echo $pdfData;
 
-             
-
-              // Output the PDF data using readfile
-              //readfile('data:application/pdf;base64,' . base64_encode($pdf_data));
-
-
-              //header("Content-Type: application/pdf");
-              //header("Content-Disposition: attachment; filename=curriculum.pdf");
-              //echo '<button onclick="window.location.href="indexUtenti.php"">Download PDF</button>';
-              
-              //header("Content-Type: application/pdf");
-              //header("Content-Disposition: attachment; filename=curriculum.pdf");
-              //echo pg_unescape_bytea($curriculum);
+              // Delete the temporary file
+              unlink($tempFile);
 
               echo "
               <div class='grid'>
