@@ -129,18 +129,26 @@ session_start();
               $curriculum = $line["curriculum"];
               $picture = $line["picture"];
 
+              // CONVERT PDF
+              $filename = uniqid() . ".pdf";
+              file_put_contents($filename, $curriculum);
 
-                            // Retrieve the PDF data from the database
+              // Retrieve the PDF data from the database
               $pdf_data = $curriculum; 
-
-              // Verify that the PDF data is not corrupted
-              if (substr($pdf_data, 0, 4) != '%PDF') {
-                  die('The PDF data is corrupted.');
-              }
 
               // Set headers to force download
               header("Content-Type: application/pdf");
               header("Content-Disposition: attachment; filename=example.pdf");
+
+              // Output the file contents
+              readfile($filename);
+
+              // Verify that the PDF data is not corrupted
+              //if (substr($pdf_data, 0, 4) != '%PDF') {
+              //    die('The PDF data is corrupted.');
+              //}
+
+             
 
               // Output the PDF data using readfile
               readfile('data:application/pdf;base64,' . base64_encode($pdf_data));
