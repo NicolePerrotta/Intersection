@@ -129,19 +129,18 @@ session_start();
               $curriculum = $line["curriculum"];
               $picture = $line["picture"];
 
-              // CONVERT PDF
-              $filename = uniqid() . ".pdf";
-              file_put_contents($filename, $curriculum);
 
-              // Retrieve the PDF data from the database
-              $pdf_data = $curriculum; 
+              // CONVERT PDF
+
+              //decode
+              $unescapedString = pg_unescape_bytea($curriculum);
 
               // Set headers to force download
               header("Content-Type: application/pdf");
               header("Content-Disposition: attachment; filename=example.pdf");
 
               // Output the file contents
-              readfile($filename);
+              echo($unescapedString);
 
               // Verify that the PDF data is not corrupted
               //if (substr($pdf_data, 0, 4) != '%PDF') {
@@ -151,7 +150,7 @@ session_start();
              
 
               // Output the PDF data using readfile
-              readfile('data:application/pdf;base64,' . base64_encode($pdf_data));
+              //readfile('data:application/pdf;base64,' . base64_encode($pdf_data));
 
 
               //header("Content-Type: application/pdf");
