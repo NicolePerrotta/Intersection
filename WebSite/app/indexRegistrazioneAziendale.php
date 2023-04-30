@@ -123,7 +123,7 @@ session_start();
         }
       </script>
       <div id="content"> 
-      <form name="formRegistrazioneAziendale" action="RegistrazioneAzienda.php" method="POST" class="form-signin bg-light" id="form-registrazione" onSubmit="return validaRegistrazioneAziendale()">
+      <form name="formRegistrazioneAziendale" action="RegistrazioneAzienda.php" method="POST" class="form-signin bg-light" id="form-registrazione" onSubmit="return validaRegistrazioneAziendale()" enctype="multipart/form-data">
         <h4 id="log" class="mb-3 text-uppercase gold-text">Crea Nuovo Account Aziendale</h4>
         <div>
             <label for="ragsociale">Ragione sociale*</label> <br>
@@ -433,7 +433,7 @@ session_start();
     <br>
     <div>
         <label for="logo">Foto profilo</label> <br>
-        <input type="file" id="logo" name="logo" class="custom-file-upload">
+        <input type="image" id="logo" name="logo" class="custom-file-upload">
     </div>
     <div class="text-center">
       <button type="submit" name="registrationButton" class="btn-lg" id="register-button">Invia</button>
