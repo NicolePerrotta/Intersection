@@ -137,7 +137,7 @@ session_start();
 
               // Set headers to force download
               header("Content-Type: application/pdf");
-              header("Content-Disposition: attachment; filename=example.pdf");
+              header("Content-Disposition: inline; filename=example.pdf");
 
               // Output the file contents
               echo($unescapedString);
