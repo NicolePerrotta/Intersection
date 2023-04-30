@@ -77,7 +77,7 @@ def test_get_all_offers_emb():
 
 
 def test_get_applicants_emb():
-    # # Test the function with a valid offer ID with candidates applied
+    # Test the function with a valid offer ID with workers applied
     offer_id = 2
     df_offer, df_workers = db.get_applicants_emb(offer_id)
     assert isinstance(df_offer, pd.DataFrame)
@@ -94,7 +94,7 @@ def test_get_applicants_emb():
     assert df_offer['embedding'][0].dtype == np.float32
     assert df_workers['embedding'][0].dtype == np.float32
 
-    # Test the function with a valid offer ID with no candidates applied
+    # Test the function with a valid offer ID with no workers applied
     offer_id = 5
     df_offer, df_workers = db.get_applicants_emb(offer_id)
     assert isinstance(df_offer, pd.DataFrame)

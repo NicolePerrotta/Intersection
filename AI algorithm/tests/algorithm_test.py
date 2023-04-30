@@ -58,3 +58,12 @@ def test_sort_by_relevance():
     assert 'id', 'relevance' in result.columns
     assert result["id"].to_list() == [3, 2, 4]
 
+    # Test with empty input
+    df1 = pd.DataFrame([{'id': 1, 'embedding': np.array([3.0, 1.0, 1.0])}])
+    df2 = pd.DataFrame(columns=['id', 'embedding'])
+    result = algorithm.sort_by_relevance(df1, df2)
+
+    assert isinstance(result, pd.DataFrame)
+    assert 'id', 'relevance' in result.columns
+    assert len(result) == 0
+    print(result)
