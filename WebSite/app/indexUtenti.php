@@ -136,26 +136,14 @@ ob_start();
               //decode
               $unescapedString = pg_unescape_bytea($curriculum);
 
-              // Write the data to a temporary file
-              $tempFile = tempnam(sys_get_temp_dir(), 'pdf');
-              file_put_contents($tempFile, $unescapedString);
+              // Set the appropriate headers
+              header('Content-Type: application/pdf');
+              header('Content-Disposition: inline; filename="document.pdf"');
 
-              // Use FPDF to generate a PDF file from the temporary file
-              require('fpdf/fpdf.php');
-              $pdf = new FPDF();
-              $pdf->AddPage();
-              $pdf->SetFont('Arial', 'B', 16);
-              $pdf->Cell(40, 10, 'Hello World!');
-              $pdf->Output($tempFile, 'F');
-
-              // Read the PDF file contents and output it to the browser
-              $pdfData = file_get_contents($tempFile);
-              header("Content-type: application/pdf");
-              header("Content-Disposition: inline; filename=mydocument.pdf");
-              echo $pdfData;
-
-              // Delete the temporary file
-              unlink($tempFile);
+              // Write the data to a file and output it to the browser
+              $fp = fopen('php://output', 'w');
+              fwrite($fp, $unescapedString);
+              fclose($fp);
 
               echo "
               <div class='grid'>
