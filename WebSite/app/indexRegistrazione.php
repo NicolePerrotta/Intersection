@@ -28,7 +28,6 @@ session_start();
 
         <!--PER LA REGISTRAZIONE--> 
         <script type="application/javascript" src="reveal.js"></script>
-        <script src="Registrazione/validaRegistrazioni.js" type="application/javascript"> </script>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     </head>
     <body>
@@ -85,7 +84,70 @@ session_start();
         $("#erroreEta").hide();
         $("#erroreEta2").hide();
     })
-  </script>
+ 
+    //Registrazione
+    function validaRegistrazione()
+    {   
+        var b=true;
+        if(document.formRegistrazione.emailR.value!=document.formRegistrazione.emailR2.value)
+        {
+            $("#erroreEmail").show();
+            location.href = "#emailR";
+            b=false;
+        }
+        else
+        {
+            $("#erroreEmail").hide();
+        }
+        if(document.formRegistrazione.passwordR.value!=document.formRegistrazione.passwordR2.value)
+        {
+            $("#errorePassword").show();
+            if(b==true) location.href = "#passwordR";
+            b=false;
+        }
+        else
+        {
+            $("#errorePassword").hide();
+        }
+        const datanascita = document.formRegistrazione.dataDiNascita.value;
+        const years = calcAge(datanascita);
+        if(years<18)
+        {
+            $("#erroreEta").show();
+            if(b==true) location.href = "#dataDiNascita";
+            b=false;
+        }
+        else
+        {
+            $("#erroreEta").hide();
+        }
+        if(years>150)
+        {
+            $("#erroreEta2").show();
+            if(b==true) location.href = "#dataDiNascita";
+            b=false;
+        }
+        else
+        {
+            $("#erroreEta2").hide();
+        }
+        return b;
+    }
+
+    function calcAge (birthday)
+    {
+        var today = new Date();
+        var birthDate = new Date(birthday);
+        var years = today.getFullYear() - birthDate.getFullYear();
+        var m = today.getMonth() - birthDate.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate()))
+        {
+            years--;
+        }
+        return years;
+    }
+ </script> 
+
     <div id="content">
     <form action="RegistrazioneUtente.php" class="form-signin bg-light" method="POST" name="formRegistrazione" id="form-registrazione" onSubmit="return validaRegistrazione()">
       <h4 id="log" class="mb-3 text-uppercase gold-text text-bold">Crea Nuovo Account</h4>

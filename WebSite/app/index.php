@@ -79,14 +79,31 @@ session_start();
         <div class="container">
           <br>
           <h2 class="text-uppercase text-black spaced">SECTION 1</h2>
-
-          </div>
-          <a class="bg-sm" href="indexJobOffer.php">Job Offers</a>
-          </div>
-
           <br>
         </div>
       </section>
+      <div>
+        <?php
+        if(!(isset($_SESSION["sa"])) || !(isset($_SESSION["uid"])))
+        {
+          
+        }
+        else if($_SESSION["sa"]==0) //WORKER
+        {
+          echo
+          '</div>
+            SONO worker
+          </div>';
+        }
+        else //COMPANY
+        {
+            echo
+            "</div>
+              <a class='bg-sm' href='../app/indexJobOffer.php?uid=".$uid."$sa=".$sa."'>Job Offers</a>
+            </div>";
+        }
+        ?>
+      </div>
 
       <section id="section2">
         <div class="container">

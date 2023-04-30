@@ -58,6 +58,11 @@ def compute_relevance(a: np.ndarray, b: np.ndarray) -> np.ndarray:
 def sort_by_relevance(df1: pd.DataFrame, df2: pd.DataFrame) -> pd.DataFrame:
     """ Process the embeddings contained in two dataframes and return another dataframe with sorted relevance scores """
     df = pd.DataFrame(columns=["id", "relevance"])
-    df["id"] = df2.iloc[:, 0]
-    df["relevance"] = compute_relevance(np.stack(df1["embedding"]), np.stack(df2["embedding"]))
-    return df.sort_values(by='relevance', ascending=False)
+    if df1.empty or df2.empty:
+        # Return empty dataframe
+        return df
+    else:
+        # Perform the computation
+        df["id"] = df2.iloc[:, 0]
+        df["relevance"] = compute_relevance(np.stack(df1["embedding"]), np.stack(df2["embedding"]))
+        return df.sort_values(by='relevance', ascending=False)

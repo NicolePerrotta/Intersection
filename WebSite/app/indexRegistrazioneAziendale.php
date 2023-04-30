@@ -28,7 +28,6 @@ session_start();
 
         <!--PER LA REGISTRAZIONE--> 
         <script type="application/javascript" src="reveal.js"></script>
-        <script src="Registrazione/validaRegistrazioni.js" type="application/javascript"> </script>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
      <script>
           window.onload = function() {
@@ -95,9 +94,36 @@ session_start();
             $("#erroreEmail").hide();
             $("#errorePassword").hide();
         })
+        
+        //Registrazione Aziendale
+        function validaRegistrazioneAziendale()
+        {
+            var b=true;
+            if(document.formRegistrazioneAziendale.emailRA.value!=document.formRegistrazioneAziendale.emailRA2.value)
+            {
+                $("#erroreEmail").show();
+                location.href = "#emailRA";
+                b=false;
+            }
+            else
+            {
+                $("#erroreEmail").hide();
+            }
+            if(document.formRegistrazioneAziendale.passwordRA.value!=document.formRegistrazioneAziendale.passwordRA2.value)
+            {
+                $("#errorePassword").show();
+                if(b==true) location.href = "#passwordRA";
+                b=false;
+            }
+            else
+            {
+                $("#errorePassword").hide();
+            }
+            return b;
+        }
       </script>
       <div id="content"> 
-      <form name="formRegistrazioneAziendale" action="RegistrazioneAzienda.php" method="POST" class="form-signin bg-light" id="form-registrazione" onSubmit="return validaRegistrazioneAziendale()">
+      <form name="formRegistrazioneAziendale" action="RegistrazioneAzienda.php" method="POST" class="form-signin bg-light" id="form-registrazione" onSubmit="return validaRegistrazioneAziendale()" enctype="multipart/form-data">
         <h4 id="log" class="mb-3 text-uppercase gold-text">Crea Nuovo Account Aziendale</h4>
         <div>
             <label for="ragsociale">Ragione sociale*</label> <br>
@@ -407,7 +433,7 @@ session_start();
     <br>
     <div>
         <label for="logo">Foto profilo</label> <br>
-        <input type="file" id="logo" name="logo" class="custom-file-upload">
+        <input type="image" id="logo" name="logo" class="custom-file-upload">
     </div>
     <div class="text-center">
       <button type="submit" name="registrationButton" class="btn-lg" id="register-button">Invia</button>

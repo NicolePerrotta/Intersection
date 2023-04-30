@@ -199,6 +199,10 @@ session_start();
               $description=$line["description"];
               $contact_email=$line["contact_email"];
               $telephone_number=$line["telephone_number"];
+              $logo=$line["logo"];
+
+              header("Content-type: image/jpeg");
+
               echo " <div class='grid'>
               <div class='row'>
                   <div class='col-sm-4 my-auto text-left m-3'>
@@ -216,6 +220,7 @@ session_start();
                                 <p class='mb-2'><span class='grassetto'>Descrizione: </span> <span class='testo-grigio'>$description</span></p>
                                 <p class='mb-2'><span class='grassetto'>Contact email: </span> <span class='testo-grigio'>$contact_email</span></p>
                                 <p class='mb-2'><span class='grassetto'>Telephone number: </span> <span class='testo-grigio'>$telephone_number</span></p>
+                                <p class='mb-2'><span class='grassetto'>Logo: </span> <span class='testo-grigio'>";pg_unescape_bytea($logo);echo"</span></p>
                             </div>
                     </div>
                     </div>";
