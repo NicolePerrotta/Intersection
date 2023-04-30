@@ -1,6 +1,6 @@
 <?php
 session_start();
 session_destroy();
-header('Location: ../app/index.php');
+header('Location: index.php');
 exit;
 ?>

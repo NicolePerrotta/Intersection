@@ -13,13 +13,13 @@ session_start();
         <meta name="generator" content="Visual Studio Code">
 
         <title>Intersection</title>
-        <link rel="icon" href="../Images/favicon.jpg" type="favicon">
+        <link rel="icon" href="Images/favicon.jpg" type="favicon">
 
-        <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"> <!--BOOTSTRAP CI SERVE?-->
-        <link rel="stylesheet" type="text/css" href="../Utenti/style.css">
+        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"> <!--BOOTSTRAP CI SERVE?-->
+        <link rel="stylesheet" type="text/css" href="Utenti/style.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css"> <!--FONTAWESOME CI SERVE?-->
 
-        <script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script> <!--BOOTSTRAP CI SERVE?-->
+        <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script> <!--BOOTSTRAP CI SERVE?-->
 
         <!--Titles font-->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,8 +32,8 @@ session_start();
       <div class=" container fixed-top" id="navbar">
       <nav class="navbar navbar-dark navbar-expand-md py-1" id="upper-nav">
         <div class="container-fluid">
-          <a class="navbar-brand me-auto" href="../app/index.php" id="titolo">
-                 <img src="../Images/logo.jpg" id="logae">
+          <a class="navbar-brand me-auto" href="index.php" id="titolo">
+                 <img src="Images/logo.jpg" id="logae">
               INTERSECTION
           </a>
           
@@ -44,7 +44,7 @@ session_start();
                   IT
               </a>
               <ul id="lang-menu" class="dropdown-menu" aria-labelledby="navbarDropdownMenu">
-                <li><a class="dropdown-item" href="../app/indexErrore.php?er=0">EN</a></li>
+                <li><a class="dropdown-item" href="indexErrore.php?er=0">EN</a></li>
               </ul>
             </div>
           </div> 
@@ -54,14 +54,14 @@ session_start();
                 <?php
                 if(!isset($_SESSION['uid']))
                 {
-                  $logged="<a class='nav-link text-uppercase text-black' href='../app/indexLogin.php'><i class='fa-solid fa-user'></i> Login</a>";
+                  $logged="<a class='nav-link text-uppercase text-black' href='indexLogin.php'><i class='fa-solid fa-user'></i> Login</a>";
                 }
                 else
                 {
                   $uid=$_SESSION['uid'];
                   $sa=$_SESSION['sa'];
                   $username=$_SESSION['user'];
-                  $logged="<a class='nav-link text-uppercase text-black' href='../app/indexUtenti.php?uid=".$uid."&sa=".$sa."'><i class='fa-solid fa-user'></i> ".$username."</a>";
+                  $logged="<a class='nav-link text-uppercase text-black' href='indexUtenti.php?uid=".$uid."&sa=".$sa."'><i class='fa-solid fa-user'></i> ".$username."</a>";
                 }
                 echo $logged;
                 ?>   
@@ -84,13 +84,24 @@ session_start();
             }
             else if($_GET["sa"]==0) //PROFILO UTENTE
             {
-              $env = parse_ini_file('.env');
-              $PGHOST = $env['PGHOST'];
-              $PGPORT = $env['PGPORT'];
-              $PGDATABASE = $env['PGDATABASE'];
-              $PGUSER = $env['PGUSER'];
-              $PGPASSWORD = $env['PGPASSWORD'];
-              $dbconn = pg_connect("host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER password=$PGPASSWORD")  or header("Location: ../app/indexErrore.php?er=100");
+              if(file_exists('.env')) {
+                // per il sito in locale
+                $env = parse_ini_file('.env');
+            
+                $PGHOST = $env['PGHOST'];
+                $PGPORT = $env['PGPORT'];
+                $PGDATABASE = $env['PGDATABASE'];
+                $PGUSER = $env['PGUSER'];
+                $PGPASSWORD = $env['PGPASSWORD'];
+            } else {
+                // per il sito deployato
+                $PGHOST = getenv('PGHOST');
+                $PGPORT = getenv('PGPORT');
+                $PGDATABASE = getenv('PGDATABASE');
+                $PGUSER = getenv('PGUSER');
+                $PGPASSWORD = getenv('PGPASSWORD');
+            }
+              $dbconn = pg_connect("host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER password=$PGPASSWORD")  or header("Location: indexErrore.php?er=100");
               $uid=$_GET['uid'];
               $query= "SELECT * FROM worker where worker_id=$1";
               $result=pg_query_params($dbconn,$query,array($uid));
@@ -140,7 +151,7 @@ session_start();
               $uida=$_SESSION['uid'];
               if(isset($_SESSION['uid']) && $uida==$uid)
               {
-                echo "<div class='group-bottoni'><a href='../app/Logout.php'><button class='btn gold-button shadow-none'><i class='fa-solid fa-right-from-bracket'></i> Logout</button></a></div>";
+                echo "<div class='group-bottoni'><a href='Logout.php'><button class='btn gold-button shadow-none'><i class='fa-solid fa-right-from-bracket'></i> Logout</button></a></div>";
               }
               else {
 
@@ -149,13 +160,24 @@ session_start();
           }
             else //PROFILO AZIENDA
             {
-              $env = parse_ini_file('.env');
-              $PGHOST = $env['PGHOST'];
-              $PGPORT = $env['PGPORT'];
-              $PGDATABASE = $env['PGDATABASE'];
-              $PGUSER = $env['PGUSER'];
-              $PGPASSWORD = $env['PGPASSWORD'];
-              $dbconn = pg_connect("host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER password=$PGPASSWORD")  or header("Location: ../app/indexErrore.php?er=100");
+              if(file_exists('.env')) {
+                // per il sito in locale
+                $env = parse_ini_file('.env');
+            
+                $PGHOST = $env['PGHOST'];
+                $PGPORT = $env['PGPORT'];
+                $PGDATABASE = $env['PGDATABASE'];
+                $PGUSER = $env['PGUSER'];
+                $PGPASSWORD = $env['PGPASSWORD'];
+            } else {
+                // per il sito deployato
+                $PGHOST = getenv('PGHOST');
+                $PGPORT = getenv('PGPORT');
+                $PGDATABASE = getenv('PGDATABASE');
+                $PGUSER = getenv('PGUSER');
+                $PGPASSWORD = getenv('PGPASSWORD');
+            }
+              $dbconn = pg_connect("host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER password=$PGPASSWORD")  or header("Location: indexErrore.php?er=100");
               $company_id=$_SESSION['uid'];
               $query="SELECT * FROM company where company_id=$1";
               $result=pg_query_params($dbconn,$query,array($company_id));
@@ -177,13 +199,14 @@ session_start();
               $description=$line["description"];
               $contact_email=$line["contact_email"];
               $telephone_number=$line["telephone_number"];
+              $logo=$line["logo"];
               echo " <div class='grid'>
               <div class='row'>
                   <div class='col-sm-4 my-auto text-left m-3'>
               
                     <div id='corpoprofilo'> 
                           <h2 class='text-uppercase spaced mb-5' id='title'>Profilo azienda</h2> 
-                            <img src='../Images/azienda.jpg' id='foto' class='rounded-circle avatar-lg img-thumbnail' alt='profile-image'>
+                            <img src='Images/azienda.jpg' id='foto' class='rounded-circle avatar-lg img-thumbnail' alt='profile-image'>
                             <div class='mt-3'>
                                 <p class='mb-2'><span class='grassetto' id='username2'>Username: </span> <span class='testo-grigio'>$username</span></p>
                                 <p class='mb-2'><span class='grassetto'>Ragione sociale: </span><span class='testo-grigio'>$company_name</span></p>
@@ -194,6 +217,7 @@ session_start();
                                 <p class='mb-2'><span class='grassetto'>Descrizione: </span> <span class='testo-grigio'>$description</span></p>
                                 <p class='mb-2'><span class='grassetto'>Contact email: </span> <span class='testo-grigio'>$contact_email</span></p>
                                 <p class='mb-2'><span class='grassetto'>Telephone number: </span> <span class='testo-grigio'>$telephone_number</span></p>
+                                <p class='mb-2'><span class='grassetto'>Logo: </span> <span class='testo-grigio'>$logo</span></p>
                             </div>
                     </div>
                     </div>";
@@ -203,7 +227,7 @@ session_start();
               $uida=$_SESSION['uid'];
                     if(isset($_SESSION['uid']) && $uida==$uid)
                     {
-                      echo "<a href='../app/logout.php'><button class='btn gold-button shadow-none'><i class='fa-solid fa-right-from-bracket'></i> Logout</button></a></div>";
+                      echo "<a href='Logout.php'><button class='btn gold-button shadow-none'><i class='fa-solid fa-right-from-bracket'></i> Logout</button></a></div>";
                     }
                     else {
 
@@ -237,7 +261,7 @@ session_start();
           </div>
         </div>
         <div class="text-center p-2" id="copyright">
-          &copy;2023 Intersection <br><img src="../Images/favicon.jpg" id="favi">
+          &copy;2023 Intersection <br><img src="Images/favicon.jpg" id="favi">
         </div>
       </footer>
     </body>
