@@ -78,6 +78,7 @@ session_start();
         <div class="container">
           <div id="content">
           <?php
+          ob_start();
             if(!(isset($_GET["sa"])) || !(isset($_GET["uid"])))
             {
               
@@ -114,17 +115,29 @@ session_start();
               {
               echo "\n";
               $line=pg_fetch_assoc($result);
-              $nome=$line["nome"];
-              $cognome=$line["cognome"];
+              $nome=$line["name"];
+              $cognome=$line["surname"];
               $username=$line["username"];
-              $datanascita=$line["datanascita"];
-              $indirizzo=$line["indirizzo"];
-              $citta=$line["citta"];
-              $nazione=$line["nazione"];
-              $genere=$line["genere"];
+              $datanascita=$line["birth_date"];
+              $indirizzo=$line["address"];
+              $citta=$line["city"];
+              $nazione=$line["country"];
+              $genere=$line["genre"];
               $date = date('d/m/Y',strtotime($datanascita));
-              echo "
+              $contact_email = $line["contact_email"];
+              $telephone_number = $line["telephone_number"];
+              $curriculum = $line["curriculum"];
+              $picture = $line["picture"];
 
+              //header("Content-Type: application/pdf");
+              //header("Content-Disposition: attachment; filename=curriculum.pdf");
+              //echo '<button onclick="window.location.href="indexUtenti.php"">Download PDF</button>';
+              
+              //header("Content-Type: application/pdf");
+              //header("Content-Disposition: attachment; filename=curriculum.pdf");
+              echo pg_unescape_bytea($curriculum);
+
+              echo "
               <div class='grid'>
               <div class='row'>
                   <div class='col-sm-4 my-auto text-left m-3'>
@@ -142,6 +155,8 @@ session_start();
                             <p class='mb-2'><span class='grassetto' id='indirizzo2'>Indirizzo: </span> <span class='testo-grigio' id='indirizzo' name='nomeNazione'>$indirizzo</span></p>
                             <p class='mb-2'><span class='grassetto' id='citta2'>Città: </span> <span class='testo-grigio' id='citta'>$citta</span></p>
                             <p class='mb-2'><span class='grassetto' id='nazione2'>Nazione: </span> <span class='testo-grigio' id='nazione'>$nazione</span></p>
+                            <p class='mb-2'><span class='grassetto' id='contact_email'>Contact mail: </span> <span class='testo-grigio' id='nazione'>$contact_email</span></p>
+                            <p class='mb-2'><span class='grassetto' id='telephone_number'>Telephone number: </span> <span class='testo-grigio' id='nazione'>$telephone_number</span></p>
                         </div>
                         </div>
                   </div>";
@@ -201,7 +216,7 @@ session_start();
               $telephone_number=$line["telephone_number"];
               $logo=$line["logo"];
 
-              header("Content-type: image/jpeg");
+              //header("Content-type: image/jpeg");
 
               echo " <div class='grid'>
               <div class='row'>
@@ -237,6 +252,7 @@ session_start();
                     }
             }
           }
+        ob_end_flush();
         ?>
         </div>
           <br>
