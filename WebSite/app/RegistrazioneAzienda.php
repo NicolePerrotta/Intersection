@@ -70,6 +70,14 @@ $dbconn = pg_connect("host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER 
                     $emailC=$_POST['emailC'];
                     $telefono=$_POST['telefono'];
                     $logo=$_POST['logo'];
+
+                    if(isset($_FILES['logo'])&&$_FILES['logo']['size']>0){
+                      $fi =  $_FILES['logo']['tmp_name'];
+                      $p=fopen($fi,'rb');
+                      $data=fread($p,filesize($fi));
+                      $logo= pg_escape_bytea($data);
+                    }
+
                     $q7="insert into company values (DEFAULT,$1,$2,$3,$4,$5,$6,$7,$8,$9, $10, $11, $12)";
                     $data=pg_query_params($dbconn,$q7,array($ragione,$user,$email,$password,$iva,$indirizzo,$citta,$nazione,$des, $emailC, $telefono, $logo));
                     if($data)
