@@ -113,7 +113,7 @@ session_start();
               }
               else
               {
-              echo "\n";
+              
               $line=pg_fetch_assoc($result);
               $nome=$line["name"];
               $cognome=$line["surname"];
@@ -129,13 +129,9 @@ session_start();
               $curriculum = $line["curriculum"];
               $picture = $line["picture"];
 
-              //header("Content-Type: application/pdf");
-              //header("Content-Disposition: attachment; filename=curriculum.pdf");
-              //echo '<button onclick="window.location.href="indexUtenti.php"">Download PDF</button>';
-              
-              //header("Content-Type: application/pdf");
-              //header("Content-Disposition: attachment; filename=curriculum.pdf");
-              echo pg_unescape_bytea($curriculum);
+              $picture = pg_unescape_bytea($picture);
+              $filename = "image_$username.png";
+              file_put_contents($filename, $picture);
 
               echo "
               <div class='grid'>
@@ -144,14 +140,13 @@ session_start();
 
                         <div id='corpoprofilo'> 
                         <h2 class='text-uppercase spaced mb-5' id='title'>Profilo utente</h2> 
-                        <img src='' id='foto' class='rounded-circle avatar-lg img-thumbnail' alt='profile-image'>
+                        <img src='image_$username.png' id='foto' class='rounded-circle avatar-lg img-thumbnail' alt='profile-image'>
                         <div class='mt-3' align='left'>
                             <p class='mb-2'><span class='grassetto' id='username2'>Username: </span> <span class='testo-grigio'>$username</span></p>
                             <p class='mb-2'><span class='grassetto'>Nome: </span><span class='testo-grigio'>$nome</span></p>
                             <p class='mb-2'><span class='grassetto'>Cognome: </span> <span class='testo-grigio'>$cognome</span></p>
                             <p class='mb-2'><span class='grassetto'>Genere: </span> <span class='testo-grigio' id='genere'>$genere</span></p>
                             <p class='mb-2'><span class='grassetto'>Data di nascita: </span> <span class='testo-grigio'>$date</span></p>
-                            <p id='datanascita'>$datanascita</p>
                             <p class='mb-2'><span class='grassetto' id='indirizzo2'>Indirizzo: </span> <span class='testo-grigio' id='indirizzo' name='nomeNazione'>$indirizzo</span></p>
                             <p class='mb-2'><span class='grassetto' id='citta2'>Città: </span> <span class='testo-grigio' id='citta'>$citta</span></p>
                             <p class='mb-2'><span class='grassetto' id='nazione2'>Nazione: </span> <span class='testo-grigio' id='nazione'>$nazione</span></p>
@@ -161,6 +156,15 @@ session_start();
                         </div>
                   </div>";
                 echo  "</div>";
+                $curriculum = pg_unescape_bytea($curriculum);
+                $filename = "$username.pdf";
+                file_put_contents($filename, $curriculum);
+                echo '
+                <object data="'.$username.'.pdf" type="application/pdf" width="100%" height="1000px">
+                  <p>Unable to display PDF file.
+                  <a href="'.$username.'.pdf">Download</a> instead.</p>
+                </object>';
+
               pg_free_result($result);
               pg_close($dbconn);
               $uida=$_SESSION['uid'];
