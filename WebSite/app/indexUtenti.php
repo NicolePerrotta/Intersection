@@ -1,5 +1,6 @@
 <?php
 session_start();
+ob_start();
 ?>
 <!DOCTYPE html>
   <html>
@@ -78,7 +79,7 @@ session_start();
         <div class="container">
           <div id="content">
           <?php
-          ob_start();
+          
             if(!(isset($_GET["sa"])) || !(isset($_GET["uid"])))
             {
               
