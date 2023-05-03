@@ -117,18 +117,21 @@ def recompute_embeddings() -> Any:
     """
     app.state.status = Status.BUSY
 
-    # Helper function to perform all the steps of the algorithm
-    def pipeline(file: io.BytesIO) -> np.ndarray:
+    # Helper functions to perform all the steps of the algorithm
+    def worker_pipeline(file: io.BytesIO) -> np.ndarray:
         return algorithm.encode(algorithm.pre_process(algorithm.extract_from_pdf(file)))
+
+    def offer_pipeline(description: str) -> np.ndarray:
+        return algorithm.encode(algorithm.pre_process(description))
 
     # Recompute workers embeddings
     workers_df = db.get_all_workers_pdf()
-    workers_df['embedding'] = workers_df['curriculum'].apply(pipeline)
+    workers_df['embedding'] = workers_df['curriculum'].apply(worker_pipeline)
     db.set_all_workers_emb(workers_df)
 
     # Recompute job offers embeddings
-    offers_df = db.get_all_offers_pdf()
-    offers_df['embedding'] = offers_df['file'].apply(pipeline)
+    offers_df = db.get_all_offers_description()
+    offers_df['embedding'] = offers_df['description'].apply(offer_pipeline)
     db.set_all_offers_emb(offers_df)
 
     app.state.status = Status.READY

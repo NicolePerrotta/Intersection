@@ -1,5 +1,4 @@
 import io
-
 import db
 import numpy as np
 import pandas as pd
@@ -128,26 +127,28 @@ def test_get_all_workers_pdf():
     assert isinstance(result_df['curriculum'][0], io.BytesIO)
 
 
-def test_get_all_offers_pdf():
-    result_df = db.get_all_offers_pdf()
+def test_get_all_offers_description():
+    result_df = db.get_all_offers_description()
     assert isinstance(result_df, pd.DataFrame)
     # Test columns, size and datatype of the dataframe
-    assert result_df.columns.tolist() == ['offer_id', 'file']
+    assert result_df.columns.tolist() == ['offer_id', 'description']
     assert len(result_df) == 11
-    assert isinstance(result_df['file'][0], io.BytesIO)
+    assert isinstance(result_df['description'][0], str)
 
 
 def test_update_all_workers_emb():
     # Test that values are being inserted correctly
-    initial_df = db.get_all_workers_emb()
+    initial_df = db.get_all_workers_emb().sort_values('worker_id')
     db.set_all_workers_emb(initial_df)
-    final_df = db.get_all_workers_emb()
-    assert initial_df.equals(final_df)
+    final_df = db.get_all_workers_emb().sort_values('worker_id')
+    assert initial_df['worker_id'].to_list() == final_df['worker_id'].to_list()
+    assert np.isclose(initial_df['embedding'].tolist(), final_df['embedding'].tolist()).all()
 
 
 def test_update_all_offers_emb():
     # Test that values are being inserted correctly
-    initial_df = db.get_all_offers_emb()
+    initial_df = db.get_all_offers_emb().sort_values('offer_id')
     db.set_all_offers_emb(initial_df)
-    final_df = db.get_all_offers_emb()
-    assert initial_df.equals(final_df)
+    final_df = db.get_all_offers_emb().sort_values('offer_id')
+    assert initial_df['offer_id'].to_list() == final_df['offer_id'].to_list()
+    assert np.isclose(initial_df['embedding'].tolist(), final_df['embedding'].tolist()).all()

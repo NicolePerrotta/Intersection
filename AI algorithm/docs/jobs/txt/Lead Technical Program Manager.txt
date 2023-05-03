@@ -1,0 +1,60 @@
+Lead Technical Program Manager, Site Reliability Engineering
+Minimum qualifications:
+
+Bachelor's degree in Computer Science, a related technical field or equivalent practical experience.
+Experience managing end-to-end lifecycle of technical projects.
+Experience with Unix/Linux systems with scripting experience in Shell, Perl or Python.
+Experience in one or more of the following: C, C++, Java, Python.
+Preferred qualifications:
+
+Program management or technical management experience leading large-scale, cross-functional,
+and dynamic technical projects.
+Software engineering management or project management expertise.
+Ability to define strategic goals and organize a team and their services around delivering on those
+goals.
+Leadership skills and a passion for growing and building an effective TPM function within an SRE
+organization.
+Excellent communication skills, with ability to articulate your thoughts clearly and communicate
+across a wide variety of functions (SRE, Engineering) and levels.
+About the job
+Google's projects, like our users, span the globe and require managers to keep the big picture in
+focus while being able to dive into the unique engineering challenges we face daily. As a Technical
+Program Manager at Google, you lead complex, multi-disciplinary engineering projects using your
+engineering expertise. You plan requirements with internal customers and usher projects through
+the entire project lifecycle. This includes managing project schedules, identifying risks and clearly
+communicating them to project stakeholders. You're equally at home explaining your team's
+analyses and recommendations to executives as you are discussing the technical trade-offs in
+product development with engineers.
+
+In this role you will manage a group of Technical Program Managers (TPMs) working across a
+multitude of product groups who manage complex programs. The TPM role in SRE is at the core of
+preparing for the continued exponential growth of Google and other programs in Technical
+Infrastructure. TPMs play a pivotal role in ensuring that Google services/infrastructure are carefully
+planned and deployed in a time, place, and configuration which is ideal for serving Google's users.
+Your role sits at a nexus of capacity planning, technical project execution, product planning, site
+reliability and software engineering.
+
+Your leadership abilities will be drawn upon to assist the TPM function in delivering large, highly
+complex and cross-functional programs. You will be equally at home explaining analyses and project
+recommendations to executives as you are discussing the technical merits of next-generation
+architectures with engineers, or building tools to automate and scale their impact.
+
+Behind everything our users see online is the architecture built by the Technical Infrastructure team
+to keep it running. From developing and maintaining our data centers to building the next
+generation of Google platforms, we make Google's product portfolio possible. We're proud to be our
+engineers' engineers and love voiding warranties by taking things apart so we can rebuild them. We
+keep our networks up and running, ensuring our users have the best and fastest experience possible.
+
+Responsibilities
+Manage a team of TPMs working across all core networking groups and assist where necessary to
+ensure successful delivery of multiple programs concurrently.
+Assist Director on operational management of Product Area.
+Collaborate with SRE leadership in key program decision making - including scope definition,
+requirements gathering, staffing, planning and execution of programs.
+Work with cross-functional partners and manage the intake of work into teams in a process and
+scalable driven fashion.
+Be responsible for the people and career development of TPMs and working to identify
+opportunities for exciting career challenges. Ensure there is flexibility and mobility opportunities
+also.
+
+

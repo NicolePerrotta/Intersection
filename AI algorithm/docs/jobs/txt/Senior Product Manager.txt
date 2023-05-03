@@ -1,0 +1,61 @@
+Senior Product Manager, Hardware Enablement,
+Chrome OS Platform
+Minimum qualifications:
+• Bachelor's degree in Computer Science, related technical field or equivalent
+
+practical experience.
+• 5 years of product management experience leading consumer
+
+electronics/hardware products.
+• Experience working with SoC manufacturers and/or consumer electronics OEMs.
+• Experience managing a team of product managers.
+
+Preferred qualifications:
+• 8 years of product management experience leading consumer
+
+electronics/hardware from inception to large scale user adoption.
+• 2 years of experience working with computer or mobile SoC manufacturers.
+• Experience managing day-to-day technical and design direction.
+• Knowledge of multiple functional areas such as Product Management,
+
+Engineering, UX/UI, Sales, Customer Support, Finance or Marketing.
+
+About the job
+In this role, you will lead a global team of product managers focused on strategy
+and execution for reference designs which enable an ecosystem of Chrome OS
+devices. As the team leader of platform hardware enablement, you will partner
+closely with hardware and software engineering teams and business leaders
+internally at Google as well as externally with key partners: SoC manufacturers,
+ODMs, and OEMs.
+In addition to device bring-up, you will own a holistic strategy and roadmap for
+Chrome OS, focusing on our ecosystem scaling initiatives as well as initiatives to
+reduce device bring-up time and accelerate time-to-market. These important
+initiatives will enable more users to be able to enjoy the speed, security, smarts,
+and simplicity of the Chrome OS operating system across education, consumer,
+and enterprise markets.
+Google aims to build products that organize the world's information and make it
+universally accessible to our users. As a Product Manager at Google, you could be
+working on new technologies, platforms, consumer facing products, and/or
+enterprise systems. The end goal will be to match you with the team that best
+aligns with your interests, experience, and where you will have the most impact.
+
+Responsibilities
+• Lead a global team of product managers in designing and executing on a roadmap
+
+of hardware reference designs for Chrome OS devices, combining deep technical
+expertise, business and market understanding, and strategic thinking.
+
+• Partner with engineering teams and executives at SoC partners, ODMs, and
+
+OEMs to launch Chrome OS devices, aligned to market needs and timing.
+• Work collaboratively with engineering teams and peer platform product
+
+management teams globally.
+• Own hardware ecosystem scaling initiatives to advance and grow the Chrome OS
+
+ecosystem.
+• Define and own a holistic strategy and roadmap for Chrome OS and partner with
+
+SoC providers to plan and incorporate long-term architectural technologies.
+
+

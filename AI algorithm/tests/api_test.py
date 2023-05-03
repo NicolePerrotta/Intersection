@@ -2,6 +2,7 @@ from fastapi.testclient import TestClient
 from httpx import Response
 import db
 from api import app
+import numpy as np
 
 
 def assert_response(response: Response, status_code: int, ids_len: int, relevance_len: int) -> None:
@@ -26,7 +27,9 @@ def test_status():
 def test_str_to_embedding():
     with TestClient(app) as client:
         # Test with a valid input
-        response = client.post("/convert/string", json={"text": "This is a test"})
+        with open("../docs/jobs/txt/Backend Developer.txt", "r") as txt_file:
+            content = txt_file.read()
+        response = client.post("/convert/string", json={"text": content})
         assert response.status_code == 200
         embeddings = response.json()
         assert isinstance(embeddings, list)
@@ -63,7 +66,6 @@ def test_pdf_to_embedding():
         # Test with an invalid input
         non_pdf_file = open("../algorithm.py", "rb")
         response = client.post("/convert/pdf", files={"file": non_pdf_file})
-        print(response.json())
         assert response.status_code == 400
         assert response.json()['detail'] == 'The file needs to be a PDF'
 
@@ -127,11 +129,13 @@ def test_recommend_workers():
 
 def test_recompute_embeddings():
     with TestClient(app) as client:
-        init_worker_df = db.get_all_workers_emb()
-        init_offer_df = db.get_all_offers_emb()
+        init_worker_df = db.get_all_workers_emb().sort_values('worker_id')
+        init_offer_df = db.get_all_offers_emb().sort_values('offer_id')
         response = client.get("/recompute")
         assert response.status_code == 200
-        final_worker_df = db.get_all_workers_emb()
-        final_offer_df = db.get_all_offers_emb()
-        assert final_worker_df.equals(init_worker_df)
-        assert final_offer_df.equals(init_offer_df)
+        final_worker_df = db.get_all_workers_emb().sort_values('worker_id')
+        final_offer_df = db.get_all_offers_emb().sort_values('offer_id')
+        assert final_worker_df['worker_id'].to_list() == init_worker_df['worker_id'].to_list()
+        assert final_offer_df['offer_id'].to_list() == init_offer_df['offer_id'].to_list()
+        assert np.isclose(final_worker_df['embedding'].tolist(), init_worker_df['embedding'].tolist()).all()
+        assert np.isclose(final_offer_df['embedding'].tolist(), init_offer_df['embedding'].tolist()).all()

@@ -95,13 +95,10 @@ def get_all_workers_pdf() -> pd.DataFrame:
     return df
 
 
-def get_all_offers_pdf() -> pd.DataFrame:
-    """ Retrieve the ID and the file of every job offer in the DB """
+def get_all_offers_description() -> pd.DataFrame:
+    """ Retrieve the ID and the description of every job offer in the DB """
     with alchemy_engine().connect() as conn:
-        df = pd.read_sql_query("SELECT offer_id, file FROM job_offer", conn)
-
-    # Convert the format so that it can be passed to the algorithm
-    df['file'] = df['file'].apply(io.BytesIO)
+        df = pd.read_sql_query("SELECT offer_id, description FROM job_offer", conn)
     return df
 
 
