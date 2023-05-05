@@ -91,15 +91,17 @@ session_start();
         else if($_SESSION["sa"]==0) //WORKER
         {
           echo
-          '</div>
-            SONO worker
-          </div>';
+          "</div>
+            Sono un worker
+              <a class='bg-sm' href='../app/indexListJobs.php?uid=".$uid."&sa=".$sa."'>List of all the Job Offers perfect for you!</a>
+          </div>";
         }
         else //COMPANY
         {
             echo
             "</div>
-              <a class='bg-sm' href='../app/indexJobOffer.php?uid=".$uid."$sa=".$sa."'>Job Offers</a>
+              Sono una compagnia
+              <a class='bg-sm' href='../app/indexJobOffer.php?uid=".$uid."&sa=".$sa."'>List of all the job Offers that you created!</a>
             </div>";
         }
         ?>

@@ -221,7 +221,10 @@ ob_start();
               $telephone_number=$line["telephone_number"];
               $logo=$line["logo"];
 
-              //header("Content-type: image/jpeg");
+              $logo = pg_unescape_bytea($logo);
+              $filename = "image_$username.png";
+              file_put_contents($filename, $logo);
+
 
               echo " <div class='grid'>
               <div class='row'>
@@ -229,7 +232,7 @@ ob_start();
               
                     <div id='corpoprofilo'> 
                           <h2 class='text-uppercase spaced mb-5' id='title'>Profilo azienda</h2> 
-                            <img src='Images/azienda.jpg' id='foto' class='rounded-circle avatar-lg img-thumbnail' alt='profile-image'>
+                            <img src='image_$username.png' id='foto' class='rounded-circle avatar-lg img-thumbnail' alt='profile-image'>
                             <div class='mt-3'>
                                 <p class='mb-2'><span class='grassetto' id='username2'>Username: </span> <span class='testo-grigio'>$username</span></p>
                                 <p class='mb-2'><span class='grassetto'>Ragione sociale: </span><span class='testo-grigio'>$company_name</span></p>
