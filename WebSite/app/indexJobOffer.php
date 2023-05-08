@@ -110,15 +110,9 @@ session_start();
               $description=$line['description'];
               $salary=$line['salary'];
               $period=$line['period'];
-              $q19="select username from company where company_id=$1 limit 1";
-              $result19=pg_query_params($dbconn,$q19,array($company_id));
-              if(pg_num_rows($result19)>0)
-              {
-                $co=pg_fetch_assoc($result19);
-                echo '<p><a class="nav-link text-uppercase text-white" href="indexUtenti.php?uid='.$company_id.'&sa=1">Company: '.$co['username'].'</a><p>';
-              }
-              else{}
               echo"
+                            <div class='col-lg m-3 text-center'>
+                                <div class='jobOffer' id='jobOffer'>
                                       <span class='title'>$title</span>
                                       <span class='description'>$description</span>
                                       <br>
@@ -126,12 +120,9 @@ session_start();
                                       <br>
                                       <span class='period'>$period</span>
                                       <br>
-                                  <div class='col-lg m-3 text-center'>";
-              $cond = (!isset($_SESSION['uid']) || (isset($_SESSION['sa']) && $_SESSION['sa']==1));
-              if (!$cond) {  //if cond is true the user is a company that can't apply for a job offer, in this case cond is false because cond is a worker that can apply
-              }
-              echo             
-                        ' <br><br>Workers: ';
+                                ";
+              echo'             
+                        Applications: ';
                         $q19="select count(*) as number from applies_to where offer_id=$1 group by (offer_id)";
                         $result19=pg_query_params($dbconn,$q19,array($offer_id));
                         $res=pg_fetch_assoc($result19);
@@ -145,31 +136,13 @@ session_start();
                           echo '0';
                         }
                                   
-                        if(!isset($_SESSION['uid']) || (isset($_SESSION['sa']) && $_SESSION['sa']==1))
+                        if(!isset($_SESSION['uid']) || (isset($_SESSION['sa']) && $_SESSION['sa']==1)) //if you're a worker
                         {
-                          echo '<br>You must be a worker to apply!';
+                          echo "<div class='group-bottoni'><a href='indexInfoJobOffer.php'><button class='btn black-button shadow-none'><i class='fa-solid fa-circle-plus'></i> Details</button></a><br>";
+                          echo "</div>";
                         }
-                        else
-                        {
-                          echo      '  <form action="application.php" class="form-signin" method="POST" name="formPartecipazione" id="form-partecipazione">
-                              <div>
-                              <input type="hidden" class="form-control" id="eid" name="eid" value='.$offer_id.'>
-                              </div>';
-                        $q29="select * from applies_to where worker_id =$1 and offer_id=$2 Limit 10";
-                        $result29=pg_query_params($dbconn,$q29,array($_SESSION['uid'],$offer_id));
-                        if(pg_num_rows($result29)>0)
-                        {
-                          echo '<button name="partecipazione" type="submit" class="btn shadow-none" style="background-color:  #C29436; color:white;">Do not apply <i class="fa-solid fa-thumbs-down"></i></button>
-                        </form>';
-                        }
-                        else
-                        {
-                         echo '<button name="partecipazione" type="submit" class="btn shadow-none" style="background-color: #C29436; color:white;">Apply <i class="fa-solid fa-thumbs-up"></i></button>
-                          </form>';
-                        }
-                      }
                        echo      '
-                  </div>';
+                  </div> <br>';
                         
             }
             echo '</div>';
@@ -177,7 +150,6 @@ session_start();
             if(isset($_SESSION['uid']) && $uida==$uid)
             {
               echo "<div class='group-bottoni'><a href='indexCreateJobOffer.php'><button class='btn gold-button shadow-none'><i class='fa-solid fa-circle-plus'></i> Create Job Offer</button></a><br>";
-              // echo "<a href='Logout.php'><button class='btn gold-button shadow-none'><i class='fa-solid fa-right-from-bracket'></i> Logout</button></a></div>";
             }
             else {
             }

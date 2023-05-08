@@ -17,7 +17,7 @@ session_start();
         <link rel="icon" href="Images/favicon.jpg" type="favicon">
 
         <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"> <!--BOOTSTRAP CI SERVE?-->
-        <link rel="stylesheet" type="text/css" href="JobOffer/style.css">
+        <link rel="stylesheet" type="text/css" href="ListJobs/style.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css"> <!--FONTAWESOME CI SERVE?-->
 
         <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script> <!--BOOTSTRAP CI SERVE?-->
@@ -112,11 +112,12 @@ session_start();
               $period=$line['period'];
               $q19="select username, logo from company where company_id=$1 limit 1";
               $result19=pg_query_params($dbconn,$q19,array($company_id));
+              echo "<div id='jobOffer'>";
               if(pg_num_rows($result19)>0)
               {
                 $co=pg_fetch_assoc($result19);  
                 $usernameCompany = $co['username'];
-                echo '<span class="company">Company: '.$usernameCompany.'</span>
+                echo '<p><a class="nav-link text-black" href="indexUtenti.php?uid='.$company_id.'&sa=1">Company: '.$usernameCompany.'</a><p>
                       <br>';
                 if(isset($co['logo']))
                 {
@@ -124,28 +125,28 @@ session_start();
                     $logo = pg_unescape_bytea($logo);
                     $filename = "image_$usernameCompany.png";
                     file_put_contents($filename, $logo);
-                    echo '<img src="image_'.$usernameCompany.'.png" id="foto" class="rounded-circle avatar-lg img-thumbnail" alt="profile-image">';
+                    echo '<img src="image_'.$usernameCompany.'.png" id="foto" class="rounded-circle avatar-lg img-thumbnail" alt="profile-image" width="500" height="500">';
                 }
               }
               else{}
               echo"
-                                      <br>
-                                      <span class='title'>$title</span>
-                                      <br>
-                                      <span class='description'>$description</span>
-                                      <br>
-                                      <span class='salary'>$salary</span>
-                                      <br>
-                                      <span class='period'>$period</span>
-                                      <br>
-                                  <div class='col-lg m-3 text-center'>";                         
+                          <br>
+                          <span class='title'>$title</span>
+                          <br>
+                          <span class='description'>$description</span>
+                          <br>
+                          <span class='salary'>$salary</span>
+                          <br>
+                          <span class='period'>$period</span>
+                          <br>
+                      <div class='col-lg m-3 text-center'>";                         
               if(!isset($_SESSION['uid']) || (isset($_SESSION['sa']) && $_SESSION['sa']==1))
               {
                 echo '<br>Error: you must be a worker to apply!';
               }
               else
               {
-                echo      '  <form action="application.php" class="form-signin" method="POST" name="formPartecipazione" id="form-partecipazione">
+                echo'<form action="application.php" class="form-signin" method="POST" name="formPartecipazione" id="form-partecipazione">
                     <div>
                     <input type="hidden" class="form-control" id="eid" name="eid" value='.$offer_id.'>
                     </div>';
@@ -154,16 +155,17 @@ session_start();
                 if(pg_num_rows($result29)>0)
                 {
                     echo '<button name="partecipazione" type="submit" class="btn shadow-none">Do not apply <i class="fa-solid fa-thumbs-down"></i></button>
-                </form>';
+                    </form>';
                 }
                 else
                 {
                     echo '<button name="partecipazione" type="submit" class="btn shadow-none">Apply <i class="fa-solid fa-thumbs-up"></i></button>
                     </form>';
                 }
+                echo "</div><br><br>";
               }
               echo '
-              </div>';
+              </div> <br>';
                         
             }
             echo '</div>';

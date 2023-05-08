@@ -82,9 +82,15 @@ $dbconn = pg_connect("host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER 
                     $telefono=$_POST['telefono'];
                     $logo=$_FILES['logo'];
 
-                    $data = file_get_contents($_FILES['logo']['tmp_name']);
-                    $logo = pg_escape_bytea($dbconn, $data);
-                    header("Content-type: image/jpeg");
+                    if(isset($_POST['logo']))
+                    {
+                      $data = file_get_contents($_FILES['logo']['tmp_name']);
+                      $logo = pg_escape_bytea($dbconn, $data);
+                    }
+                    else
+                    {
+                      $logo=NULL;
+                    }
 
                     $q7="insert into company values (DEFAULT,$1,$2,$3,$4,$5,$6,$7,$8,$9, $10, $11, $12)";
                     $data=pg_query_params($dbconn,$q7,array($ragione,$user,$email,$password,$iva,$indirizzo,$citta,$nazione,$des, $emailC, $telefono, $logo));
