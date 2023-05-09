@@ -72,7 +72,14 @@ $dbconn = pg_connect("host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER 
                 if(isset($r2)) pg_free_result($r2);
                 if(isset($result3)) pg_free_result($result3);
                 pg_close($dbconn); 
-                header("Location: index.php");      
+                if($_SESSION["sa"]==1)
+                {
+                    header("Location: indexJobOffers.php");
+                }
+                else
+                {
+                    header("Location: indexListJobs.php");
+                }      
             } 
         }    
     }

@@ -95,8 +95,27 @@ session_start();
               $PGPASSWORD = getenv('PGPASSWORD');
           }
             $dbconn = pg_connect("host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER password=$PGPASSWORD")  or header("Location: indexErrore.php?er=100");
-            
-            //$company_id=$_SESSION['uid'];
+            $url = "http://127.0.0.1:8000/recommend/jobs/$uid";
+            $curl = curl_init($url);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl, CURLOPT_HTTPHEADER, array('Accept: application/json'));
+            $response = curl_exec($curl);
+            $response = json_decode($response);
+            curl_close($curl);
+            if($response === false)
+            {
+              echo "Error: API not found";
+            }
+            else
+            {
+              $i = 0;
+              while($i<sizeof($response->ids) && $i<10)
+              {
+                echo ($response->ids)[$i];
+                echo "<br>";
+                $i=$i+1;
+              }
+            }
             $query = "SELECT * FROM job_offer ORDER BY title";
             $result=pg_query($dbconn,$query);
             echo '<form><input type="hidden" id="ciao" value="1"></input></form>';
