@@ -149,7 +149,7 @@ session_start();
  </script> 
 
     <div id="content">
-    <form action="RegistrazioneUtente.php" class="form-signin bg-light" method="POST" name="formRegistrazione" id="form-registrazione" onSubmit="return validaRegistrazione()">
+    <form action="RegistrazioneUtente.php" class="form-signin bg-light" method="POST" name="formRegistrazione" id="form-registrazione" onSubmit="return validaRegistrazione()" enctype="multipart/form-data">
       <h4 id="log" class="mb-3 text-uppercase gold-text text-bold">Crea Nuovo Account</h4>
     <div>
         <label for="nome">Nome*</label> <br>

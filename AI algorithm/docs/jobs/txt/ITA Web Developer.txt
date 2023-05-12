@@ -1,0 +1,79 @@
+Web Developer
+Siamo alla ricerca di un eccellente sviluppatore web che sia responsabile della codifica, del
+design innovativo e del layout dei siti web dei clienti. Le responsabilità dello sviluppatore web
+includono la costruzione del nostro sito web dall'idea fino al completamento, con un approccio
+bottom-up, modellando tutto, dalla home page al layout e alle funzioni del sito.
+La maggior parte del lavoro di sviluppo web avverrà tramite CMS utilizzando Drupal e
+Wordpress.
+Responsabilità
+•
+•
+•
+•
+•
+•
+•
+•
+
+Scrivere codice ben progettato, testabile ed efficiente utilizzando le migliori pratiche di
+sviluppo del software.
+Creare il layout di un sito web/interfaccia utente utilizzando le pratiche standard di
+HTML/CSS.
+Integrare i dati da vari servizi e database back-end
+Raccogliere e perfezionare le specifiche e i requisiti in base alle esigenze tecniche.
+Creare e mantenere la documentazione del software
+Essere responsabili della manutenzione, dell'espansione e della scalabilità del nostro
+sito
+Rimanere aggiornati sulle tecnologie emergenti e sulle tendenze del settore e applicarle
+alle operazioni e alle attività.
+Collaborare con i progettisti per soddisfare gli intenti del design visivo
+
+Requisiti
+•
+•
+•
+•
+•
+•
+•
+•
+
+Comprovata esperienza lavorativa nella programmazione web
+Capacità di programmazione di alto livello e conoscenza approfondita dei moderni
+HTML/CSS, Javascript e PHP
+Solida conoscenza del funzionamento delle applicazioni web, compresa la sicurezza, la
+gestione delle sessioni e le migliori pratiche di sviluppo.
+Adeguata conoscenza dei sistemi di database relazionali, della programmazione
+orientata agli oggetti e dello sviluppo di applicazioni web
+Esperienza diretta nell'ottimizzazione delle prestazioni dei siti web
+Conoscenza del processo di ottimizzazione dei motori di ricerca
+Capacità di lavorare e prosperare in un ambiente a ritmo sostenuto, di apprendere
+rapidamente e di padroneggiare diverse tecnologie e tecniche web.
+Laurea in informatica o in un campo correlato
+
+Termine per la presentazione della domanda: 18/9/2020
+Tipo: impiego a tempo pieno
+Stipendio: ₹25,000.00 - ₹50,000.00 al mese
+Esperienza:
+•
+•
+
+Web Development: 1 anno (richiesto)
+Lavoro in totale: 2 anni (richiesto)
+
+•
+
+CSS: 1 anno (richiesto)
+
+Istruzione:
+•
+
+Laurea triennale (consigliata)
+
+Linguaggi di programmazione richiesti:
+• HTML (richiesto)
+• CSS (richiesto)
+• PHP (richiesto)
+• JavaScript (richiesto)
+
+

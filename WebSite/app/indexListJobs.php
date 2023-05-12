@@ -17,7 +17,7 @@ session_start();
         <link rel="icon" href="Images/favicon.jpg" type="favicon">
 
         <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"> <!--BOOTSTRAP CI SERVE?-->
-        <link rel="stylesheet" type="text/css" href="JobOffer/style.css">
+        <link rel="stylesheet" type="text/css" href="ListJobs/style.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css"> <!--FONTAWESOME CI SERVE?-->
 
         <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script> <!--BOOTSTRAP CI SERVE?-->
@@ -95,10 +95,29 @@ session_start();
               $PGPASSWORD = getenv('PGPASSWORD');
           }
             $dbconn = pg_connect("host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER password=$PGPASSWORD")  or header("Location: indexErrore.php?er=100");
-            
-            $company_id=$_SESSION['uid'];
-            $query = "SELECT * FROM job_offer WHERE company_id=$1 ORDER BY title";
-            $result=pg_query_params($dbconn,$query,array($company_id));
+            $url = "http://127.0.0.1:8000/recommend/jobs/$uid";
+            $curl = curl_init($url);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl, CURLOPT_HTTPHEADER, array('Accept: application/json'));
+            $response = curl_exec($curl);
+            $response = json_decode($response);
+            curl_close($curl);
+            if($response === false)
+            {
+              echo "Error: API not found";
+            }
+            else
+            {
+              $i = 0;
+              while($i<sizeof($response->ids) && $i<10)
+              {
+                echo ($response->ids)[$i];
+                echo "<br>";
+                $i=$i+1;
+              }
+            }
+            $query = "SELECT * FROM job_offer ORDER BY title";
+            $result=pg_query($dbconn,$query);
             echo '<form><input type="hidden" id="ciao" value="1"></input></form>';
             echo ' <div class="main container">
                       <h2 class="text-uppercase spaced" id="list">List of job offers</h2>';
@@ -110,49 +129,65 @@ session_start();
               $description=$line['description'];
               $salary=$line['salary'];
               $period=$line['period'];
+              $q19="select username, logo from company where company_id=$1 limit 1";
+              $result19=pg_query_params($dbconn,$q19,array($company_id));
+              echo "<div id='jobOffer'>";
+              if(pg_num_rows($result19)>0)
+              {
+                $co=pg_fetch_assoc($result19);  
+                $usernameCompany = $co['username'];
+                echo '<p><a class="nav-link text-black" href="indexUtenti.php?uid='.$company_id.'&sa=1">Company: '.$usernameCompany.'</a><p>
+                      <br>';
+                if(isset($co['logo']))
+                {
+                    $logo = $co['logo'];
+                    $logo = pg_unescape_bytea($logo);
+                    $filename = "image_$usernameCompany.png";
+                    file_put_contents($filename, $logo);
+                    echo '<img src="image_'.$usernameCompany.'.png" id="foto" class="rounded-circle avatar-lg img-thumbnail" alt="profile-image" width="500" height="500">';
+                }
+              }
+              else{}
               echo"
-                            <div class='col-lg m-3 text-center'>
-                                <div class='jobOffer' id='jobOffer'>
-                                      <span class='title'>$title</span>
-                                      <span class='description'>$description</span>
-                                      <br>
-                                      <span class='salary'>$salary</span>
-                                      <br>
-                                      <span class='period'>$period</span>
-                                      <br>
-                                ";
-              echo'             
-                        Applications: ';
-                        $q19="select count(*) as number from applies_to where offer_id=$1 group by (offer_id)";
-                        $result19=pg_query_params($dbconn,$q19,array($offer_id));
-                        $res=pg_fetch_assoc($result19);
-                        if($res)
-                        {
-                          $ris=$res['number'];
-                          echo ''.$ris.' <i class="fa-solid fa-users"></i>';
-                        }
-                        else
-                        {
-                          echo '0';
-                        }
-                                  
-                        if(!isset($_SESSION['uid']) || (isset($_SESSION['sa']) && $_SESSION['sa']==1)) //if you're a worker
-                        {
-                          echo "<div class='group-bottoni'><a href='indexInfoJobOffer.php'><button class='btn black-button shadow-none'><i class='fa-solid fa-circle-plus'></i> Details</button></a><br>";
-                          echo "</div>";
-                        }
-                       echo      '
-                  </div> <br>';
+                          <br>
+                          <span class='title'>$title</span>
+                          <br>
+                          <span class='description'>$description</span>
+                          <br>
+                          <span class='salary'>$salary</span>
+                          <br>
+                          <span class='period'>$period</span>
+                          <br>
+                      <div class='col-lg m-3 text-center'>";                         
+              if(!isset($_SESSION['uid']) || (isset($_SESSION['sa']) && $_SESSION['sa']==1))
+              {
+                echo '<br>Error: you must be a worker to apply!';
+              }
+              else
+              {
+                echo'<form action="application.php" class="form-signin" method="POST" name="formPartecipazione" id="form-partecipazione">
+                    <div>
+                    <input type="hidden" class="form-control" id="eid" name="eid" value='.$offer_id.'>
+                    </div>';
+                $q29="select * from applies_to where worker_id=$1 and offer_id=$2 Limit 10";
+                $result29=pg_query_params($dbconn,$q29,array($_SESSION['uid'], $offer_id));
+                if(pg_num_rows($result29)>0)
+                {
+                    echo '<button name="partecipazione" type="submit" class="btn shadow-none">Do not apply <i class="fa-solid fa-thumbs-down"></i></button>
+                    </form>';
+                }
+                else
+                {
+                    echo '<button name="partecipazione" type="submit" class="btn shadow-none">Apply <i class="fa-solid fa-thumbs-up"></i></button>
+                    </form>';
+                }
+                echo "</div><br><br>";
+              }
+              echo '
+              </div> <br>';
                         
             }
             echo '</div>';
-            $uida=$_SESSION['uid'];
-            if(isset($_SESSION['uid']) && $uida==$uid)
-            {
-              echo "<div class='group-bottoni'><a href='indexCreateJobOffer.php'><button class='btn gold-button shadow-none'><i class='fa-solid fa-circle-plus'></i> Create Job Offer</button></a><br>";
-            }
-            else {
-            }
             if(isset($result)) pg_free_result($result);
             if(isset($result19)) pg_free_result($result19);
             if(isset($result20)) pg_free_result($result20);

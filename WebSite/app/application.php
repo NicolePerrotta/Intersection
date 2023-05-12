@@ -25,7 +25,7 @@ $dbconn = pg_connect("host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER 
 <body>
     <?php   
     $eid=$_POST['eid'];
-    if(!(isset($_POST["applies_to"])))
+    if(!(isset($_POST["partecipazione"])))
     {
         header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
@@ -53,7 +53,7 @@ $dbconn = pg_connect("host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER 
             else 
             {
               $q1="insert into applies_to values ($1,$2)";
-              $res1=pg_query_params($dbconn,$q1,array($uid,$eid));
+              $res1=pg_query_params($dbconn,$q1,array($eid,$uid));
               if(isset($res1)) pg_free_result($res1);
               if(isset($result2)) pg_free_result($result2);
               pg_close($dbconn);

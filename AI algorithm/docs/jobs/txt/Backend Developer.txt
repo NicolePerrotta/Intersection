@@ -1,0 +1,160 @@
+Backend Developer - Python/Django
+We are looking for Python/Django developers with 2-4 + years of experience to be part of our
+growing team. The role is of Python/Django Backend Web Developer who can handle the
+challenging work of Web applications development using Python / Django framework.
+Required Skills:
+•
+
+Strong working knowledge of constructs of HTTP, RESTful APIs and WebSockets.
+
+•
+
+Build and maintain highly scalable Python processes for the purpose of data collection,
+manipulation, data pruning, trending and analytics, etc.
+
+•
+
+Strong understanding of Python and good knowledge of various Python Libraries
+(NumPy, Pandas, ORM libraries etc.), API's and toolkits
+
+•
+
+Able to integrate multiple data sources and databases into one system
+
+•
+
+Working knowledge of web templating engine for python such as Jinja2 etc
+
+•
+
+Ability to integrate user-facing elements developed by front-end developers with serverside logic.
+
+•
+
+Ability to integrate data storage solutions and caches.
+
+•
+
+Understanding of the threading limitations of Python, and multi-process architecture
+
+•
+
+Understanding of fundamental design principles behind a scalable application
+
+•
+
+Good understanding of event-driven programming in Python
+
+•
+
+Good knowledge of PostGRESQL
+
+•
+
+Able to create database schemas that represent and support business processes
+
+•
+
+Strong Analytical, Problem Solving & Innovative Skills.
+
+•
+
+Working knowledge of version control tools (GIT/SVN).
+
+•
+
+Experience/knowledge of working on the LINUX environment.
+
+•
+
+Attention to detail, problem-solver with strong analytical skill, good sense of urgency
+
+•
+
+Ability to carry out tasks without supervision and able to meet tight deadlines
+
+•
+
+Good Writing & Communication Skills. The candidate should be able to communicate
+with potential Clients and gather inputs/change requests.
+
+•
+
+Work with a performance oriented team driven by ownership and open to experiments
+
+•
+
+Strong interpersonal skills with excellent written and verbal communication
+
+Responsibilities:
+•
+
+Develop back-end components to improve responsiveness and overall performance
+
+•
+
+Designing and implementing system architecture to handle scale
+
+•
+
+Coordinate with Frontend Dev team & Creating APIs (w/ DjangoRestFramework)
+
+•
+
+Integrating of web pages with Backend using templating engines for Python
+
+•
+
+Build bulletproof API integrations with third party APIs for various use cases
+
+Good to have (Additional Skills):
+•
+
+Relevant full stack experience.
+
+•
+
+You've worked with core AWS services in the past and have experience with EC2, ELB,
+AutoScaling, CloudFront, S3
+
+•
+
+Demonstrable work/project portfolio online.
+
+•
+
+Working knowledge of front end technologies like Javascript, JQuery, HTML, and CSS
+
+•
+
+A good sense of design and aesthetics.
+
+•
+
+Experience/Zeal to work in a fast-paced startup environment.
+
+•
+
+Candidates who can join immediately will be preferredDevelop very high sense of
+ownership, the zeal to build scalable applications
+
+Job Type: Full-time
+Salary: ₹35,000.00 - ₹55,000.00 per month
+Experience:
+•
+•
+
+Django Development: 1 year (Preferred)
+total work: 2 years (Preferred)
+
+Education:
+•
+
+Bachelor's (Preferred)
+
+Work Remotely:
+•
+
+Temporarily due to COVID-19
+
+

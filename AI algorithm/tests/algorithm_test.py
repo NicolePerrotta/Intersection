@@ -16,7 +16,7 @@ def test_initialize():
 
 def test_extract_from_pdf():
     # Test if the function extracts text from a PDF file
-    pdf_file = Path('../docs/jobs/Data Scientist.pdf')
+    pdf_file = Path('../docs/jobs/pdf/Data Scientist.pdf')
     assert isinstance(algorithm.extract_from_pdf(pdf_file), str)
 
 
@@ -66,4 +66,3 @@ def test_sort_by_relevance():
     assert isinstance(result, pd.DataFrame)
     assert 'id', 'relevance' in result.columns
     assert len(result) == 0
-    print(result)

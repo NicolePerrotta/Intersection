@@ -1,0 +1,48 @@
+Director of Engineering, Google CloudDirector of Engineering, Google Cloud
+Minimum qualifications:
+
+Bachelor's degree in Computer Science or equivalent practical experience.
+10 years of experience in networking, distributed systems, and programming languages.
+10 years of experience managing diverse engineering teams.
+Preferred qualifications:
+
+Advanced business or technical degree.
+Measurable track record in creating, executing and delivering a technical vision.
+In-depth experience operating within and leading cross-functional teams.
+Effective product sensibility, with capability to advocate and drive key product innovations or
+opportunities with the developer community.
+Excellent written and verbal communication skills in English with the ability to represent and
+advocate complex technical concepts.
+Demonstrated passion for and thought leadership within networking, programming languages and
+distributed systems.
+About the job
+As the Director of Engineering, you will bring your technical and engineering management skills to
+ensure evolution and success of communication frameworks, including next-generation imperative
+programming development environments and transformative high-performance RPC systems.
+
+You will manage and grow a team of engineering managers and technical leads, while also managing
+and driving the vision and strategy for these frameworks. You will partner with technical leaders in
+your team and in customer teams, such as Search, Ads and Youtube, and drive adoption of new
+communications frameworks across Google.
+
+Google Cloud provides organizations with leading infrastructure, platform capabilities and industry
+solutions. We deliver enterprise-grade cloud solutions that leverage Google’s cutting-edge
+technology to help companies operate more efficiently and adapt to changing needs, giving
+customers a foundation for the future. Customers in more than 150 countries turn to Google Cloud
+as their trusted partner to solve their most critical business problems.
+
+Responsibilities
+Serve as one of the primary points of contact for key customers at Google, defining product and
+adoption strategies and executing plans.
+
+Collaborate with developers across Google to drive developer productivity and efficiency of
+communication stacks.
+Track, understand, and interpret key usage and efficiency metrics to understand the current state
+and to ultimately make impactful data-driven technical and business decisions.
+Manage, lead, and grow a team of technical leaders and engineering managers to achieve goals.
+Work with cross-functional teams to improve developer productivity and efficiency of
+communications stack.
+Create, communicate and advocate a strategy for bringing Google’s innovations to Google Cloud and
+the rest of the industry.
+
+

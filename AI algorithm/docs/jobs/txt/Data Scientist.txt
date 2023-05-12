@@ -1,0 +1,83 @@
+Data Scientist/ ML Engineer
+Game Change Solutions
+Gurgaon, Haryana
+Temporarily remote
+₹20,00,000 - ₹25,00,000 a year
+We are looking for a data scientist that will help us discover the information hidden in vast
+amounts of data and help us make smarter decisions to deliver even better products. Your
+primary focus will be in applying data mining techniques, doing statistical analysis, and
+building high quality prediction systems integrated with our products. Data Scientist at
+GameChange must be an energetic self-starter who can quickly grasp the company’s vision,
+develop specific tactical plans, and begin implementation upon appropriate approvals. The
+candidate must be resourceful and able to deliver on a plan defined.
+Responsibilities –
+•
+
+Data Crunching and data massaging on structured and unstructured data including
+Numerical, Text,
+
+Audio and Video data
+•
+•
+•
+•
+•
+
+Implementation/fine-tuning of machine learning algorithms
+Conducting Data science/machine learning experiments and presenting insights
+Building innovative data products using cutting edge tools and technologies
+Conduct data analysis independently or with limited supervision to generate business
+insights
+Conduct diagnostic on the data to identify the improvement opportunities, design
+data-backed
+
+performance improvement strategy, liaise with internal teams
+•
+
+Record keeping and data warehousing to enable Advanced Analytics operations for
+generating
+
+meaningful business insights
+•
+
+Develop high quality client deliverables such as R models, Python scripts etc.
+
+Skills required •
+
+Excellent understanding of machine learning techniques and algorithms, such as kNN, Naive Bayes,
+
+SVM, Decision Forests, CNN, RNN, LSTM etc.
+•
+
+Experience with common data science toolkits, such as R, Weka, NumPy, OpenCV,
+MatLab, etc.
+
+•
+•
+•
+•
+•
+•
+
+Great communication skills
+Experience with data visualisation tools, such as D3.js, GGplot, etc.
+Proficiency in using query languages such as SQL, Hive, Pig
+Experience with NoSQL databases, such as MongoDB, Cassandra, HBase
+Good applied statistics skills, such as distributions, statistical testing, regression, etc.
+Good scripting and programming skills
+
+Job Type: Full-time
+Salary: ₹2,000,000.00 - ₹2,500,000.00 per year
+Experience:
+•
+•
+
+Data Science: 2 years (Preferred)
+work: 1 year (Preferred)
+
+Education:
+•
+
+Bachelor's (Preferred)
+
+

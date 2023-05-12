@@ -72,24 +72,22 @@ $dbconn = pg_connect("host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER 
                     $genere=$_POST['genere'];
                     $emailC=$_POST['emailC'];
                     $telefono=$_POST['telefono'];
-                    $curriculum=$_POST['curriculum'];
-                    /*
-                    $filename = $_POST['curriculum'];
-                    $handler = fopen($filename, 'rb');
-                    if (false === $handler) {
-                        printf('Impossibile aprire il file %s', $filename);
-                        exit;
+                    $curriculum=$_FILES['curriculum'];
+                    $picture=$_FILES['picture']; 
+                    
+                    $data = file_get_contents($_FILES['curriculum']['tmp_name']);
+                    $curriculum = pg_escape_bytea($dbconn, $data);
+
+                    if(isset($_POST['picture']))
+                    {
+                        $data = file_get_contents($_FILES['picture']['tmp_name']);
+                        $picture = pg_escape_bytea($dbconn, $data);
                     }
-                    fclose($handler);*/
-                    $picture=$_POST['picture']; 
-                    /*$filename = $_POST['picture'];
-                    $handler = fopen($filename, 'rb');
-                    if (false === $handler) {
-                        printf('Impossibile aprire il file %s', $filename);
-                        exit;
+                    else
+                    {
+                        $picture=NULL;
                     }
-                    fclose($handler);
-                    */
+
                     $embedding=NULL;
                     $q7="insert into worker values (DEFAULT,$1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15)";
                     $data=pg_query_params($dbconn,$q7,array($nome,$cognome,$user,$email,$password,$nascita,$indirizzo,$citta,$nazione,$genere,$emailC,$telefono,$curriculum,$embedding,$picture));

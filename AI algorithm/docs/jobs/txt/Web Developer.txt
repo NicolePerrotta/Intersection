@@ -1,0 +1,80 @@
+Web Developer
+We are looking for an outstanding Web Developer to be responsible for the coding, innovative
+design and layout of client websites. Web developer responsibilities include building our website
+from concept all the way to completion from the bottom up, fashioning everything from the home
+page to site layout and function.
+Most of the web development work will be via CMS using Drupal & Wordpress
+Responsibilities
+
+
+
+
+
+
+
+
+
+Write well designed, testable, efficient code by using best software development
+practices
+Create website layout/user interface by using standard HTML/CSS practices
+Integrate data from various back-end services and databases
+Gather and refine specifications and requirements based on technical needs
+Create and maintain software documentation
+Be responsible for maintaining, expanding, and scaling our site
+Stay plugged into emerging technologies/industry trends and apply them into operations
+and activities
+Cooperate with designers to match visual design intent
+
+Requirements
+
+
+
+
+
+
+
+
+
+Proven working experience in web programming
+Top-notch programming skills and in-depth knowledge of modern HTML/CSS, Javascript
+and PHP
+A solid understanding of how web applications work including security, session
+management, and best development practices
+Adequate knowledge of relational database systems, Object Oriented Programming and
+web application development
+Hands-on experience with website performance optimization
+Knowledge of Search Engine Optimization process
+Ability to work and thrive in a fast-paced environment, learn rapidly and master diverse
+web technologies and techniques.
+BS in computer science or a related field
+
+Application Deadline: 18/9/2020
+Job Type: Full-time
+Salary: ₹25,000.00 - ₹50,000.00 per month
+Experience:
+
+
+
+
+Web Development: 1 year (Required)
+total work: 2 years (Required)
+CSS: 1 year (Required)
+
+Education:
+
+
+Bachelor's (Preferred)
+
+Programming Languages needed:
+
+
+
+
+
+
+HTML (Required)
+CSS (Required)
+PHP (Required)
+JavaScript (Required)
+
+

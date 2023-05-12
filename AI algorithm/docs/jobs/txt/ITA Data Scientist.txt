@@ -1,0 +1,78 @@
+Data Scientist/ ML Engineer
+Game Change Solutions
+Gurgaon, Haryana
+Provvisoriamente da remoto
+₹20,00,000 - ₹25,00,000 a year
+Stiamo cercando un data scientist che ci aiuti a scoprire le informazioni nascoste in vaste
+quantità di dati e ci aiuti a prendere decisioni più intelligenti per offrire prodotti sempre
+migliori. L'obiettivo principale sarà l'applicazione di tecniche di data mining, l'analisi
+statistica e la creazione di sistemi di previsione di alta qualità integrati con i nostri prodotti.
+Il Data Scientist di GameChange deve essere una persona energica e autonoma, in grado di
+cogliere rapidamente la visione dell'azienda, di sviluppare piani tattici specifici e di iniziare
+l'implementazione dopo le opportune approvazioni. Il candidato deve essere pieno di risorse
+e in grado di rispettare un piano definito.
+Responsabilità
+•
+•
+•
+•
+•
+•
+•
+•
+
+Data Crunching e data massaging su dati strutturati e non strutturati, compresi quelli
+numerici e testuali, audio e video
+Implementazione/fine-tuning di algoritmi di apprendimento automatico
+Conduzione di esperimenti di scienza dei dati/apprendimento automatico e
+presentazione delle intuizioni
+Creazione di prodotti di dati innovativi utilizzando strumenti e tecnologie
+all'avanguardia
+Condurre analisi dei dati in modo indipendente o con una supervisione limitata per
+generare approfondimenti aziendali
+Condurre diagnosi sui dati per identificare le opportunità di miglioramento,
+progettare strategie di miglioramento delle prestazioni basate sui dati e collaborare
+con i team interni.
+Conservare i registri e l'archivio dei dati per consentire le operazioni di Advanced
+Analytics e generare informazioni di business significative.
+Sviluppare prodotti di alta qualità per i clienti, quali modelli R, script Python, ecc.
+
+Competenze richieste
+•
+•
+•
+•
+•
+•
+
+Ottima conoscenza delle tecniche e degli algoritmi di machine learning, come kNN,
+Naive Bayes, SVM, Decision Forests, CNN, RNN, LSTM ecc.
+Esperienza con i più comuni strumenti di data science, come R, Weka, NumPy,
+OpenCV, MatLab, ecc.
+Ottime capacità di comunicazione
+Esperienza con strumenti di visualizzazione dei dati, come D3.js, GGplot, ecc.
+Competenza nell'utilizzo di linguaggi di query come SQL, Hive, Pig.
+Esperienza con i database NoSQL, come MongoDB, Cassandra, HBase.
+
+•
+•
+
+Buone competenze di statistica applicata, come distribuzioni, test statistici,
+regressione, ecc.
+Buone competenze di scripting e programmazione
+
+Tipo: impiego a tempo pieno
+Stipendio: ₹2,000,000.00 - ₹2,500,000.00 per anno
+Esperienza:
+•
+•
+
+Data Science: 2 anni (consigliata)
+Totale: 1 anno (consigliata)
+
+Istruzione:
+•
+
+Laurea triennale (consigliata)
+
+

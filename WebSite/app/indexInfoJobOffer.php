@@ -16,7 +16,7 @@ session_start();
         <link rel="icon" href="Images/favicon.jpg" type="favicon">
 
         <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"> <!--BOOTSTRAP CI SERVE?-->
-        <link rel="stylesheet" type="text/css" href="Home/style.css">
+        <link rel="stylesheet" type="text/css" href="Login/style.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css"> <!--FONTAWESOME CI SERVE?-->
 
         <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script> <!--BOOTSTRAP CI SERVE?-->
@@ -73,63 +73,10 @@ session_start();
       </nav>
     </div>
 
-<!--BODY-->      
-      <a class="anchor" name="post"></a>
-      <section id="section1">
-        <div class="container">
-          <br>
-          <h2 class="text-uppercase text-black spaced">SECTION 1</h2>
-          <br>
-        </div>
-      </section>
-      <div>
-        <?php
-        if(!(isset($_SESSION["sa"])) || !(isset($_SESSION["uid"])))
-        {
-          
-        }
-        else if($_SESSION["sa"]==0) //WORKER
-        {
-          echo
-          "</div>
-            Sono un worker
-              <a class='bg-sm' href='../app/indexListJobs.php?uid=".$uid."&sa=".$sa."'>List of all the Job Offers perfect for you!</a>
-          </div>";
-        }
-        else //COMPANY
-        {
-            echo
-            "</div>
-              Sono una compagnia
-              <a class='bg-sm' href='../app/indexJobOffer.php?uid=".$uid."&sa=".$sa."'>List of all the job Offers that you created!</a>
-            </div>";
-        }
-        ?>
+<!--BODY-->
+      <div id="content">
+        CIAO
       </div>
-
-      <section id="section2">
-        <div class="container">
-          <br>
-          <h2 class="text-uppercase text-black spaced">SECTION 2</h2>
-          <br>
-        </div>
-      </section>
-
-      <section id="section3">
-        <div class="container">
-          <br>
-          <h2 class="text-uppercase text-black spaced">SECTION 3</h2>
-          <br>
-        </div>
-      </section>
-
-      <section id="section4">
-        <div class="container">
-          <br>
-          <h2 class="text-uppercase text-black spaced">SECTION 4</h2>
-          <br>
-        </div>
-      </section>
 
 <!--FOOTER-->
       <footer class="text-center text-white">

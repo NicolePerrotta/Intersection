@@ -433,7 +433,7 @@ session_start();
     <br>
     <div>
         <label for="logo">Foto profilo</label> <br>
-        <input type="image" id="logo" name="logo" class="custom-file-upload">
+        <input type="file" id="logo" name="logo" class="custom-file-upload">
     </div>
     <div class="text-center">
       <button type="submit" name="registrationButton" class="btn-lg" id="register-button">Invia</button>
