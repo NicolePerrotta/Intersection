@@ -78,9 +78,16 @@ $dbconn = pg_connect("host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER 
                     $data = file_get_contents($_FILES['curriculum']['tmp_name']);
                     $curriculum = pg_escape_bytea($dbconn, $data);
 
-                    $data = file_get_contents($_FILES['picture']['tmp_name']);
-                    $picture = pg_escape_bytea($dbconn, $data);
-                    
+                    if(isset($_POST['picture']))
+                    {
+                        $data = file_get_contents($_FILES['picture']['tmp_name']);
+                        $picture = pg_escape_bytea($dbconn, $data);
+                    }
+                    else
+                    {
+                        $picture=NULL;
+                    }
+
                     $embedding=NULL;
                     $q7="insert into worker values (DEFAULT,$1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15)";
                     $data=pg_query_params($dbconn,$q7,array($nome,$cognome,$user,$email,$password,$nascita,$indirizzo,$citta,$nazione,$genere,$emailC,$telefono,$curriculum,$embedding,$picture));
