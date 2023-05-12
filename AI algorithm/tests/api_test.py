@@ -21,7 +21,7 @@ def test_status():
     with TestClient(app) as client:
         response = client.get("/")
         assert response.status_code == 200
-        assert response.json() == "Intersection - Algorithm API is ready"
+        assert response.json()['status'] == "Intersection - Algorithm API is ready"
 
 
 def test_str_to_embedding():
@@ -31,7 +31,7 @@ def test_str_to_embedding():
             content = txt_file.read()
         response = client.post("/convert/string", json={"text": content})
         assert response.status_code == 200
-        embeddings = response.json()
+        embeddings = response.json()['embedding']
         assert isinstance(embeddings, list)
         assert isinstance(embeddings[0], float)
         assert len(embeddings) == 512
@@ -53,7 +53,7 @@ def test_pdf_to_embedding():
         pdf_file = open("../docs/cvs/Database Administrator.pdf", "rb")
         response = client.post("/convert/pdf", files={"file": pdf_file})
         assert response.status_code == 200
-        embeddings = response.json()
+        embeddings = response.json()['embedding']
         assert isinstance(embeddings, list)
         assert isinstance(embeddings[0], float)
         assert len(embeddings) == 512

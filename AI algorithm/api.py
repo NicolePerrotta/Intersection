@@ -39,23 +39,23 @@ async def lifespan(app_: FastAPI):
 app = FastAPI(lifespan=lifespan)
 
 
-@app.get("/", response_model=str)
+@app.get("/", response_model=dict[str, str])
 async def status() -> Any:
     """ Get the current status of the API, to check that it is ready to receive requests. """
-    return app.state.status
+    return {"status": app.state.status}
 
 
-@app.post("/convert/string", response_model=list[float])
+@app.post("/convert/string", response_model=dict[str, list[Any]])
 async def str_to_embedding(job_offer: JobOffer) -> Any:
     """
     Convert a string of text into a single embedding (i.e. a vector of real numbers)
     that represents all its content. The string must be passed in the request's body.
     """
     sentences: list[str] = algorithm.pre_process(job_offer.text)
-    return algorithm.encode(sentences).tolist()
+    return {"embedding": algorithm.encode(sentences).tolist()}
 
 
-@app.post("/convert/pdf", response_model=list[float])
+@app.post("/convert/pdf", response_model=dict[str, list[Any]])
 async def pdf_to_embedding(file: UploadFile) -> Any:
     """
     Extract the text of a PDF file and convert it to a single embedding (i.e. a vector of real numbers)
@@ -65,7 +65,7 @@ async def pdf_to_embedding(file: UploadFile) -> Any:
         raise HTTPException(status_code=400, detail="The file needs to be a PDF")
     raw_text: str = algorithm.extract_from_pdf(file.file)
     sentences: list[str] = algorithm.pre_process(raw_text)
-    return algorithm.encode(sentences).tolist()
+    return {"embedding": algorithm.encode(sentences).tolist()}
 
 
 @app.get("/ranking/{job_offer_id}", response_model=dict[str, list[Any]])
