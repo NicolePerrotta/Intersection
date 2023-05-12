@@ -102,20 +102,20 @@ session_start();
             $response = curl_exec($curl);
             $response = json_decode($response);
             curl_close($curl);
-            if($response === false)
-            {
-              echo "Error: API not found";
-            }
-            else
-            {
-              $i = 0;
-              while($i<sizeof($response->ids) && $i<10)
-              {
-                echo ($response->ids)[$i];
-                echo "<br>";
-                $i=$i+1;
-              }
-            }
+            //if($response === false)
+            //{
+            //  echo "Error: API not found";
+            //}
+            //else
+            //{
+            //  $i = 0;
+            //  while($i<sizeof($response->ids) && $i<10)
+            //  {
+            //    echo ($response->ids)[$i];
+            //    echo "<br>";
+            //    $i=$i+1;
+            //  }
+            //}
             $query = "SELECT * FROM job_offer ORDER BY title";
             $result=pg_query($dbconn,$query);
             echo '<form><input type="hidden" id="ciao" value="1"></input></form>';
