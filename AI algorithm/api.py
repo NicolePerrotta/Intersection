@@ -63,7 +63,7 @@ def ranking(job_offer_id: int, max_number: Union[int, None] = None) -> Any:
     Return a dictionary with the ID and the relevance score of the workers, sorted in descending order.
     """
     job, workers = db.get_applicants_emb(job_offer_id)
-    if job.empty:
+    if len(job) == 0:
         raise HTTPException(status_code=404, detail="The requested job offer does not exist")
     df = algorithm.sort_by_relevance(job, workers).head(max_number)
     return {"ids": df['id'].to_list(), "relevance": df['relevance'].to_list()}
@@ -76,7 +76,7 @@ def recommend_jobs(worker_id: int, max_number: Union[int, None] = None) -> Any:
     Return a dictionary with the ID and the relevance score of the job offers, sorted in descending order.
     """
     worker = db.get_worker_emb(worker_id)
-    if worker.empty:
+    if len(worker) == 0:
         raise HTTPException(status_code=404, detail="The requested worker does not exist")
     jobs = db.get_all_offers_emb()
     df = algorithm.sort_by_relevance(worker, jobs).head(max_number)
@@ -90,7 +90,7 @@ def recommend_worker(job_offer_id: int, max_number: Union[int, None] = None) -> 
     Return a dictionary with the ID and the relevance score of the workers, sorted in descending order.
     """
     job = db.get_offer_emb(job_offer_id)
-    if job.empty:
+    if len(job) == 0:
         raise HTTPException(status_code=404, detail="The requested job offer does not exist")
     workers = db.get_all_workers_emb()
     df = algorithm.sort_by_relevance(job, workers).head(max_number)
