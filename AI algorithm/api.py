@@ -4,20 +4,12 @@
 """
 import io
 from contextlib import asynccontextmanager
-from enum import Enum
-from typing import Any, Union
+from typing import Any, Union, Generator
 import numpy as np
 from fastapi import FastAPI, UploadFile, HTTPException
+from pydantic import BaseModel
 import algorithm
 import db
-from pydantic import BaseModel
-
-
-class Status(str, Enum):
-    INIT = "Intersection - Algorithm API is initializing..."
-    READY = "Intersection - Algorithm API is ready"
-    BUSY = "Intersection - Algorithm API is busy updating the database..."
-    SHUTDOWN = "Intersection - Algorithm API is shutting down..."
 
 
 class JobOffer(BaseModel):
@@ -26,14 +18,10 @@ class JobOffer(BaseModel):
 
 
 @asynccontextmanager
-async def lifespan(app_: FastAPI):
-    # Execute at init
-    app_.state.status = Status.INIT
+async def lifespan(_) -> Generator[Any, Any, None]:
+    """ Initialize the algorithm when the API starts and close it when it stops."""
     algorithm.initialize()
-    app_.state.status = Status.READY
     yield
-    # Execute at shutdown
-    app_.state.status = Status.SHUTDOWN
 
 
 app = FastAPI(lifespan=lifespan)
@@ -42,7 +30,7 @@ app = FastAPI(lifespan=lifespan)
 @app.get("/", response_model=dict[str, str])
 async def status() -> Any:
     """ Get the current status of the API, to check that it is ready to receive requests. """
-    return {"status": app.state.status}
+    return {"status": "Intersection - Algorithm API is ready"}
 
 
 @app.post("/convert/string", response_model=dict[str, list[Any]])
@@ -115,7 +103,6 @@ def recompute_embeddings() -> Any:
     Recompute the embeddings for every worker and for every job offer.
     This operation is meant to be used only when the model changes or when data is corrupted.
     """
-    app.state.status = Status.BUSY
 
     # Helper functions to perform all the steps of the algorithm
     def worker_pipeline(file: io.BytesIO) -> np.ndarray:
@@ -133,5 +120,3 @@ def recompute_embeddings() -> Any:
     offers_df = db.get_all_offers_description()
     offers_df['embedding'] = offers_df['description'].apply(offer_pipeline)
     db.set_all_offers_emb(offers_df)
-
-    app.state.status = Status.READY
