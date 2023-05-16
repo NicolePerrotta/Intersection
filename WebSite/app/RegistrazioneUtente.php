@@ -80,15 +80,42 @@ $dbconn = pg_connect("host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER 
 
                     if(isset($_POST['picture']))
                     {
-                        $data = file_get_contents($_FILES['picture']['tmp_name']);
-                        $picture = pg_escape_bytea($dbconn, $data);
+                        $data1 = file_get_contents($_FILES['picture']['tmp_name']);
+                        $picture = pg_escape_bytea($dbconn, $data1);
                     }
                     else
                     {
                         $picture=NULL;
                     }
 
-                    $embedding=NULL;
+                    $filename = "1883629.pdf";
+                    $data = new CURLFile($filename,'application/pdf','MyFile');
+                    $data = array('file' => $data);                   
+                    $url = "http://127.0.0.1:8000/convert/pdf";
+                    $curl = curl_init($url);
+                    $headers = array(
+                        "Content-Type: multipart/form-data"
+                    );
+                    curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+                    curl_setopt($curl, CURLOPT_HEADER, true);
+                    curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+                    curl_setopt($curl, CURLOPT_BINARYTRANSFER, true);
+                    $response = curl_exec($curl);
+                    curl_close($curl);
+                    if($response === false)
+                    {
+                        echo "Error: API not found";
+                    }
+                    else if($response == NULL)
+                    {
+                        echo "Error: there aren't yet job offers!";
+                    }
+                    else
+                    {
+                        $response = json_decode($response);
+                        $embedding = ($response->embedding)[0];
+                    }
+                    $embedding = array(1.09,2.86,3.434);
                     $q7="insert into worker values (DEFAULT,$1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15)";
                     $data=pg_query_params($dbconn,$q7,array($nome,$cognome,$user,$email,$password,$nascita,$indirizzo,$citta,$nazione,$genere,$emailC,$telefono,$curriculum,$embedding,$picture));
                     if($data)

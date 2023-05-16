@@ -106,6 +106,10 @@ session_start();
             {
               echo "Error: API not found";
             }
+            else if($response==NULL)
+            {
+                echo "Error: there aren't yet job offers!";
+            }
             else
             {
               $i = 0;
