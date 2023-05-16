@@ -451,7 +451,7 @@ ob_start();
                   </div>";
                 echo  "</div>";
                 $curriculum = pg_unescape_bytea($curriculum);
-                $filename = "$username.pdf";
+                $filename = "storage/$username.pdf";
                 file_put_contents($filename, $curriculum);
                 echo '
                 <object data="'.$username.'.pdf" type="application/pdf" width="100%" height="1000px">
