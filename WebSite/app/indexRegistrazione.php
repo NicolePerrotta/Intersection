@@ -168,7 +168,7 @@ session_start();
     <br> 
     <div>
         <label for="emailR">Email*</label> <br>
-        <input type="text" id="emailR" name="emailR" placeholder="Inserisci la tua email*" maxlength="60"  pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" required>
+        <input type="text" id="emailR" name="emailR" placeholder="Inserisci la tua email*" maxlength="60"  pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required>
     </div>
     <br>
     <div>
