@@ -28,7 +28,7 @@ session_start();
 
         <!--PER LA REGISTRAZIONE--> 
         <script type="application/javascript" src="reveal.js"></script>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     </head>
     <body>
       <div class=" container fixed-top" id="navbar">
