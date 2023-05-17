@@ -24,7 +24,7 @@ session_start();
         <!--Titles font-->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@500&display=swap" rel="stylesheet">
+        <!--<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@500&display=swap" rel="stylesheet">-->
 
         <!--PER LA REGISTRAZIONE--> 
         <script type="application/javascript" src="reveal.js"></script>
