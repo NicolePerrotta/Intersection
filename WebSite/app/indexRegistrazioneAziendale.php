@@ -27,7 +27,7 @@ session_start();
         <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@500&display=swap" rel="stylesheet">
 
         <!--PER LA REGISTRAZIONE--> 
-        <script type="application/javascript" src="reveal.js"></script>
+        <!-- <script type="application/javascript" src="reveal.js"></script> SERVE??--> 
         <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
      <script>
           window.onload = function() {
