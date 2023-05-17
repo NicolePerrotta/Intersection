@@ -26,8 +26,8 @@ session_start();
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@500&display=swap" rel="stylesheet">
 
-        <!--PER LA REGISTRAZIONE--> 
-        <script type="application/javascript" src="reveal.js"></script>
+        <!--PER LA REGISTRAZIONE errore alla riga 30--> 
+        <!-- <script type="application/javascript" src="reveal.js"></script> SERVE??--> 
         <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     </head>
     <body>
