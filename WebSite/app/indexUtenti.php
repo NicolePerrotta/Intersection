@@ -419,7 +419,7 @@ ob_start();
               if(isset($picture))
               {
                 $picture = pg_unescape_bytea($picture);
-                $filename = "app/storage/image_$username.png";
+                $filename = "storage/image_$username.png";
                 file_put_contents($filename, $picture);
               }
               else
@@ -517,7 +517,7 @@ ob_start();
               if(isset($picture))
               {
                 $logo = pg_unescape_bytea($logo);
-                $filename = "app/storage/image_$username.png";
+                $filename = "storage/image_$username.png";
                 file_put_contents($filename, $logo);
               }
               else
