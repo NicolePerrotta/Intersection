@@ -419,7 +419,7 @@ ob_start();
               if(isset($picture))
               {
                 $picture = pg_unescape_bytea($picture);
-                $filename = "image_$username.png";
+                $filename = "app/storage/image_$username.png";
                 file_put_contents($filename, $picture);
               }
               else
@@ -454,9 +454,9 @@ ob_start();
                 $filename = "storage/$username.pdf";
                 file_put_contents($filename, $curriculum);
                 echo '
-                <object data="'.$username.'.pdf" type="application/pdf" width="100%" height="1000px">
+                <object data= "'.$filename.'" type="application/pdf" width="100%" height="1000px">
                   <p>Unable to display PDF file.
-                  <a href="'.$username.'.pdf">Download</a> instead.</p>
+                  <a href="'.$filename.'">Download</a> instead.</p>
                 </object>';
 
               pg_free_result($result);
@@ -517,7 +517,7 @@ ob_start();
               if(isset($picture))
               {
                 $logo = pg_unescape_bytea($logo);
-                $filename = "image_$username.png";
+                $filename = "app/storage/image_$username.png";
                 file_put_contents($filename, $logo);
               }
               else
