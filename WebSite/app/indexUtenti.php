@@ -10,7 +10,7 @@ ob_start();
         <meta name="description" content="Intersection between professionals and companies site"/>
         <meta name="keywords" content="HTML, CSS, JavaScript, PHP">
         <meta name="authors" content="Alberto Pirillo, Nicole Perrotta, Andrea Sinisi"/>
-        <meta name="viewport" content="width=device-width, intial-scale=1.0"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta name="generator" content="Visual Studio Code">
 
         <title>Intersection</title>
