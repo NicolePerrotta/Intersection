@@ -151,7 +151,7 @@ session_start();
                     $logo = pg_unescape_bytea($logo);
                     $filename = "storage/image_$usernameCompany.png";
                     file_put_contents($filename, $logo);
-                    echo '<img src="image_'.$usernameCompany.'.png" id="foto" class="rounded-circle avatar-lg img-thumbnail" alt="profile-image" width="500" height="500">';
+                    echo '<img src="storage/image_'.$usernameCompany.'.png" id="foto" class="rounded-circle avatar-lg img-thumbnail" alt="profile-image" width="500" height="500">';
                 }
               }
               else{}
