@@ -88,14 +88,16 @@ $dbconn = pg_connect("host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER 
                         $picture=NULL;
                     }
 
-                    $filename = "1883629.pdf";
+                    $filename = "$user.pdf";
+                    file_put_contents($filename, $data);
                     $data = new CURLFile($filename,'application/pdf','MyFile');
                     $data = array('file' => $data);                   
-                    $url = "https://algorithm-api-production.up.railway.app:8000/convert/pdf";
+                    $url = "https://algorithm-api-production.up.railway.app/convert/pdf";
                     $curl = curl_init($url);
                     $headers = array(
                         "Content-Type: multipart/form-data"
                     );
+                    curl_setopt($curl, CURLOPT_POST, true);
                     curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
                     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
                     curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);

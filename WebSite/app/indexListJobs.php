@@ -95,7 +95,7 @@ session_start();
               $PGPASSWORD = getenv('PGPASSWORD');
           }
             $dbconn = pg_connect("host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER password=$PGPASSWORD")  or header("Location: indexErrore.php?er=100");
-            $url = "https://algorithm-api-production.up.railway.app:8000/recommend/jobs/$uid";
+            $url = "https://algorithm-api-production.up.railway.app/recommend/jobs/$uid";
             $curl = curl_init($url);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($curl, CURLOPT_HTTPHEADER, array('Accept: application/json'));
@@ -120,7 +120,7 @@ session_start();
                 $i=$i+1;
               }
             }
-            $query = "SELECT * FROM job_offer ORDER BY title";
+            $query = "SELECT * FROM job_offer";
             $result=pg_query($dbconn,$query);
             echo '<form><input type="hidden" id="ciao" value="1"></input></form>';
             echo ' <div class="main container">
