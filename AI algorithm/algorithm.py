@@ -13,7 +13,7 @@ import pdfplumber
 from sentence_transformers import SentenceTransformer, util
 from torch import tensor
 
-model_name = 'distiluse-base-multilingual-cased-v1'
+model_name = 'distiluse-base-multilingual-cased-v2'
 
 
 def initialize() -> None:
@@ -53,6 +53,7 @@ def pre_process(text: str) -> list[str]:
         return sentence.strip()
 
     return list(map(apply_regex, sentences))
+
 
 def encode(sentences: list[str], progress_bar: bool = False) -> np.ndarray:
     """ Compute the embedding that represents all the text of a document """
