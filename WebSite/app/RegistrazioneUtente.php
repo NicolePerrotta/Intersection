@@ -91,15 +91,15 @@ $dbconn = pg_connect("host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER 
                     $filename = "1883629.pdf";
                     $data = new CURLFile($filename,'application/pdf','MyFile');
                     $data = array('file' => $data);                   
-                    $url = "http://127.0.0.1:8000/convert/pdf";
+                    $url = "https://algorithm-api-production.up.railway.app:8000/convert/pdf";
                     $curl = curl_init($url);
                     $headers = array(
                         "Content-Type: multipart/form-data"
                     );
-                    curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-                    curl_setopt($curl, CURLOPT_HEADER, true);
                     curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-                    curl_setopt($curl, CURLOPT_BINARYTRANSFER, true);
+                    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+                    curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+
                     $response = curl_exec($curl);
                     curl_close($curl);
                     if($response === false)
@@ -113,11 +113,11 @@ $dbconn = pg_connect("host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER 
                     else
                     {
                         $response = json_decode($response);
-                        $embedding = ($response->embedding)[0];
+                        $embedding = ($response->embedding);
                     }
-                    $embedding = array(1.09,2.86,3.434);
+                    $formatted = pg_escape_string(implode(',',$embedding));
                     $q7="insert into worker values (DEFAULT,$1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15)";
-                    $data=pg_query_params($dbconn,$q7,array($nome,$cognome,$user,$email,$password,$nascita,$indirizzo,$citta,$nazione,$genere,$emailC,$telefono,$curriculum,$embedding,$picture));
+                    $data=pg_query_params($dbconn,$q7,array($nome,$cognome,$user,$email,$password,$nascita,$indirizzo,$citta,$nazione,$genere,$emailC,$telefono,$curriculum,"{{$formatted}}",$picture));
                     if($data)
                     {
                       if(isset($r)) pg_free_result($r);
