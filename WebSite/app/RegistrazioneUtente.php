@@ -88,7 +88,7 @@ $dbconn = pg_connect("host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER 
                         $picture=NULL;
                     }
 
-                    $filename = "$user.pdf";
+                    $filename = "storage/$user.pdf";
                     file_put_contents($filename, $data);
                     $data = new CURLFile($filename,'application/pdf','MyFile');
                     $data = array('file' => $data);                   
