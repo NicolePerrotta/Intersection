@@ -94,6 +94,7 @@ session_start();
               $PGUSER = getenv('PGUSER');
               $PGPASSWORD = getenv('PGPASSWORD');
           }
+            echo "TESTTEST";
             $dbconn = pg_connect("host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER password=$PGPASSWORD")  or header("Location: indexErrore.php?er=100");
             $url = "https://algorithm-api-production.up.railway.app/recommend/jobs/$uid";
             $curl = curl_init($url);
@@ -102,7 +103,7 @@ session_start();
             $response = curl_exec($curl);
             $response = json_decode($response);
             curl_close($curl);
-            echo "Ciao";
+            
             if($response === false)
             {
               echo "Error: API not found";
@@ -111,6 +112,7 @@ session_start();
             {
                 echo "Error: there aren't yet job offers!";
             }
+            
             else
             {
               $i = 0;
