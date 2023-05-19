@@ -86,7 +86,7 @@ session_start();
         <?php
         if(!(isset($_SESSION["sa"])) || !(isset($_SESSION["uid"])))
         {
-          
+          echo "Non sono loggato";
         }
         else if($_SESSION["sa"]==0) //WORKER
         {

@@ -138,7 +138,7 @@ session_start();
                                   
                         if(!isset($_SESSION['uid']) || (isset($_SESSION['sa']) && $_SESSION['sa']==1)) //if you're a worker
                         {
-                          echo "<div class='group-bottoni'><a href='indexInfoJobOffer.php'><button class='btn black-button shadow-none'><i class='fa-solid fa-circle-plus'></i> Details</button></a><br>";
+                          echo "<div class='group-bottoni'><a href='indexInfoJobOffer.php?uid=".$offer_id."'><button class='btn black-button shadow-none'><i class='fa-solid fa-circle-plus'></i> Details</button></a><br>";
                           echo "</div>";
                         }
                        echo      '

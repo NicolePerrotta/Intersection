@@ -4,20 +4,12 @@
 """
 import io
 from contextlib import asynccontextmanager
-from enum import Enum
-from typing import Any, Union
+from typing import Any, Union, Generator
 import numpy as np
 from fastapi import FastAPI, UploadFile, HTTPException
+from pydantic import BaseModel
 import algorithm
 import db
-from pydantic import BaseModel
-
-
-class Status(str, Enum):
-    INIT = "Intersection - Algorithm API is initializing..."
-    READY = "Intersection - Algorithm API is ready"
-    BUSY = "Intersection - Algorithm API is busy updating the database..."
-    SHUTDOWN = "Intersection - Algorithm API is shutting down..."
 
 
 class JobOffer(BaseModel):
@@ -26,36 +18,32 @@ class JobOffer(BaseModel):
 
 
 @asynccontextmanager
-async def lifespan(app_: FastAPI):
-    # Execute at init
-    app_.state.status = Status.INIT
+async def lifespan(_) -> Generator[Any, Any, None]:
+    """ Initialize the algorithm when the API starts and close it when it stops."""
     algorithm.initialize()
-    app_.state.status = Status.READY
     yield
-    # Execute at shutdown
-    app_.state.status = Status.SHUTDOWN
 
 
 app = FastAPI(lifespan=lifespan)
 
 
-@app.get("/", response_model=str)
+@app.get("/", response_model=dict[str, str])
 async def status() -> Any:
     """ Get the current status of the API, to check that it is ready to receive requests. """
-    return app.state.status
+    return {"status": "Intersection - Algorithm API is ready"}
 
 
-@app.post("/convert/string", response_model=list[float])
+@app.post("/convert/string", response_model=dict[str, list[Any]])
 async def str_to_embedding(job_offer: JobOffer) -> Any:
     """
     Convert a string of text into a single embedding (i.e. a vector of real numbers)
     that represents all its content. The string must be passed in the request's body.
     """
     sentences: list[str] = algorithm.pre_process(job_offer.text)
-    return algorithm.encode(sentences).tolist()
+    return {"embedding": algorithm.encode(sentences).tolist()}
 
 
-@app.post("/convert/pdf", response_model=list[float])
+@app.post("/convert/pdf", response_model=dict[str, list[Any]])
 async def pdf_to_embedding(file: UploadFile) -> Any:
     """
     Extract the text of a PDF file and convert it to a single embedding (i.e. a vector of real numbers)
@@ -65,7 +53,7 @@ async def pdf_to_embedding(file: UploadFile) -> Any:
         raise HTTPException(status_code=400, detail="The file needs to be a PDF")
     raw_text: str = algorithm.extract_from_pdf(file.file)
     sentences: list[str] = algorithm.pre_process(raw_text)
-    return algorithm.encode(sentences).tolist()
+    return {"embedding": algorithm.encode(sentences).tolist()}
 
 
 @app.get("/ranking/{job_offer_id}", response_model=dict[str, list[Any]])
@@ -75,7 +63,7 @@ def ranking(job_offer_id: int, max_number: Union[int, None] = None) -> Any:
     Return a dictionary with the ID and the relevance score of the workers, sorted in descending order.
     """
     job, workers = db.get_applicants_emb(job_offer_id)
-    if job.empty:
+    if len(job) == 0:
         raise HTTPException(status_code=404, detail="The requested job offer does not exist")
     df = algorithm.sort_by_relevance(job, workers).head(max_number)
     return {"ids": df['id'].to_list(), "relevance": df['relevance'].to_list()}
@@ -88,7 +76,7 @@ def recommend_jobs(worker_id: int, max_number: Union[int, None] = None) -> Any:
     Return a dictionary with the ID and the relevance score of the job offers, sorted in descending order.
     """
     worker = db.get_worker_emb(worker_id)
-    if worker.empty:
+    if len(worker) == 0:
         raise HTTPException(status_code=404, detail="The requested worker does not exist")
     jobs = db.get_all_offers_emb()
     df = algorithm.sort_by_relevance(worker, jobs).head(max_number)
@@ -102,7 +90,7 @@ def recommend_worker(job_offer_id: int, max_number: Union[int, None] = None) -> 
     Return a dictionary with the ID and the relevance score of the workers, sorted in descending order.
     """
     job = db.get_offer_emb(job_offer_id)
-    if job.empty:
+    if len(job) == 0:
         raise HTTPException(status_code=404, detail="The requested job offer does not exist")
     workers = db.get_all_workers_emb()
     df = algorithm.sort_by_relevance(job, workers).head(max_number)
@@ -115,7 +103,6 @@ def recompute_embeddings() -> Any:
     Recompute the embeddings for every worker and for every job offer.
     This operation is meant to be used only when the model changes or when data is corrupted.
     """
-    app.state.status = Status.BUSY
 
     # Helper functions to perform all the steps of the algorithm
     def worker_pipeline(file: io.BytesIO) -> np.ndarray:
@@ -133,5 +120,3 @@ def recompute_embeddings() -> Any:
     offers_df = db.get_all_offers_description()
     offers_df['embedding'] = offers_df['description'].apply(offer_pipeline)
     db.set_all_offers_emb(offers_df)
-
-    app.state.status = Status.READY
