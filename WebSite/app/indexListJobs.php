@@ -102,6 +102,7 @@ session_start();
             $response = curl_exec($curl);
             $response = json_decode($response);
             curl_close($curl);
+            echo "Ciao";
             if($response === false)
             {
               echo "Error: API not found";
