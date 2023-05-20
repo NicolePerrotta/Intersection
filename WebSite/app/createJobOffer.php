@@ -45,7 +45,7 @@ $dbconn = pg_connect("host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER 
             $line=pg_query_params($dbconn,$q1,array($company_id,$title,$description,$salary,$period));
             if($line)
             {           
-                header("Location: indexUtenti.php?uid=".$company_id."&sa=1");
+                header("Location: indexJobOffer.php?uid=".$company_id."&sa=1");
             }
             else
             {

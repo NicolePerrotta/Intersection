@@ -74,7 +74,7 @@ $dbconn = pg_connect("host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER 
                 pg_close($dbconn); 
                 if($_SESSION["sa"]==1)
                 {
-                    header("Location: indexJobOffers.php");
+                    header("Location: indexJobOffer.php");
                 }
                 else
                 {
