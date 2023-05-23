@@ -39,13 +39,15 @@ $dbconn = pg_connect("host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER 
             $company_id=$_POST['uid'];
             $title=$_POST['title'];
             $description=$_POST['description'];
-            $salary=$_POST['salary'];
+            $salary_amount=$_POST['salaryAmount'];
+            $salary_period=$_POST['salaryPeriod'];
+            $salary=$salary_amount.' €/'.$salary_period;
             $period=$_POST['period'];
             $q1="insert into job_offer values (DEFAULT,$1,$2,$3,$4,$5)";
             $line=pg_query_params($dbconn,$q1,array($company_id,$title,$description,$salary,$period));
             if($line)
             {           
-                header("Location: indexJobOffer.php?uid=".$company_id."&sa=1");
+                header("Location: indexJobOffers.php?uid=".$company_id."&sa=1");
             }
             else
             {
