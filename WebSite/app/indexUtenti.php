@@ -6,588 +6,1814 @@ ob_start();
   <html>
     <!--HEADER-->
     <head>
-        <meta charset="UTF-8"/>
-        <meta name="description" content="Intersection between professionals and companies site"/>
-        <meta name="keywords" content="HTML, CSS, JavaScript, PHP">
-        <meta name="authors" content="Alberto Pirillo, Nicole Perrotta, Andrea Sinisi"/>
-        <meta name="viewport" content="width=device-width, intial-scale=1.0"/>
-        <meta name="generator" content="Visual Studio Code">
-
-        <title>Intersection</title>
-        <link rel="icon" href="Images/favicon.jpg" type="favicon">
-
-        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"> <!--BOOTSTRAP CI SERVE?-->
-        <link rel="stylesheet" type="text/css" href="Utenti/style.css">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css"> <!--FONTAWESOME CI SERVE?-->
-
-        <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script> <!--BOOTSTRAP CI SERVE?-->
-
-        <!--Titles font-->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@500&display=swap" rel="stylesheet">
-
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> <!-- JQUERY CI SERVE?-->
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Offerta di lavoro - Intersection</title>
+      <link rel="icon" href="images/favi-1.png" type="favicon">
+      <link rel="stylesheet" href="css/style.css">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@100;200;400;600;800&display=swap" rel="stylesheet">
     </head>
+
     <body>
-      <div class=" container fixed-top" id="navbar">
-      <nav class="navbar navbar-dark navbar-expand-md py-1" id="upper-nav">
-        <div class="container-fluid">
-          <a class="navbar-brand me-auto" href="index.php" id="titolo">
-                 <img src="Images/logo.jpg" id="logae">
-              INTERSECTION
-          </a>
-          
-          <div class="navbar-nav ms-auto">
-            <div class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenu" role="button" 
-                data-bs-toggle="dropdown" aria-expanded="false">
-                  IT
-              </a>
-              <ul id="lang-menu" class="dropdown-menu" aria-labelledby="navbarDropdownMenu">
-                <li><a class="dropdown-item" href="indexErrore.php?er=0">EN</a></li>
+
+      <!-- Header -->
+      <header class="top-0 w-100">
+        <div class="container px-2 d-flex flex-column flex-md-row justify-content-between align-items-center gap-5 py-4">
+          <div class="logo-container">
+            <a href="../app/index.php">
+              <img src="images/logo-1.png" alt="Intersection" style="height: 30px;">
+            </a>
+          </div>
+          <?php if( !isset( $_SESSION['uid'] ) ) : ?>
+          <div class="menu-container d-flex align-items-center gap-4">
+            <div class="dropdown">
+              <button class="btn dropdown-toggle fw-bold" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border: none;">IT</button>
+                <ul class="dropdown-menu dropdown-menu-end" style="--bs-dropdown-min-width: 10px; --bs-dropdown-bg: #F9FBFE; --bs-dropdown-link-hover-color: var(--intersection-color-3); --bs-dropdown-link-active-color: var(--intersection-color-3); --bs-dropdown-link-active-bg: transparent; transition: none;">
+                  <li><div class="dropdown-header">Seleziona lingua</div></li>
+                  <li><a class="dropdown-item" href="#">Italiano</a></li>
+                  <li><a class="dropdown-item" href="#">English</a></li>
+                </ul>
+            </div>
+            <a href="../app/indexLogin.php" class="text-decoration-none text-color-2 fw-bold">Accedi</a>
+            <div class="dropdown">
+              <button class="btn dropdown-toggle fw-bold py-2 px-3 border border-2 rounded" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border-color: var(--intersection-color-3) !important; color: var(--intersection-color-3)">Registrati</button>
+              <ul class="dropdown-menu dropdown-menu-end" style="--bs-dropdown-min-width: 10px; --bs-dropdown-bg: #F9FBFE; --bs-dropdown-link-hover-color: var(--intersection-color-3); --bs-dropdown-link-active-color: var(--intersection-color-3); --bs-dropdown-link-active-bg: transparent; transition: none;">
+                <li><div class="dropdown-header">Registrati come</div></li>
+                <li><a class="dropdown-item" href="../app/indexRegistrazioneAziendale.php">Azienda</a></li>
+                <li><a class="dropdown-item" href="../app/indexRegistrazione.php">Professionista</a></li>
               </ul>
             </div>
-          </div> 
-          <div>
-          <ul class="navbar-nav mb-2 mb-md-0 justify-content-between ms-auto"> 
-                <li class="nav-item">
-                <?php
-                if(!isset($_SESSION['uid']))
-                {
-                  $logged="<a class='nav-link text-uppercase text-black' href='indexLogin.php'><i class='fa-solid fa-user'></i> Login</a>";
-                }
-                else
-                {
-                  $uid=$_SESSION['uid'];
-                  $sa=$_SESSION['sa'];
-                  $username=$_SESSION['user'];
-                  $logged="<a class='nav-link text-uppercase text-black' href='indexUtenti.php?uid=".$uid."&sa=".$sa."'><i class='fa-solid fa-user'></i> ".$username."</a>";
-                }
-                echo $logged;
-                ?>   
-                </li>
-              </ul>
           </div>
-
+          <?php else : ?>
+            <?php if( $_SESSION['sa'] == 0 ) : ?>
+              <div class="menu-container d-flex align-items-center gap-4">
+                <div class="dropdown">
+                    <button class="btn dropdown-toggle fw-bold" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border: none;">IT</button>
+                    <ul class="dropdown-menu dropdown-menu-end" style="--bs-dropdown-min-width: 10px; --bs-dropdown-bg: #F9FBFE; --bs-dropdown-link-hover-color: var(--intersection-color-3); --bs-dropdown-link-active-color: var(--intersection-color-3); --bs-dropdown-link-active-bg: transparent; transition: none;">
+                      <li><div class="dropdown-header">Seleziona lingua</div></li>
+                      <li><a class="dropdown-item" href="#">Italiano</a></li>
+                      <li><a class="dropdown-item" href="#">English</a></li>
+                    </ul>
+                </div>
+                <a href=" <?php echo '../app/indexListJobs.php?uid=' . $_SESSION['uid'] . '&sa=' . $_SESSION['sa'] ?> " class="btn fw-bold py-2 px-3 border border-2 rounded" style="border-color: var(--intersection-color-3) !important; color: var(--intersection-color-3) !important;">Lista lavori</a>
+                <div class="dropdown">
+                    <button class="btn dropdown-toggle fw-bold d-flex align-items-center gap-2" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border: none;">
+                      <img src="images/home-professionista.jpg" class="img-fluid rounded" style="width: 30px; aspect-ratio: 1; object-fit: cover;">
+                      <?php 
+                        if( file_exists('.env') ) {
+                          // per il sito in locale
+                          $env = parse_ini_file('.env');
+                      
+                          $PGHOST = $env['PGHOST'];
+                          $PGPORT = $env['PGPORT'];
+                          $PGDATABASE = $env['PGDATABASE'];
+                          $PGUSER = $env['PGUSER'];
+                          $PGPASSWORD = $env['PGPASSWORD'];
+                        } else {
+                          // per il sito deployato
+                          $PGHOST = getenv('PGHOST');
+                          $PGPORT = getenv('PGPORT');
+                          $PGDATABASE = getenv('PGDATABASE');
+                          $PGUSER = getenv('PGUSER');
+                          $PGPASSWORD = getenv('PGPASSWORD');
+                        }
+                        $dbconn = pg_connect( "host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER password=$PGPASSWORD" ) or header( "Location: indexErrore.php?er=100" );
+                        $q19 = "SELECT * FROM worker WHERE worker_id=$1 LIMIT 1";
+                        $result19 = pg_query_params( $dbconn, $q19, array($_SESSION['uid']) );
+                        if( pg_num_rows( $result19 ) > 0) {
+                          $co=pg_fetch_assoc($result19);  
+                          if( isset( $co['picture'] ) ) {
+                            $propic = $co['picture'];
+                            $usernameWorker = $co['username'];
+                            $profile_picture = pg_unescape_bytea($propic);
+                            $picture_filename = "image_$usernameWorker.png";
+                            file_put_contents($picture_filename, $profile_picture);
+                            echo '<img src="' . $picture_filename . '" class="img-fluid rounded" style="width: 30px; aspect-ratio: 1; object-fit: cover;">';
+                            } else {
+                            echo '<img src="images/default-profile.png" class="img-fluid rounded" style="width: 30px; aspect-ratio: 1; object-fit: cover;">';
+                            }
+                        } else {
+                          echo '<img src="images/default-profile.png" class="img-fluid rounded" style="width: 30px; aspect-ratio: 1; object-fit: cover;">';
+                        }
+                        if(isset($result19)) pg_free_result($result19);
+                        pg_close($dbconn);
+                        ?>
+                      <div><?php echo $_SESSION['user'] ?></div>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" style="--bs-dropdown-min-width: 10px; --bs-dropdown-bg: #F9FBFE; --bs-dropdown-link-hover-color: var(--intersection-color-3); --bs-dropdown-link-active-color: var(--intersection-color-3); --bs-dropdown-link-active-bg: transparent; transition: none;">
+                      <li><div class="dropdown-header">Azioni</div></li>
+                      <li><a class="dropdown-item" href="../app/Logout.php">Logout</a></li>
+                    </ul>
+                </div>
+              </div>
+            <?php elseif( $_SESSION['sa'] == 1 ) : ?>
+              <div class="menu-container d-flex align-items-center gap-4">
+                <div class="dropdown">
+                    <button class="btn dropdown-toggle fw-bold" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border: none;">IT</button>
+                    <ul class="dropdown-menu dropdown-menu-end" style="--bs-dropdown-min-width: 10px; --bs-dropdown-bg: #F9FBFE; --bs-dropdown-link-hover-color: var(--intersection-color-3); --bs-dropdown-link-active-color: var(--intersection-color-3); --bs-dropdown-link-active-bg: transparent; transition: none;">
+                      <li><div class="dropdown-header">Seleziona lingua</div></li>
+                      <li><a class="dropdown-item" href="#">Italiano</a></li>
+                      <li><a class="dropdown-item" href="#">English</a></li>
+                    </ul>
+                </div>
+                <a href=" <?php echo '../app/indexJobOffers.php?uid=' . $_SESSION['uid'] . '&sa=' . $_SESSION['sa'] ?> " class="btn fw-bold py-2 px-3 border border-2 rounded" style="border-color: var(--intersection-color-3) !important; color: var(--intersection-color-3) !important;">Lista offerte</a>
+                <div class="dropdown">
+                    <button class="btn dropdown-toggle fw-bold d-flex align-items-center gap-2" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border: none;">
+                      <?php 
+                        if( file_exists('.env') ) {
+                          // per il sito in locale
+                          $env = parse_ini_file('.env');
+                      
+                          $PGHOST = $env['PGHOST'];
+                          $PGPORT = $env['PGPORT'];
+                          $PGDATABASE = $env['PGDATABASE'];
+                          $PGUSER = $env['PGUSER'];
+                          $PGPASSWORD = $env['PGPASSWORD'];
+                        } else {
+                          // per il sito deployato
+                          $PGHOST = getenv('PGHOST');
+                          $PGPORT = getenv('PGPORT');
+                          $PGDATABASE = getenv('PGDATABASE');
+                          $PGUSER = getenv('PGUSER');
+                          $PGPASSWORD = getenv('PGPASSWORD');
+                        }
+                        $dbconn = pg_connect( "host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER password=$PGPASSWORD" ) or header( "Location: indexErrore.php?er=100" );
+                        $q19 = "SELECT * FROM company WHERE company_id=$1 LIMIT 1";
+                        $result19 = pg_query_params( $dbconn, $q19, array($_SESSION['uid']) );
+                        if( pg_num_rows( $result19 ) > 0) {
+                          $co=pg_fetch_assoc($result19);  
+                          if( isset( $co['logo'] ) ) {
+                            $logo = $co['logo'];
+                            $usernameCompany = $co['username'];
+                            $logo = pg_unescape_bytea($logo);
+                            $logo_filename = "image_$usernameCompany.png";
+                            file_put_contents($logo_filename, $logo);
+                            echo '<img src="' . $logo_filename . '" class="img-fluid rounded" style="width: 30px; aspect-ratio: 1; object-fit: cover;">';
+                          } else {
+                            echo '<img src="images/default-profile.png" class="img-fluid rounded" style="width: 30px; aspect-ratio: 1; object-fit: cover;">';
+                          }
+                        } else {
+                          echo '<img src="images/default-profile.png" class="img-fluid rounded" style="width: 30px; aspect-ratio: 1; object-fit: cover;">';
+                        }
+                        if(isset($result19)) pg_free_result($result19);
+                        pg_close($dbconn);
+                      ?>
+                      <div><?php echo $_SESSION['user'] ?></div>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" style="--bs-dropdown-min-width: 10px; --bs-dropdown-bg: #F9FBFE; --bs-dropdown-link-hover-color: var(--intersection-color-3); --bs-dropdown-link-active-color: var(--intersection-color-3); --bs-dropdown-link-active-bg: transparent; transition: none;">
+                      <li><div class="dropdown-header">Azioni</div></li>
+                      <li><a class="dropdown-item" href="../app/Logout.php">Logout</a></li>
+                    </ul>
+                </div>
+              </div>
+            <?php endif; ?>
+          <?php endif; ?>
         </div>
-      </nav>
-    </div>
+      </header>
 
-<!--BODY-->
-      <section id="section1">
-        <div class="container">
-        <script>
-          $(document).ready(function()
-          {
-            var a = document.getElementById("indirizzo");
-            var ind = a.textContent;
-            if(ind=='')
-            {
-              $("#indirizzo").empty();
-            }
-            if(ind=='')
-            {
-              $("#indirizzo2").empty();
-            }
-            var b = document.getElementById("citta");
-            var citta = b.textContent;
-            if(citta=='')
-            {
-              $("#citta").empty();
-            }
-            if(citta=='')
-            {
-              $("#citta2").empty();
-            }
-            var c = document.getElementById("nazione");
-            var nazione = c.textContent;
-            if(nazione=='nessuna')
-            {
-              $("#nazione").empty();
-            }
-            if(nazione=='nessuna')
-            {
-              $("#nazione2").empty();
-            }
-            if(nazione=='US') c.textContent=("United States");
-            if(nazione=="CA") c.textContent=("Canada");
-            if(nazione=="AF") c.textContent=("Afghanistan");
-            if(nazione=="AL") c.textContent=("Albania");
-            if(nazione=="DZ") c.textContent=("Algeria");
-            if(nazione=="AS") c.textContent=("American Samoa");
-            if(nazione=="AD") c.textContent=("Andorra");
-            if(nazione=="AO") c.textContent=("Angola");
-            if(nazione=="AI") c.textContent=("Anguilla");
-            if(nazione=="AQ") c.textContent=("Antarctica");
-            if(nazione=="AG") c.textContent=("Antigua and Barbuda");
-            if(nazione=="AR") c.textContent=("Argentina");
-            if(nazione=="AM") c.textContent=("Armenia");
-            if(nazione=="AW") c.textContent=("Aruba");
-            if(nazione=="AU") c.textContent=("Australia");
-            if(nazione=="AT") c.textContent=("Austria");
-            if(nazione=="AZ") c.textContent=("Azerbaijan");
-            if(nazione=="BS") c.textContent=("Bahamas");
-            if(nazione=="BH") c.textContent=("Bahrain");
-            if(nazione=="BD") c.textContent=("Bangladesh");
-            if(nazione=="BB") c.textContent=("Barbados");
-            if(nazione=="BY") c.textContent=("Belarus");
-            if(nazione=="BE") c.textContent=("Belgium");
-            if(nazione=="BZ") c.textContent=("Belize");
-            if(nazione=="BJ") c.textContent=("Benin");
-            if(nazione=="BM") c.textContent=("Bermuda");
-            if(nazione=="BT") c.textContent=("Bhutan");
-            if(nazione=="BO") c.textContent=("Bolivia");
-            if(nazione=="BA") c.textContent=("Bosnia and Herzegovina");
-            if(nazione=="BW") c.textContent=("Botswana");
-            if(nazione=="BV") c.textContent=("Bouvet Island");
-            if(nazione=="BR") c.textContent=("Brazil");
-            if(nazione=="IO") c.textContent=("British Indian Ocean Territory");
-            if(nazione=="BN") c.textContent=("Brunei Darussalam");
-            if(nazione=="BG") c.textContent=("Bulgaria");
-            if(nazione=="BF") c.textContent=("Burkina Faso");
-            if(nazione=="BI") c.textContent=("Burundi");
-            if(nazione=="KH") c.textContent=("Cambodia");
-            if(nazione=="CM") c.textContent=("Cameroon");
-            if(nazione=="CV") c.textContent=("Cape Verde");
-            if(nazione=="KY") c.textContent=("Cayman Islands");
-            if(nazione=="CF") c.textContent=("Central African Republic");
-            if(nazione=="TD") c.textContent=("Chad");
-            if(nazione=="CL") c.textContent=("Chile");
-            if(nazione=="CN") c.textContent=("China");
-            if(nazione=="CX") c.textContent=("Christmas Island");
-            if(nazione=="CC") c.textContent=("Cocos (Keeling) Islands");
-            if(nazione=="CO") c.textContent=("Colombia");
-            if(nazione=="KM") c.textContent=("Comoros");
-            if(nazione=="CG") c.textContent=("Congo");
-            if(nazione=="CD") c.textContent=("Congo (Democratic Republic)");
-            if(nazione=="CK") c.textContent=("Cook Islands");
-            if(nazione=="CR") c.textContent=("Costa Rica");
-            if(nazione=="HR") c.textContent=("Croatia");
-            if(nazione=="CU") c.textContent=("Cuba");
-            if(nazione=="CY") c.textContent=("Cyprus");
-            if(nazione=="CZ") c.textContent=("Czech Republic");
-            if(nazione=="DK") c.textContent=("Denmark");
-            if(nazione=="DJ") c.textContent=("Djibouti");
-            if(nazione=="DM") c.textContent=("Dominica");
-            if(nazione=="DO") c.textContent=("Dominican Republic");
-            if(nazione=="TP") c.textContent=("East Timor");
-            if(nazione=="EC") c.textContent=("Ecuador");
-            if(nazione=="EG") c.textContent=("Egypt");
-            if(nazione=="SV") c.textContent=("El Salvador");
-            if(nazione=="GQ") c.textContent=("Equatorial Guinea");
-            if(nazione=="ER") c.textContent=("Eritrea");
-            if(nazione=="EE") c.textContent=("Estonia");
-            if(nazione=="ET") c.textContent=("Ethiopia");
-            if(nazione=="FK") c.textContent=("Falkland Islands");
-            if(nazione=="FO") c.textContent=("Faroe Islands");
-            if(nazione=="FJ") c.textContent=("Fiji");
-            if(nazione=="FI") c.textContent=("Finland");
-            if(nazione=="FR") c.textContent=("France");
-            if(nazione=="FX") c.textContent=("France (European Territory)");
-            if(nazione=="GF") c.textContent=("French Guiana");
-            if(nazione=="TF") c.textContent=("French Southern Territories");
-            if(nazione=="GA") c.textContent=("Gabon");
-            if(nazione=="GM") c.textContent=("Gambia");
-            if(nazione=="GE") c.textContent=("Georgia");
-            if(nazione=="DE") c.textContent=("Germany");
-            if(nazione=="GH") c.textContent=("Ghana");
-            if(nazione=="GI") c.textContent=("Gibraltar");
-            if(nazione=="GR") c.textContent=("Greece");
-            if(nazione=="GL") c.textContent=("Greenland");
-            if(nazione=="GD") c.textContent=("Grenada");
-            if(nazione=="GP") c.textContent=("Guadeloupe");
-            if(nazione=="GU") c.textContent=("Guam");
-            if(nazione=="GT") c.textContent=("Guatemala");
-            if(nazione=="GN") c.textContent=("Guinea");
-            if(nazione=="GW") c.textContent=("Guinea Bissau");
-            if(nazione=="GY") c.textContent=("Guyana");
-            if(nazione=="HT") c.textContent=("Haiti");
-            if(nazione=="HM") c.textContent=("Heard and McDonald Islands");
-            if(nazione=="VA") c.textContent=("Holy See (Vatican)");
-            if(nazione=="HN") c.textContent=("Honduras");
-            if(nazione=="HK") c.textContent=("Hong Kong");
-            if(nazione=="HU") c.textContent=("Hungary");
-            if(nazione=="IS") c.textContent=("Iceland");
-            if(nazione=="IN") c.textContent=("India");
-            if(nazione=="ID") c.textContent=("Indonesia");
-            if(nazione=="IR") c.textContent=("Iran");
-            if(nazione=="IQ") c.textContent=("Iraq");
-            if(nazione=="IE") c.textContent=("Ireland");
-            if(nazione=="IL") c.textContent=("Israel");
-            if(nazione=="IT") c.textContent=("Italy");
-            if(nazione=="CI") c.textContent=("Cote D&rsquo;Ivoire");
-            if(nazione=="JM") c.textContent=("Jamaica");
-            if(nazione=="JP") c.textContent=("Japan");
-            if(nazione=="JO") c.textContent=("Jordan");
-            if(nazione=="KZ") c.textContent=("Kazakhstan");
-            if(nazione=="KE") c.textContent=("Kenya");
-            if(nazione=="KI") c.textContent=("Kiribati");
-            if(nazione=="KW") c.textContent=("Kuwait");
-            if(nazione=="KG") c.textContent=("Kyrgyzstan");
-            if(nazione=="LA") c.textContent=("Laos");
-            if(nazione=="LV") c.textContent=("Latvia");
-            if(nazione=="LB") c.textContent=("Lebanon");
-            if(nazione=="LS") c.textContent=("Lesotho");
-            if(nazione=="LR") c.textContent=("Liberia");
-            if(nazione=="LY") c.textContent=("Libya");
-            if(nazione=="LI") c.textContent=("Liechtenstein");
-            if(nazione=="LT") c.textContent=("Lithuania");
-            if(nazione=="LU") c.textContent=("Luxembourg");
-            if(nazione=="MO") c.textContent=("Macau");
-            if(nazione=="MK") c.textContent=("Macedonia");
-            if(nazione=="MG") c.textContent=("Madagascar");
-            if(nazione=="MW") c.textContent=("Malawi");
-            if(nazione=="MY") c.textContent=("Malaysia");
-            if(nazione=="MV") c.textContent=("Maldives");
-            if(nazione=="ML") c.textContent=("Mali");
-            if(nazione=="MT") c.textContent=("Malta");
-            if(nazione=="MH") c.textContent=("Marshall Islands");
-            if(nazione=="MQ") c.textContent=("Martinique");
-            if(nazione=="MR") c.textContent=("Mauritania");
-            if(nazione=="MU") c.textContent=("Mauritius");
-            if(nazione=="YT") c.textContent=("Mayotte");
-            if(nazione=="MX") c.textContent=("Mexico");
-            if(nazione=="FM") c.textContent=("Micronesia");
-            if(nazione=="MD") c.textContent=("Moldova");
-            if(nazione=="MC") c.textContent=("Monaco");
-            if(nazione=="MN") c.textContent=("Mongolia");
-            if(nazione=="ME") c.textContent=("Montenegro");
-            if(nazione=="MS") c.textContent=("Montserrat");
-            if(nazione=="MA") c.textContent=("Morocco");
-            if(nazione=="MZ") c.textContent=("Mozambique");
-            if(nazione=="MM") c.textContent=("Myanmar");
-            if(nazione=="NA") c.textContent=("Namibia");
-            if(nazione=="NR") c.textContent=("Nauru");
-            if(nazione=="NP") c.textContent=("Nepal");
-            if(nazione=="NL") c.textContent=("Netherlands");
-            if(nazione=="AN") c.textContent=("Netherlands Antilles");
-            if(nazione=="NC") c.textContent=("New Caledonia");
-            if(nazione=="NZ") c.textContent=("New Zealand");
-            if(nazione=="NI") c.textContent=("Nicaragua");
-            if(nazione=="NE") c.textContent=("Niger");
-            if(nazione=="NG") c.textContent=("Nigeria");
-            if(nazione=="NU") c.textContent=("Niue");
-            if(nazione=="NF") c.textContent=("Norfolk Island");
-            if(nazione=="KP") c.textContent=("North Korea");
-            if(nazione=="MP") c.textContent=("Northern Mariana Islands");
-            if(nazione=="NO") c.textContent=("Norway");
-            if(nazione=="OM") c.textContent=("Oman");
-            if(nazione=="PK") c.textContent=("Pakistan");
-            if(nazione=="PW") c.textContent=("Palau");
-            if(nazione=="PS") c.textContent=("Palestinian Territory");
-            if(nazione=="PA") c.textContent=("Panama");
-            if(nazione=="PG") c.textContent=("Papua New Guinea");
-            if(nazione=="PY") c.textContent=("Paraguay");
-            if(nazione=="PE") c.textContent=("Peru");
-            if(nazione=="PH") c.textContent=("Philippines");
-            if(nazione=="PN") c.textContent=("Pitcairn");
-            if(nazione=="PL") c.textContent=("Poland");
-            if(nazione=="PF") c.textContent=("Polynesia");
-            if(nazione=="PT") c.textContent=("Portugal");
-            if(nazione=="PR") c.textContent=("Puerto Rico");
-            if(nazione=="QA") c.textContent=("Qatar");
-            if(nazione=="RE") c.textContent=("Reunion");
-            if(nazione=="RO") c.textContent=("Romania");
-            if(nazione=="RU") c.textContent=("Russian Federation");
-            if(nazione=="RW") c.textContent=("Rwanda");
-            if(nazione=="GS") c.textContent=("S. Georgia &amp; S. Sandwich Isls.");
-            if(nazione=="SH") c.textContent=("Saint Helena");
-            if(nazione=="KN") c.textContent=("Saint Kitts &amp; Nevis Anguilla");
-            if(nazione=="LC") c.textContent=("Saint Lucia");
-            if(nazione=="PM") c.textContent=("Saint Pierre and Miquelon");
-            if(nazione=="VC") c.textContent=("Saint Vincent &amp; Grenadines");
-            if(nazione=="WS") c.textContent=("Samoa");
-            if(nazione=="SM") c.textContent=("San Marino");
-            if(nazione=="ST") c.textContent=("Sao Tome and Principe");
-            if(nazione=="SA") c.textContent=("Saudi Arabia");
-            if(nazione=="SN") c.textContent=("Senegal");
-            if(nazione=="RS") c.textContent=("Serbia");
-            if(nazione=="SC") c.textContent=("Seychelles");
-            if(nazione=="SL") c.textContent=("Sierra Leone");
-            if(nazione=="SG") c.textContent=("Singapore");
-            if(nazione=="SK") c.textContent=("Slovakia");
-            if(nazione=="SI") c.textContent=("Slovenia");
-            if(nazione=="SB") c.textContent=("Solomon Islands");
-            if(nazione=="SO") c.textContent=("Somalia");
-            if(nazione=="ZA") c.textContent=("South Africa");
-            if(nazione=="KR") c.textContent=("South Korea");
-            if(nazione=="ES") c.textContent=("Spain");
-            if(nazione=="LK") c.textContent=("Sri Lanka");
-            if(nazione=="SD") c.textContent=("Sudan");
-            if(nazione=="SR") c.textContent=("Suriname");
-            if(nazione=="SZ") c.textContent=("Swaziland");
-            if(nazione=="SE") c.textContent=("Sweden");
-            if(nazione=="CH") c.textContent=("Switzerland");
-            if(nazione=="SY") c.textContent=("Syrian Arab Republic");
-            if(nazione=="TW") c.textContent=("Taiwan");
-            if(nazione=="TJ") c.textContent=("Tajikistan");
-            if(nazione=="TZ") c.textContent=("Tanzania");
-            if(nazione=="TH") c.textContent=("Thailand");
-            if(nazione=="TG") c.textContent=("Togo");
-            if(nazione=="TK") c.textContent=("Tokelau");
-            if(nazione=="TO") c.textContent=("Tonga");
-            if(nazione=="TT") c.textContent=("Trinidad and Tobago");
-            if(nazione=="TN") c.textContent=("Tunisia");
-            if(nazione=="TR") c.textContent=("Turkey");
-            if(nazione=="TM") c.textContent=("Turkmenistan");
-            if(nazione=="TC") c.textContent=("Turks and Caicos Islands");
-            if(nazione=="TV") c.textContent=("Tuvalu");
-            if(nazione=="UG") c.textContent=("Uganda");
-            if(nazione=="UA") c.textContent=("Ukraine");
-            if(nazione=="AE") c.textContent=("United Arab Emirates");
-            if(nazione=="GB") c.textContent=("United Kingdom");
-            if(nazione=="UY") c.textContent=("Uruguay");
-            if(nazione=="UM") c.textContent=("USA Minor Outlying Islands");
-            if(nazione=="UZ") c.textContent=("Uzbekistan");
-            if(nazione=="VU") c.textContent=("Vanuatu");
-            if(nazione=="VE") c.textContent=("Venezuela");
-            if(nazione=="VN") c.textContent=("Vietnam");
-            if(nazione=="VG") c.textContent=("Virgin Islands (British)");
-            if(nazione=="VI") c.textContent=("Virgin Islands (USA)");
-            if(nazione=="WF") c.textContent=("Wallis and Futuna Islands");
-            if(nazione=="EH") c.textContent=("Western Sahara");
-            if(nazione=="YE") c.textContent=("Yemen");
-            if(nazione=="ZR") c.textContent=("Zaire");
-            if(nazione=="ZM") c.textContent=("Zambia");
-            if(nazione=="ZW") c.textContent=("Zimbabwe");
-            var a = document.getElementById("telephone_number");
-            var ind = a.textContent;
-            if(ind=='')
-            {
-              $("#telephone_number").empty();
-            }
-            if(ind=='')
-            {
-              $("#telephone_number2").empty();
-            }
-          });
-          </script>
-          <div id="content">
-          <?php
-          
-            if(!(isset($_GET["sa"])) || !(isset($_GET["uid"])))
-            {
+      <!-- Page content -->
+    <div class="page-content">
+
+      <section id="main">
+        <div class="container px-3" style="padding: 60px 0 120px;">
+          <div class="col-md-8 mx-auto d-flex flex-column gap-5">
+            <?php 
+              if( !isset( $_GET["sa"] ) || !isset( $_GET["uid"] )) :
+                header( "Location: indexErrore.php?er=100" );
+              else :
+                if(file_exists('.env')) {
+                  // per il sito in locale
+                  $env = parse_ini_file('.env');
               
-            }
-            else if($_GET["sa"]==0) //PROFILO UTENTE
-            {
-              if(file_exists('.env')) {
-                // per il sito in locale
-                $env = parse_ini_file('.env');
-            
-                $PGHOST = $env['PGHOST'];
-                $PGPORT = $env['PGPORT'];
-                $PGDATABASE = $env['PGDATABASE'];
-                $PGUSER = $env['PGUSER'];
-                $PGPASSWORD = $env['PGPASSWORD'];
-            } else {
-                // per il sito deployato
-                $PGHOST = getenv('PGHOST');
-                $PGPORT = getenv('PGPORT');
-                $PGDATABASE = getenv('PGDATABASE');
-                $PGUSER = getenv('PGUSER');
-                $PGPASSWORD = getenv('PGPASSWORD');
-            }
-              $dbconn = pg_connect("host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER password=$PGPASSWORD")  or header("Location: indexErrore.php?er=100");
-              $uid=$_GET['uid'];
-              $query= "SELECT * FROM worker where worker_id=$1";
-              $result=pg_query_params($dbconn,$query,array($uid));
-              if(pg_num_rows($result)==0)
-              {
-                echo "<h1>Profilo non trovato!</h1>
-                <br>";
-              }
-              else
-              {
-              
-              $line=pg_fetch_assoc($result);
-              $nome=$line["name"];
-              $cognome=$line["surname"];
-              $username=$line["username"];
-              $datanascita=$line["birth_date"];
-              $indirizzo=$line["address"];
-              $citta=$line["city"];
-              $nazione=$line["country"];
-              $genere=$line["genre"];
-              $date = date('d/m/Y',strtotime($datanascita));
-              $contact_email = $line["contact_email"];
-              $telephone_number = $line["telephone_number"];
-              $curriculum = $line["curriculum"];
-              $picture = $line["picture"];
+                  $PGHOST = $env['PGHOST'];
+                  $PGPORT = $env['PGPORT'];
+                  $PGDATABASE = $env['PGDATABASE'];
+                  $PGUSER = $env['PGUSER'];
+                  $PGPASSWORD = $env['PGPASSWORD'];
+                } else {
+                  // per il sito deployato
+                  $PGHOST = getenv('PGHOST');
+                  $PGPORT = getenv('PGPORT');
+                  $PGDATABASE = getenv('PGDATABASE');
+                  $PGUSER = getenv('PGUSER');
+                  $PGPASSWORD = getenv('PGPASSWORD');
+                }
+                $dbconn = pg_connect("host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER password=$PGPASSWORD")  or header( "Location: indexErrore.php?er=100" );
+                $uid=$_GET['uid'];
 
-              if(isset($picture))
-              {
-                $picture = pg_unescape_bytea($picture);
-                $filename = "image_$username.png";
-                file_put_contents($filename, $picture);
-              }
-              else
-              {
-                $filename = "Images/pictureStandard.png";
-              }
+                if( $_GET["sa"] == 0 ) :
 
-              echo "
-              <div class='grid'>
-              <div class='row'>
-                  <div class='col-sm-4 my-auto text-left m-3'>
-
-                        <div id='corpoprofilo'> 
-                        <h2 class='text-uppercase spaced mb-5' id='title'>Profilo utente</h2> 
-                        <img src=$filename id='picture2' class='rounded-circle avatar-lg img-thumbnail' alt='profile-image'>
-                        <div class='mt-3' align='left'>
-                            <p class='mb-2'><span class='grassetto' id='username2'>Username: </span> <span class='testo-grigio'>$username</span></p>
-                            <p class='mb-2'><span class='grassetto'>Nome: </span><span class='testo-grigio'>$nome</span></p>
-                            <p class='mb-2'><span class='grassetto'>Cognome: </span> <span class='testo-grigio'>$cognome</span></p>
-                            <p class='mb-2'><span class='grassetto'>Genere: </span> <span class='testo-grigio' id='genere'>$genere</span></p>
-                            <p class='mb-2'><span class='grassetto'>Data di nascita: </span> <span class='testo-grigio'>$date</span></p>
-                            <p class='mb-2'><span class='grassetto' id='indirizzo2'>Indirizzo: </span> <span class='testo-grigio' id='indirizzo' name='nomeNazione'>$indirizzo</span></p>
-                            <p class='mb-2'><span class='grassetto' id='citta2'>Città: </span> <span class='testo-grigio' id='citta'>$citta</span></p>
-                            <p class='mb-2'><span class='grassetto' id='nazione2'>Nazione: </span> <span class='testo-grigio' id='nazione'>$nazione</span></p>
-                            <p class='mb-2'><span class='grassetto'>Contact mail: </span> <span class='testo-grigio' id='contact_email'>$contact_email</span></p>
-                            <p class='mb-2'><span class='grassetto' id='telephone_number2'>Telephone number: </span> <span class='testo-grigio' id='telephone_number'>$telephone_number</span></p>
-                        </div>
-                        </div>
-                  </div>";
-                echo  "</div>";
-                $curriculum = pg_unescape_bytea($curriculum);
-                $filename = "$username.pdf";
-                file_put_contents($filename, $curriculum);
-                echo '
-                <object data="'.$username.'.pdf" type="application/pdf" width="100%" height="1000px">
-                  <p>Unable to display PDF file.
-                  <a href="'.$username.'.pdf">Download</a> instead.</p>
-                </object>';
-
-              pg_free_result($result);
-              pg_close($dbconn);
-              $uida=$_SESSION['uid'];
-              if(isset($_SESSION['uid']) && $uida==$uid)
-              {
-                echo "<div class='group-bottoni'><a href='Logout.php'><button class='btn gold-button shadow-none'><i class='fa-solid fa-right-from-bracket'></i> Logout</button></a></div>";
-              }
-              else {
-
-              }
-            }
-          }
-            else //PROFILO AZIENDA
-            {
-              if(file_exists('.env')) {
-                // per il sito in locale
-                $env = parse_ini_file('.env');
-            
-                $PGHOST = $env['PGHOST'];
-                $PGPORT = $env['PGPORT'];
-                $PGDATABASE = $env['PGDATABASE'];
-                $PGUSER = $env['PGUSER'];
-                $PGPASSWORD = $env['PGPASSWORD'];
-            } else {
-                // per il sito deployato
-                $PGHOST = getenv('PGHOST');
-                $PGPORT = getenv('PGPORT');
-                $PGDATABASE = getenv('PGDATABASE');
-                $PGUSER = getenv('PGUSER');
-                $PGPASSWORD = getenv('PGPASSWORD');
-            }
-              $dbconn = pg_connect("host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER password=$PGPASSWORD")  or header("Location: indexErrore.php?er=100");
-              $company_id=$_GET['uid'];
-              $query="SELECT * FROM company where company_id=$1";
-              $result=pg_query_params($dbconn,$query,array($company_id));
-              if(pg_num_rows($result)==0)
-              {
-                echo "<h1>Profilo non trovato!</h1>
-                <br>";
-              }
-              else
-              {
-              echo "\n";
-              $line=pg_fetch_assoc($result);
-              $company_name=$line["company_name"];
-              $username=$line["username"];
-              $vat_number=$line["vat_number"];
-              $address=$line["address"];
-              $city=$line["city"];
-              $country=$line["country"];
-              $description=$line["description"];
-              $contact_email=$line["contact_email"];
-              $telephone_number=$line["telephone_number"];
-              $logo=$line["logo"];
-
-              if(isset($picture))
-              {
-                $logo = pg_unescape_bytea($logo);
-                $filename = "image_$username.png";
-                file_put_contents($filename, $logo);
-              }
-              else
-              {
-                $filename = "Images/logoStandard.png";
-              }
-
-              echo " <div class='grid'>
-              <div class='row'>
-                  <div class='col-sm-4 my-auto text-left m-3'>
-              
-                    <div id='corpoprofilo'> 
-                          <h2 class='text-uppercase spaced mb-5' id='title'>Profilo azienda</h2> 
-                            <img src=$filename id='logo' class='rounded-circle avatar-lg img-thumbnail' alt='profile-image'>
-                            <div class='mt-3'>
-                                <p class='mb-2'><span class='grassetto' id='username2'>Username: </span> <span class='testo-grigio'>$username</span></p>
-                                <p class='mb-2'><span class='grassetto'>Ragione sociale: </span><span class='testo-grigio'>$company_name</span></p>
-                                <p class='mb-2'><span class='grassetto'>Partita IVA: </span> <span class='testo-grigio'>$vat_number</span></p>
-                                <p class='mb-2'><span class='grassetto' id='indirizzo2'>Indirizzo: </span> <span class='testo-grigio' id='indirizzo' name='nomeNazione'>$address</span></p>
-                                <p class='mb-2'><span class='grassetto' id='citta2'>Città: </span> <span class='testo-grigio' id='citta'>$city</span></p>
-                                <p class='mb-2'><span class='grassetto' id='nazione2'>Nazione: </span> <span class='testo-grigio' id='nazione'>$country</span></p>
-                                <p class='mb-2'><span class='grassetto'>Descrizione: </span> <span class='testo-grigio'>$description</span></p>
-                                <p class='mb-2'><span class='grassetto'>Contact email: </span> <span class='testo-grigio'>$contact_email</span></p>
-                                <p class='mb-2'><span class='grassetto' id='telephone_number2'>Telephone number: </span> <span class='testo-grigio' id='telephone_number'>$telephone_number</span></p>
-                            </div>
+                  $query = "SELECT * FROM worker where worker_id=$1";
+                  $result = pg_query_params( $dbconn, $query, array($uid) );
+                  if( pg_num_rows( $result ) == 0 ) {
+                    echo '<div class="text-center bg-warning-subtle border border-warning p-5 rounded">Utente non trovato</div>';
+                  } else {
+                    $line = pg_fetch_assoc( $result );
+                    $nome = $line["name"];
+                    $cognome = $line["surname"];
+                    $username = $line["username"];
+                    $datanascita = $line["birth_date"];
+                    $indirizzo = $line["address"];
+                    $citta = $line["city"];
+                    $nazione = $line["country"];
+                    switch( $nazione ) {
+                      case 'US': 
+                        $nazione = "United States";
+                        break;
+                      case 'CA': 
+                        $nazione = "Canada";
+                        break;
+                      case 'AF': 
+                        $nazione = "Afghanistan";
+                        break;
+                      case 'AL': 
+                        $nazione = "Albania";
+                        break;
+                      case 'DZ': 
+                        $nazione = "Algeria";
+                        break;
+                      case 'AS': 
+                        $nazione = "American Samoa";
+                        break;
+                      case 'AD': 
+                        $nazione = "Andorra";
+                        break;
+                      case 'AO': 
+                        $nazione = "Angola";
+                        break;
+                      case 'AI': 
+                        $nazione = "Anguilla";
+                        break;
+                      case 'AQ': 
+                        $nazione = "Antarctica";
+                        break;
+                      case 'AG': 
+                        $nazione = "Antigua and Barbuda";
+                        break;
+                      case 'AR': 
+                        $nazione = "Argentina";
+                        break;
+                      case 'AM': 
+                        $nazione = "Armenia";
+                        break;
+                      case 'AW': 
+                        $nazione = "Aruba";
+                        break;
+                      case 'AU': 
+                        $nazione = "Australia";
+                        break;
+                      case 'AT': 
+                        $nazione = "Austria";
+                        break;
+                      case 'AZ': 
+                        $nazione = "Azerbaijan";
+                        break;
+                      case 'BS': 
+                        $nazione = "Bahamas";
+                        break;
+                      case 'BH': 
+                        $nazione = "Bahrain";
+                        break;
+                      case 'BD': 
+                        $nazione = "Bangladesh";
+                        break;
+                      case 'BB': 
+                        $nazione = "Barbados";
+                        break;
+                      case 'BY': 
+                        $nazione = "Belarus";
+                        break;
+                      case 'BE': 
+                        $nazione = "Belgium";
+                        break;
+                      case 'BZ': 
+                        $nazione = "Belize";
+                        break;
+                      case 'BJ': 
+                        $nazione = "Benin";
+                        break;
+                      case 'BM': 
+                        $nazione = "Bermuda";
+                        break;
+                      case 'BT': 
+                        $nazione = "Bhutan";
+                        break;
+                      case 'BO': 
+                        $nazione = "Bolivia";
+                        break;
+                      case 'BA': 
+                        $nazione = "Bosnia and Herzegovina";
+                        break;
+                      case 'BW': 
+                        $nazione = "Botswana";
+                        break;
+                      case 'BV': 
+                        $nazione = "Bouvet Island";
+                        break;
+                      case 'BR': 
+                        $nazione = "Brazil";
+                        break;
+                      case 'IO': 
+                        $nazione = "British Indian Ocean Territory";
+                        break;
+                      case 'BN': 
+                        $nazione = "Brunei Darussalam";
+                        break;
+                      case 'BG': 
+                        $nazione = "Bulgaria";
+                        break;
+                      case 'BF': 
+                        $nazione = "Burkina Faso";
+                        break;
+                      case 'BI': 
+                        $nazione = "Burundi";
+                        break;
+                      case 'KH': 
+                        $nazione = "Cambodia";
+                        break;
+                      case 'CM': 
+                        $nazione = "Cameroon";
+                        break;
+                      case 'CV': 
+                        $nazione = "Cape Verde";
+                        break;
+                      case 'KY': 
+                        $nazione = "Cayman Islands";
+                        break;
+                      case 'CF': 
+                        $nazione = "Central African Republic";
+                        break;
+                      case 'TD': 
+                        $nazione = "Chad";
+                        break;
+                      case 'CL': 
+                        $nazione = "Chile";
+                        break;
+                      case 'CN': 
+                        $nazione = "China";
+                        break;
+                      case 'CX': 
+                        $nazione = "Christmas Island";
+                        break;
+                      case 'CC': 
+                        $nazione = "Cocos (Keeling) Islands";
+                        break;
+                      case 'CO': 
+                        $nazione = "Colombia";
+                        break;
+                      case 'KM': 
+                        $nazione = "Comoros";
+                        break;
+                      case 'CG': 
+                        $nazione = "Congo";
+                        break;
+                      case 'CD': 
+                        $nazione = "Congo (Democratic Republic)";
+                        break;
+                      case 'CK': 
+                        $nazione = "Cook Islands";
+                        break;
+                      case 'CR': 
+                        $nazione = "Costa Rica";
+                        break;
+                      case 'HR': 
+                        $nazione = "Croatia";
+                        break;
+                      case 'CU': 
+                        $nazione = "Cuba";
+                        break;
+                      case 'CY': 
+                        $nazione = "Cyprus";
+                        break;
+                      case 'CZ': 
+                        $nazione = "Czech Republic";
+                        break;
+                      case 'DK': 
+                        $nazione = "Denmark";
+                        break;
+                      case 'DJ': 
+                        $nazione = "Djibouti";
+                        break;
+                      case 'DM': 
+                        $nazione = "Dominica";
+                        break;
+                      case 'DO': 
+                        $nazione = "Dominican Republic";
+                        break;
+                      case 'TP': 
+                        $nazione = "East Timor";
+                        break;
+                      case 'EC': 
+                        $nazione = "Ecuador";
+                        break;
+                      case 'EG': 
+                        $nazione = "Egypt";
+                        break;
+                      case 'SV': 
+                        $nazione = "El Salvador";
+                        break;
+                      case 'GQ': 
+                        $nazione = "Equatorial Guinea";
+                        break;
+                      case 'ER': 
+                        $nazione = "Eritrea";
+                        break;
+                      case 'EE': 
+                        $nazione = "Estonia";
+                        break;
+                      case 'ET': 
+                        $nazione = "Ethiopia";
+                        break;
+                      case 'FK': 
+                        $nazione = "Falkland Islands";
+                        break;
+                      case 'FO': 
+                        $nazione = "Faroe Islands";
+                        break;
+                      case 'FJ': 
+                        $nazione = "Fiji";
+                        break;
+                      case 'FI': 
+                        $nazione = "Finland";
+                        break;
+                      case 'FR': 
+                        $nazione = "France";
+                        break;
+                      case 'FX': 
+                        $nazione = "France (European Territory)";
+                        break;
+                      case 'GF': 
+                        $nazione = "French Guiana";
+                        break;
+                      case 'TF': 
+                        $nazione = "French Southern Territories";
+                        break;
+                      case 'GA': 
+                        $nazione = "Gabon";
+                        break;
+                      case 'GM': 
+                        $nazione = "Gambia";
+                        break;
+                      case 'GE': 
+                        $nazione = "Georgia";
+                        break;
+                      case 'DE': 
+                        $nazione = "Germany";
+                        break;
+                      case 'GH': 
+                        $nazione = "Ghana";
+                        break;
+                      case 'GI': 
+                        $nazione = "Gibraltar";
+                        break;
+                      case 'GR': 
+                        $nazione = "Greece";
+                        break;
+                      case 'GL': 
+                        $nazione = "Greenland";
+                        break;
+                      case 'GD': 
+                        $nazione = "Grenada";
+                        break;
+                      case 'GP': 
+                        $nazione = "Guadeloupe";
+                        break;
+                      case 'GU': 
+                        $nazione = "Guam";
+                        break;
+                      case 'GT': 
+                        $nazione = "Guatemala";
+                        break;
+                      case 'GN': 
+                        $nazione = "Guinea";
+                        break;
+                      case 'GW': 
+                        $nazione = "Guinea Bissau";
+                        break;
+                      case 'GY': 
+                        $nazione = "Guyana";
+                        break;
+                      case 'HT': 
+                        $nazione = "Haiti";
+                        break;
+                      case 'HM': 
+                        $nazione = "Heard and McDonald Islands";
+                        break;
+                      case 'VA': 
+                        $nazione = "Holy See (Vatican)";
+                        break;
+                      case 'HN': 
+                        $nazione = "Honduras";
+                        break;
+                      case 'HK': 
+                        $nazione = "Hong Kong";
+                        break;
+                      case 'HU': 
+                        $nazione = "Hungary";
+                        break;
+                      case 'IS': 
+                        $nazione = "Iceland";
+                        break;
+                      case 'IN': 
+                        $nazione = "India";
+                        break;
+                      case 'ID': 
+                        $nazione = "Indonesia";
+                        break;
+                      case 'IR': 
+                        $nazione = "Iran";
+                        break;
+                      case 'IQ': 
+                        $nazione = "Iraq";
+                        break;
+                      case 'IE': 
+                        $nazione = "Ireland";
+                        break;
+                      case 'IL': 
+                        $nazione = "Israel";
+                        break;
+                      case 'IT': 
+                        $nazione = "Italy";
+                        break;
+                      case 'CI': 
+                        $nazione = "Cote D'Ivoire";
+                        break;
+                      case 'JM': 
+                        $nazione = "Jamaica";
+                        break;
+                      case 'JP': 
+                        $nazione = "Japan";
+                        break;
+                      case 'JO': 
+                        $nazione = "Jordan";
+                        break;
+                      case 'KZ': 
+                        $nazione = "Kazakhstan";
+                        break;
+                      case 'KE': 
+                        $nazione = "Kenya";
+                        break;
+                      case 'KI': 
+                        $nazione = "Kiribati";
+                        break;
+                      case 'KW': 
+                        $nazione = "Kuwait";
+                        break;
+                      case 'KG': 
+                        $nazione = "Kyrgyzstan";
+                        break;
+                      case 'LA': 
+                        $nazione = "Laos";
+                        break;
+                      case 'LV': 
+                        $nazione = "Latvia";
+                        break;
+                      case 'LB': 
+                        $nazione = "Lebanon";
+                        break;
+                      case 'LS': 
+                        $nazione = "Lesotho";
+                        break;
+                      case 'LR': 
+                        $nazione = "Liberia";
+                        break;
+                      case 'LY': 
+                        $nazione = "Libya";
+                        break;
+                      case 'LI': 
+                        $nazione = "Liechtenstein";
+                        break;
+                      case 'LT': 
+                        $nazione = "Lithuania";
+                        break;
+                      case 'LU': 
+                        $nazione = "Luxembourg";
+                        break;
+                      case 'MO': 
+                        $nazione = "Macau";
+                        break;
+                      case 'MK': 
+                        $nazione = "Macedonia";
+                        break;
+                      case 'MG': 
+                        $nazione = "Madagascar";
+                        break;
+                      case 'MW': 
+                        $nazione = "Malawi";
+                        break;
+                      case 'MY': 
+                        $nazione = "Malaysia";
+                        break;
+                      case 'MV': 
+                        $nazione = "Maldives";
+                        break;
+                      case 'ML': 
+                        $nazione = "Mali";
+                        break;
+                      case 'MT': 
+                        $nazione = "Malta";
+                        break;
+                      case 'MH': 
+                        $nazione = "Marshall Islands";
+                        break;
+                      case 'MQ': 
+                        $nazione = "Martinique";
+                        break;
+                      case 'MR': 
+                        $nazione = "Mauritania";
+                        break;
+                      case 'MU': 
+                        $nazione = "Mauritius";
+                        break;
+                      case 'YT': 
+                        $nazione = "Mayotte";
+                        break;
+                      case 'MX': 
+                        $nazione = "Mexico";
+                        break;
+                      case 'FM': 
+                        $nazione = "Micronesia";
+                        break;
+                      case 'MD': 
+                        $nazione = "Moldova";
+                        break;
+                      case 'MC': 
+                        $nazione = "Monaco";
+                        break;
+                      case 'MN': 
+                        $nazione = "Mongolia";
+                        break;
+                      case 'ME': 
+                        $nazione = "Montenegro";
+                        break;
+                      case 'MS': 
+                        $nazione = "Montserrat";
+                        break;
+                      case 'MA': 
+                        $nazione = "Morocco";
+                        break;
+                      case 'MZ': 
+                        $nazione = "Mozambique";
+                        break;
+                      case 'MM': 
+                        $nazione = "Myanmar";
+                        break;
+                      case 'NA': 
+                        $nazione = "Namibia";
+                        break;
+                      case 'NR': 
+                        $nazione = "Nauru";
+                        break;
+                      case 'NP': 
+                        $nazione = "Nepal";
+                        break;
+                      case 'NL': 
+                        $nazione = "Netherlands";
+                        break;
+                      case 'AN': 
+                        $nazione = "Netherlands Antilles";
+                        break;
+                      case 'NC': 
+                        $nazione = "New Caledonia";
+                        break;
+                      case 'NZ': 
+                        $nazione = "New Zealand";
+                        break;
+                      case 'NI': 
+                        $nazione = "Nicaragua";
+                        break;
+                      case 'NE': 
+                        $nazione = "Niger";
+                        break;
+                      case 'NG': 
+                        $nazione = "Nigeria";
+                        break;
+                      case 'NU': 
+                        $nazione = "Niue";
+                        break;
+                      case 'NF': 
+                        $nazione = "Norfolk Island";
+                        break;
+                      case 'KP': 
+                        $nazione = "North Korea";
+                        break;
+                      case 'MP': 
+                        $nazione = "Northern Mariana Islands";
+                        break;
+                      case 'NO': 
+                        $nazione = "Norway";
+                        break;
+                      case 'OM': 
+                        $nazione = "Oman";
+                        break;
+                      case 'PK': 
+                        $nazione = "Pakistan";
+                        break;
+                      case 'PW': 
+                        $nazione = "Palau";
+                        break;
+                      case 'PS': 
+                        $nazione = "Palestinian Territory";
+                        break;
+                      case 'PA': 
+                        $nazione = "Panama";
+                        break;
+                      case 'PG': 
+                        $nazione = "Papua New Guinea";
+                        break;
+                      case 'PY': 
+                        $nazione = "Paraguay";
+                        break;
+                      case 'PE': 
+                        $nazione = "Peru";
+                        break;
+                      case 'PH': 
+                        $nazione = "Philippines";
+                        break;
+                      case 'PN': 
+                        $nazione = "Pitcairn";
+                        break;
+                      case 'PL': 
+                        $nazione = "Poland";
+                        break;
+                      case 'PF': 
+                        $nazione = "Polynesia";
+                        break;
+                      case 'PT': 
+                        $nazione = "Portugal";
+                        break;
+                      case 'PR': 
+                        $nazione = "Puerto Rico";
+                        break;
+                      case 'QA': 
+                        $nazione = "Qatar";
+                        break;
+                      case 'RE': 
+                        $nazione = "Reunion";
+                        break;
+                      case 'RO': 
+                        $nazione = "Romania";
+                        break;
+                      case 'RU': 
+                        $nazione = "Russian Federation";
+                        break;
+                      case 'RW': 
+                        $nazione = "Rwanda";
+                        break;
+                      case 'GS': 
+                        $nazione = "S. Georgia &amp; S. Sandwich Isls.";
+                        break;
+                      case 'SH': 
+                        $nazione = "Saint Helena";
+                        break;
+                      case 'KN': 
+                        $nazione = "Saint Kitts &amp; Nevis Anguilla";
+                        break;
+                      case 'LC': 
+                        $nazione = "Saint Lucia";
+                        break;
+                      case 'PM': 
+                        $nazione = "Saint Pierre and Miquelon";
+                        break;
+                      case 'VC': 
+                        $nazione = "Saint Vincent &amp; Grenadines";
+                        break;
+                      case 'WS': 
+                        $nazione = "Samoa";
+                        break;
+                      case 'SM': 
+                        $nazione = "San Marino";
+                        break;
+                      case 'ST': 
+                        $nazione = "Sao Tome and Principe";
+                        break;
+                      case 'SA': 
+                        $nazione = "Saudi Arabia";
+                        break;
+                      case 'SN': 
+                        $nazione = "Senegal";
+                        break;
+                      case 'RS': 
+                        $nazione = "Serbia";
+                        break;
+                      case 'SC': 
+                        $nazione = "Seychelles";
+                        break;
+                      case 'SL': 
+                        $nazione = "Sierra Leone";
+                        break;
+                      case 'SG': 
+                        $nazione = "Singapore";
+                        break;
+                      case 'SK': 
+                        $nazione = "Slovakia";
+                        break;
+                      case 'SI': 
+                        $nazione = "Slovenia";
+                        break;
+                      case 'SB': 
+                        $nazione = "Solomon Islands";
+                        break;
+                      case 'SO': 
+                        $nazione = "Somalia";
+                        break;
+                      case 'ZA': 
+                        $nazione = "South Africa";
+                        break;
+                      case 'KR': 
+                        $nazione = "South Korea";
+                        break;
+                      case 'ES': 
+                        $nazione = "Spain";
+                        break;
+                      case 'LK': 
+                        $nazione = "Sri Lanka";
+                        break;
+                      case 'SD': 
+                        $nazione = "Sudan";
+                        break;
+                      case 'SR': 
+                        $nazione = "Suriname";
+                        break;
+                      case 'SZ': 
+                        $nazione = "Swaziland";
+                        break;
+                      case 'SE': 
+                        $nazione = "Sweden";
+                        break;
+                      case 'CH': 
+                        $nazione = "Switzerland";
+                        break;
+                      case 'SY': 
+                        $nazione = "Syrian Arab Republic";
+                        break;
+                      case 'TW': 
+                        $nazione = "Taiwan";
+                        break;
+                      case 'TJ': 
+                        $nazione = "Tajikistan";
+                        break;
+                      case 'TZ': 
+                        $nazione = "Tanzania";
+                        break;
+                      case 'TH': 
+                        $nazione = "Thailand";
+                        break;
+                      case 'TG': 
+                        $nazione = "Togo";
+                        break;
+                      case 'TK': 
+                        $nazione = "Tokelau";
+                        break;
+                      case 'TO': 
+                        $nazione = "Tonga";
+                        break;
+                      case 'TT': 
+                        $nazione = "Trinidad and Tobago";
+                        break;
+                      case 'TN': 
+                        $nazione = "Tunisia";
+                        break;
+                      case 'TR': 
+                        $nazione = "Turkey";
+                        break;
+                      case 'TM': 
+                        $nazione = "Turkmenistan";
+                        break;
+                      case 'TC': 
+                        $nazione = "Turks and Caicos Islands";
+                        break;
+                      case 'TV': 
+                        $nazione = "Tuvalu";
+                        break;
+                      case 'UG': 
+                        $nazione = "Uganda";
+                        break;
+                      case 'UA': 
+                        $nazione = "Ukraine";
+                        break;
+                      case 'AE': 
+                        $nazione = "United Arab Emirates";
+                        break;
+                      case 'GB': 
+                        $nazione = "United Kingdom";
+                        break;
+                      case 'UY': 
+                        $nazione = "Uruguay";
+                        break;
+                      case 'UM': 
+                        $nazione = "USA Minor Outlying Islands";
+                        break;
+                      case 'UZ': 
+                        $nazione = "Uzbekistan";
+                        break;
+                      case 'VU': 
+                        $nazione = "Vanuatu";
+                        break;
+                      case 'VE': 
+                        $nazione = "Venezuela";
+                        break;
+                      case 'VN': 
+                        $nazione = "Vietnam";
+                        break;
+                      case 'VG': 
+                        $nazione = "Virgin Islands (British)";
+                        break;
+                      case 'VI': 
+                        $nazione = "Virgin Islands (USA)";
+                        break;
+                      case 'WF': 
+                        $nazione = "Wallis and Futuna Islands";
+                        break;
+                      case 'EH': 
+                        $nazione = "Western Sahara";
+                        break;
+                      case 'YE': 
+                        $nazione = "Yemen";
+                        break;
+                      case 'ZR': 
+                        $nazione = "Zaire";
+                        break;
+                      case 'ZM': 
+                        $nazione = "Zambia";
+                        break;
+                      case 'ZW': 
+                        $nazione = "Zimbabwe";
+                        break;
+                      default:
+                        $nazione = "Ciao";
+                        break;
+                    }
+                    $genere = $line["genre"];
+                    $date = date( 'd/m/Y', strtotime( $datanascita ) );
+                    $contact_email = $line["contact_email"];
+                    $telephone_number = $line["telephone_number"];
+                    $curriculum = $line["curriculum"];
+                    $picture = $line["picture"];
+                    if( isset( $picture ) ) {
+                      $picture = pg_unescape_bytea( $picture );
+                      $filename_picture = "image_$username.png";
+                      file_put_contents($filename_picture, $picture);
+                    } else {
+                      $filename_picture = "images/default-profile.png";
+                    }
+                    if( isset( $curriculum ) ) {
+                      $curriculum = pg_unescape_bytea( $curriculum );
+                      $filename_curriculum = "cv_$username.pdf";
+                      file_put_contents($filename_curriculum, $curriculum);
+                    }
+                    ?>
+                    <div>
+                      <img src=" <?php echo $filename_picture ?> " class="img-fluid rounded mb-4" style="width: 150px; height: 150px; object-fit: cover;">
+                      <h1 class="text-color-2 fw-bold"><?php echo $nome . ' ' . $cognome ?></h1>
+                      <div class="text-color-5"><?php echo $descrizione ?></div>
                     </div>
-                    </div>";
-                echo  "</h6></div></div>";
-              pg_free_result($result);
-              pg_close($dbconn);
-              $uida=$_SESSION['uid'];
-              if(isset($_SESSION['uid']) && $uida==$company_id)
-              {
-                echo "<a href='Logout.php'><button class='btn gold-button shadow-none'><i class='fa-solid fa-right-from-bracket'></i> Logout</button></a></div>";
-              }
-              else
-              {
-              }
-            }
-          }
-        ob_end_flush();
-        ?>
-        </div>
-          <br>
+                    <div class="d-flex flex-column gap-4">
+                      <div class="dettagli-professionista">
+                        <div class="fw-bold fs-5 mb-2">Dettagli</div>
+                        <div class="user-birthday"><span class="fw-bold">Data di nascita:</span> <span><?php echo $date ?></span></div>
+                        <div class="user-gender"><span class="fw-bold">Genere:</span> <span><?php echo $genere ?></span></div>
+                        <div class="user-address"><span class="fw-bold">Indirizzo:</span> <span><?php echo $indirizzo ?></span></div>
+                        <div class="user-city"><span class="fw-bold">Città:</span> <span><?php echo $citta ?></span></div>
+                        <div class="user-country"><span class="fw-bold">Nazione:</span> <span><?php echo $nazione ?></span></div>
+                        <div class="user-email"><span class="fw-bold">Indirizzo email:</span> <span><a href=" <?php echo 'mailto:' . $contact_email ?> " class="text-decoration-none text-color-1 fw-bold"><?php echo $contact_email ?></a></span></div>
+                        <div class="user-phone"><span class="fw-bold">Numero di telefono:</span> <span><a href=" <?php echo 'tel:' . $telephone_number ?> " class="text-decoration-none text-color-1 fw-bold"><?php echo $telephone_number ?></a></span></div>
+                      </div>
+                      <div class="curriculum">
+                        <div class="fw-bold fs-5 mb-2">Curriculum Vitae</div>
+                        <object data=" <?php echo $filename_curriculum ?> " type="application/pdf" width="100%" height="600px" class="rounded">
+                          <p>Impossibile mostrare il file PDF direttamente nel browser. <a href=" <?php echo $filename_curriculum ?> ">Scarica</a> il file.</p>
+                        </object>
+                      </div>
+                    </div>
+                    <?php 
+                  }
+
+                elseif( $_GET["sa"] == 1 ):
+
+                  $query = "SELECT * FROM company where company_id=$1";
+                  $result = pg_query_params( $dbconn, $query, array($uid) );
+                  if( pg_num_rows( $result ) == 0 ) {
+                    echo '<div class="text-center bg-warning-subtle border border-warning p-5 rounded">Utente non trovato</div>';
+                  } else {
+                    $line = pg_fetch_assoc( $result );
+                    $company_name = $line["company_name"];
+                    $username = $line["username"];
+                    $vat_number = $line["vat_number"];
+                    $address = $line["address"];
+                    $city = $line["city"];
+                    $country = $line["country"];
+                    switch( $country ) {
+                      case 'US': 
+                        $country = "United States";
+                        break;
+                      case 'CA': 
+                        $country = "Canada";
+                        break;
+                      case 'AF': 
+                        $country = "Afghanistan";
+                        break;
+                      case 'AL': 
+                        $country = "Albania";
+                        break;
+                      case 'DZ': 
+                        $country = "Algeria";
+                        break;
+                      case 'AS': 
+                        $country = "American Samoa";
+                        break;
+                      case 'AD': 
+                        $country = "Andorra";
+                        break;
+                      case 'AO': 
+                        $country = "Angola";
+                        break;
+                      case 'AI': 
+                        $country = "Anguilla";
+                        break;
+                      case 'AQ': 
+                        $country = "Antarctica";
+                        break;
+                      case 'AG': 
+                        $country = "Antigua and Barbuda";
+                        break;
+                      case 'AR': 
+                        $country = "Argentina";
+                        break;
+                      case 'AM': 
+                        $country = "Armenia";
+                        break;
+                      case 'AW': 
+                        $country = "Aruba";
+                        break;
+                      case 'AU': 
+                        $country = "Australia";
+                        break;
+                      case 'AT': 
+                        $country = "Austria";
+                        break;
+                      case 'AZ': 
+                        $country = "Azerbaijan";
+                        break;
+                      case 'BS': 
+                        $country = "Bahamas";
+                        break;
+                      case 'BH': 
+                        $country = "Bahrain";
+                        break;
+                      case 'BD': 
+                        $country = "Bangladesh";
+                        break;
+                      case 'BB': 
+                        $country = "Barbados";
+                        break;
+                      case 'BY': 
+                        $country = "Belarus";
+                        break;
+                      case 'BE': 
+                        $country = "Belgium";
+                        break;
+                      case 'BZ': 
+                        $country = "Belize";
+                        break;
+                      case 'BJ': 
+                        $country = "Benin";
+                        break;
+                      case 'BM': 
+                        $country = "Bermuda";
+                        break;
+                      case 'BT': 
+                        $country = "Bhutan";
+                        break;
+                      case 'BO': 
+                        $country = "Bolivia";
+                        break;
+                      case 'BA': 
+                        $country = "Bosnia and Herzegovina";
+                        break;
+                      case 'BW': 
+                        $country = "Botswana";
+                        break;
+                      case 'BV': 
+                        $country = "Bouvet Island";
+                        break;
+                      case 'BR': 
+                        $country = "Brazil";
+                        break;
+                      case 'IO': 
+                        $country = "British Indian Ocean Territory";
+                        break;
+                      case 'BN': 
+                        $country = "Brunei Darussalam";
+                        break;
+                      case 'BG': 
+                        $country = "Bulgaria";
+                        break;
+                      case 'BF': 
+                        $country = "Burkina Faso";
+                        break;
+                      case 'BI': 
+                        $country = "Burundi";
+                        break;
+                      case 'KH': 
+                        $country = "Cambodia";
+                        break;
+                      case 'CM': 
+                        $country = "Cameroon";
+                        break;
+                      case 'CV': 
+                        $country = "Cape Verde";
+                        break;
+                      case 'KY': 
+                        $country = "Cayman Islands";
+                        break;
+                      case 'CF': 
+                        $country = "Central African Republic";
+                        break;
+                      case 'TD': 
+                        $country = "Chad";
+                        break;
+                      case 'CL': 
+                        $country = "Chile";
+                        break;
+                      case 'CN': 
+                        $country = "China";
+                        break;
+                      case 'CX': 
+                        $country = "Christmas Island";
+                        break;
+                      case 'CC': 
+                        $country = "Cocos (Keeling) Islands";
+                        break;
+                      case 'CO': 
+                        $country = "Colombia";
+                        break;
+                      case 'KM': 
+                        $country = "Comoros";
+                        break;
+                      case 'CG': 
+                        $country = "Congo";
+                        break;
+                      case 'CD': 
+                        $country = "Congo (Democratic Republic)";
+                        break;
+                      case 'CK': 
+                        $country = "Cook Islands";
+                        break;
+                      case 'CR': 
+                        $country = "Costa Rica";
+                        break;
+                      case 'HR': 
+                        $country = "Croatia";
+                        break;
+                      case 'CU': 
+                        $country = "Cuba";
+                        break;
+                      case 'CY': 
+                        $country = "Cyprus";
+                        break;
+                      case 'CZ': 
+                        $country = "Czech Republic";
+                        break;
+                      case 'DK': 
+                        $country = "Denmark";
+                        break;
+                      case 'DJ': 
+                        $country = "Djibouti";
+                        break;
+                      case 'DM': 
+                        $country = "Dominica";
+                        break;
+                      case 'DO': 
+                        $country = "Dominican Republic";
+                        break;
+                      case 'TP': 
+                        $country = "East Timor";
+                        break;
+                      case 'EC': 
+                        $country = "Ecuador";
+                        break;
+                      case 'EG': 
+                        $country = "Egypt";
+                        break;
+                      case 'SV': 
+                        $country = "El Salvador";
+                        break;
+                      case 'GQ': 
+                        $country = "Equatorial Guinea";
+                        break;
+                      case 'ER': 
+                        $country = "Eritrea";
+                        break;
+                      case 'EE': 
+                        $country = "Estonia";
+                        break;
+                      case 'ET': 
+                        $country = "Ethiopia";
+                        break;
+                      case 'FK': 
+                        $country = "Falkland Islands";
+                        break;
+                      case 'FO': 
+                        $country = "Faroe Islands";
+                        break;
+                      case 'FJ': 
+                        $country = "Fiji";
+                        break;
+                      case 'FI': 
+                        $country = "Finland";
+                        break;
+                      case 'FR': 
+                        $country = "France";
+                        break;
+                      case 'FX': 
+                        $country = "France (European Territory)";
+                        break;
+                      case 'GF': 
+                        $country = "French Guiana";
+                        break;
+                      case 'TF': 
+                        $country = "French Southern Territories";
+                        break;
+                      case 'GA': 
+                        $country = "Gabon";
+                        break;
+                      case 'GM': 
+                        $country = "Gambia";
+                        break;
+                      case 'GE': 
+                        $country = "Georgia";
+                        break;
+                      case 'DE': 
+                        $country = "Germany";
+                        break;
+                      case 'GH': 
+                        $country = "Ghana";
+                        break;
+                      case 'GI': 
+                        $country = "Gibraltar";
+                        break;
+                      case 'GR': 
+                        $country = "Greece";
+                        break;
+                      case 'GL': 
+                        $country = "Greenland";
+                        break;
+                      case 'GD': 
+                        $country = "Grenada";
+                        break;
+                      case 'GP': 
+                        $country = "Guadeloupe";
+                        break;
+                      case 'GU': 
+                        $country = "Guam";
+                        break;
+                      case 'GT': 
+                        $country = "Guatemala";
+                        break;
+                      case 'GN': 
+                        $country = "Guinea";
+                        break;
+                      case 'GW': 
+                        $country = "Guinea Bissau";
+                        break;
+                      case 'GY': 
+                        $country = "Guyana";
+                        break;
+                      case 'HT': 
+                        $country = "Haiti";
+                        break;
+                      case 'HM': 
+                        $country = "Heard and McDonald Islands";
+                        break;
+                      case 'VA': 
+                        $country = "Holy See (Vatican)";
+                        break;
+                      case 'HN': 
+                        $country = "Honduras";
+                        break;
+                      case 'HK': 
+                        $country = "Hong Kong";
+                        break;
+                      case 'HU': 
+                        $country = "Hungary";
+                        break;
+                      case 'IS': 
+                        $country = "Iceland";
+                        break;
+                      case 'IN': 
+                        $country = "India";
+                        break;
+                      case 'ID': 
+                        $country = "Indonesia";
+                        break;
+                      case 'IR': 
+                        $country = "Iran";
+                        break;
+                      case 'IQ': 
+                        $country = "Iraq";
+                        break;
+                      case 'IE': 
+                        $country = "Ireland";
+                        break;
+                      case 'IL': 
+                        $country = "Israel";
+                        break;
+                      case 'IT': 
+                        $country = "Italy";
+                        break;
+                      case 'CI': 
+                        $country = "Cote D'Ivoire";
+                        break;
+                      case 'JM': 
+                        $country = "Jamaica";
+                        break;
+                      case 'JP': 
+                        $country = "Japan";
+                        break;
+                      case 'JO': 
+                        $country = "Jordan";
+                        break;
+                      case 'KZ': 
+                        $country = "Kazakhstan";
+                        break;
+                      case 'KE': 
+                        $country = "Kenya";
+                        break;
+                      case 'KI': 
+                        $country = "Kiribati";
+                        break;
+                      case 'KW': 
+                        $country = "Kuwait";
+                        break;
+                      case 'KG': 
+                        $country = "Kyrgyzstan";
+                        break;
+                      case 'LA': 
+                        $country = "Laos";
+                        break;
+                      case 'LV': 
+                        $country = "Latvia";
+                        break;
+                      case 'LB': 
+                        $country = "Lebanon";
+                        break;
+                      case 'LS': 
+                        $country = "Lesotho";
+                        break;
+                      case 'LR': 
+                        $country = "Liberia";
+                        break;
+                      case 'LY': 
+                        $country = "Libya";
+                        break;
+                      case 'LI': 
+                        $country = "Liechtenstein";
+                        break;
+                      case 'LT': 
+                        $country = "Lithuania";
+                        break;
+                      case 'LU': 
+                        $country = "Luxembourg";
+                        break;
+                      case 'MO': 
+                        $country = "Macau";
+                        break;
+                      case 'MK': 
+                        $country = "Macedonia";
+                        break;
+                      case 'MG': 
+                        $country = "Madagascar";
+                        break;
+                      case 'MW': 
+                        $country = "Malawi";
+                        break;
+                      case 'MY': 
+                        $country = "Malaysia";
+                        break;
+                      case 'MV': 
+                        $country = "Maldives";
+                        break;
+                      case 'ML': 
+                        $country = "Mali";
+                        break;
+                      case 'MT': 
+                        $country = "Malta";
+                        break;
+                      case 'MH': 
+                        $country = "Marshall Islands";
+                        break;
+                      case 'MQ': 
+                        $country = "Martinique";
+                        break;
+                      case 'MR': 
+                        $country = "Mauritania";
+                        break;
+                      case 'MU': 
+                        $country = "Mauritius";
+                        break;
+                      case 'YT': 
+                        $country = "Mayotte";
+                        break;
+                      case 'MX': 
+                        $country = "Mexico";
+                        break;
+                      case 'FM': 
+                        $country = "Micronesia";
+                        break;
+                      case 'MD': 
+                        $country = "Moldova";
+                        break;
+                      case 'MC': 
+                        $country = "Monaco";
+                        break;
+                      case 'MN': 
+                        $country = "Mongolia";
+                        break;
+                      case 'ME': 
+                        $country = "Montenegro";
+                        break;
+                      case 'MS': 
+                        $country = "Montserrat";
+                        break;
+                      case 'MA': 
+                        $country = "Morocco";
+                        break;
+                      case 'MZ': 
+                        $country = "Mozambique";
+                        break;
+                      case 'MM': 
+                        $country = "Myanmar";
+                        break;
+                      case 'NA': 
+                        $country = "Namibia";
+                        break;
+                      case 'NR': 
+                        $country = "Nauru";
+                        break;
+                      case 'NP': 
+                        $country = "Nepal";
+                        break;
+                      case 'NL': 
+                        $country = "Netherlands";
+                        break;
+                      case 'AN': 
+                        $country = "Netherlands Antilles";
+                        break;
+                      case 'NC': 
+                        $country = "New Caledonia";
+                        break;
+                      case 'NZ': 
+                        $country = "New Zealand";
+                        break;
+                      case 'NI': 
+                        $country = "Nicaragua";
+                        break;
+                      case 'NE': 
+                        $country = "Niger";
+                        break;
+                      case 'NG': 
+                        $country = "Nigeria";
+                        break;
+                      case 'NU': 
+                        $country = "Niue";
+                        break;
+                      case 'NF': 
+                        $country = "Norfolk Island";
+                        break;
+                      case 'KP': 
+                        $country = "North Korea";
+                        break;
+                      case 'MP': 
+                        $country = "Northern Mariana Islands";
+                        break;
+                      case 'NO': 
+                        $country = "Norway";
+                        break;
+                      case 'OM': 
+                        $country = "Oman";
+                        break;
+                      case 'PK': 
+                        $country = "Pakistan";
+                        break;
+                      case 'PW': 
+                        $country = "Palau";
+                        break;
+                      case 'PS': 
+                        $country = "Palestinian Territory";
+                        break;
+                      case 'PA': 
+                        $country = "Panama";
+                        break;
+                      case 'PG': 
+                        $country = "Papua New Guinea";
+                        break;
+                      case 'PY': 
+                        $country = "Paraguay";
+                        break;
+                      case 'PE': 
+                        $country = "Peru";
+                        break;
+                      case 'PH': 
+                        $country = "Philippines";
+                        break;
+                      case 'PN': 
+                        $country = "Pitcairn";
+                        break;
+                      case 'PL': 
+                        $country = "Poland";
+                        break;
+                      case 'PF': 
+                        $country = "Polynesia";
+                        break;
+                      case 'PT': 
+                        $country = "Portugal";
+                        break;
+                      case 'PR': 
+                        $country = "Puerto Rico";
+                        break;
+                      case 'QA': 
+                        $country = "Qatar";
+                        break;
+                      case 'RE': 
+                        $country = "Reunion";
+                        break;
+                      case 'RO': 
+                        $country = "Romania";
+                        break;
+                      case 'RU': 
+                        $country = "Russian Federation";
+                        break;
+                      case 'RW': 
+                        $country = "Rwanda";
+                        break;
+                      case 'GS': 
+                        $country = "S. Georgia &amp; S. Sandwich Isls.";
+                        break;
+                      case 'SH': 
+                        $country = "Saint Helena";
+                        break;
+                      case 'KN': 
+                        $country = "Saint Kitts &amp; Nevis Anguilla";
+                        break;
+                      case 'LC': 
+                        $country = "Saint Lucia";
+                        break;
+                      case 'PM': 
+                        $country = "Saint Pierre and Miquelon";
+                        break;
+                      case 'VC': 
+                        $country = "Saint Vincent &amp; Grenadines";
+                        break;
+                      case 'WS': 
+                        $country = "Samoa";
+                        break;
+                      case 'SM': 
+                        $country = "San Marino";
+                        break;
+                      case 'ST': 
+                        $country = "Sao Tome and Principe";
+                        break;
+                      case 'SA': 
+                        $country = "Saudi Arabia";
+                        break;
+                      case 'SN': 
+                        $country = "Senegal";
+                        break;
+                      case 'RS': 
+                        $country = "Serbia";
+                        break;
+                      case 'SC': 
+                        $country = "Seychelles";
+                        break;
+                      case 'SL': 
+                        $country = "Sierra Leone";
+                        break;
+                      case 'SG': 
+                        $country = "Singapore";
+                        break;
+                      case 'SK': 
+                        $country = "Slovakia";
+                        break;
+                      case 'SI': 
+                        $country = "Slovenia";
+                        break;
+                      case 'SB': 
+                        $country = "Solomon Islands";
+                        break;
+                      case 'SO': 
+                        $country = "Somalia";
+                        break;
+                      case 'ZA': 
+                        $country = "South Africa";
+                        break;
+                      case 'KR': 
+                        $country = "South Korea";
+                        break;
+                      case 'ES': 
+                        $country = "Spain";
+                        break;
+                      case 'LK': 
+                        $country = "Sri Lanka";
+                        break;
+                      case 'SD': 
+                        $country = "Sudan";
+                        break;
+                      case 'SR': 
+                        $country = "Suriname";
+                        break;
+                      case 'SZ': 
+                        $country = "Swaziland";
+                        break;
+                      case 'SE': 
+                        $country = "Sweden";
+                        break;
+                      case 'CH': 
+                        $country = "Switzerland";
+                        break;
+                      case 'SY': 
+                        $country = "Syrian Arab Republic";
+                        break;
+                      case 'TW': 
+                        $country = "Taiwan";
+                        break;
+                      case 'TJ': 
+                        $country = "Tajikistan";
+                        break;
+                      case 'TZ': 
+                        $country = "Tanzania";
+                        break;
+                      case 'TH': 
+                        $country = "Thailand";
+                        break;
+                      case 'TG': 
+                        $country = "Togo";
+                        break;
+                      case 'TK': 
+                        $country = "Tokelau";
+                        break;
+                      case 'TO': 
+                        $country = "Tonga";
+                        break;
+                      case 'TT': 
+                        $country = "Trinidad and Tobago";
+                        break;
+                      case 'TN': 
+                        $country = "Tunisia";
+                        break;
+                      case 'TR': 
+                        $country = "Turkey";
+                        break;
+                      case 'TM': 
+                        $country = "Turkmenistan";
+                        break;
+                      case 'TC': 
+                        $country = "Turks and Caicos Islands";
+                        break;
+                      case 'TV': 
+                        $country = "Tuvalu";
+                        break;
+                      case 'UG': 
+                        $country = "Uganda";
+                        break;
+                      case 'UA': 
+                        $country = "Ukraine";
+                        break;
+                      case 'AE': 
+                        $country = "United Arab Emirates";
+                        break;
+                      case 'GB': 
+                        $country = "United Kingdom";
+                        break;
+                      case 'UY': 
+                        $country = "Uruguay";
+                        break;
+                      case 'UM': 
+                        $country = "USA Minor Outlying Islands";
+                        break;
+                      case 'UZ': 
+                        $country = "Uzbekistan";
+                        break;
+                      case 'VU': 
+                        $country = "Vanuatu";
+                        break;
+                      case 'VE': 
+                        $country = "Venezuela";
+                        break;
+                      case 'VN': 
+                        $country = "Vietnam";
+                        break;
+                      case 'VG': 
+                        $country = "Virgin Islands (British)";
+                        break;
+                      case 'VI': 
+                        $country = "Virgin Islands (USA)";
+                        break;
+                      case 'WF': 
+                        $country = "Wallis and Futuna Islands";
+                        break;
+                      case 'EH': 
+                        $country = "Western Sahara";
+                        break;
+                      case 'YE': 
+                        $country = "Yemen";
+                        break;
+                      case 'ZR': 
+                        $country = "Zaire";
+                        break;
+                      case 'ZM': 
+                        $country = "Zambia";
+                        break;
+                      case 'ZW': 
+                        $country = "Zimbabwe";
+                        break;
+                      default:
+                        $country = "Ciao";
+                        break;
+                    }
+                    $description = $line["description"];
+                    $contact_email = $line["contact_email"];
+                    $telephone_number = $line["telephone_number"];
+                    $logo = $line["logo"];
+                    if( isset( $logo ) ) {
+                      $logo = pg_unescape_bytea( $logo );
+                      $filename_logo = "image_$username.png";
+                      file_put_contents($filename_logo, $logo);
+                    } else {
+                      $filename_logo = "images/default-profile.png";
+                    }
+                    ?>
+                    <div>
+                      <img src=" <?php echo $filename_logo ?> " class="img-fluid rounded mb-4" style="width: 150px; height: 150px; object-fit: cover;">
+                      <h1 class="text-color-2 fw-bold"><?php echo $company_name ?></h1>
+                      <div class="text-color-5"><?php echo $description ?></div>
+                    </div>
+                    <div class="d-flex flex-column gap-4">
+                      <div class="dettagli-professionista">
+                        <div class="fw-bold fs-5 mb-2">Dettagli</div>
+                        <div class="user-birthday"><span class="fw-bold">Partita IVA:</span> <span><?php echo $vat_number ?></span></div>
+                        <div class="user-address"><span class="fw-bold">Indirizzo:</span> <span><?php echo $address ?></span></div>
+                        <div class="user-city"><span class="fw-bold">Città:</span> <span><?php echo $city ?></span></div>
+                        <div class="user-country"><span class="fw-bold">Nazione:</span> <span><?php echo $country ?></span></div>
+                        <div class="user-email"><span class="fw-bold">Indirizzo email:</span> <span><a href=" <?php echo 'mailto:' . $contact_email ?> " class="text-decoration-none text-color-1 fw-bold"><?php echo $contact_email ?></a></span></div>
+                        <div class="user-phone"><span class="fw-bold">Numero di telefono:</span> <span><a href=" <?php echo 'tel:' . $telephone_number ?> " class="text-decoration-none text-color-1 fw-bold"><?php echo $telephone_number ?></a></span></div>
+                      </div>
+                    </div>
+                    <?php 
+                  }
+
+                endif;
+
+                pg_free_result($result);
+                pg_close($dbconn);
+
+              endif;
+            ?>
+          </div>
         </div>
       </section>
-<!--FOOTER-->
-      <footer class="text-center text-white">
-        <div class="grid" id="footer-grid">
-          <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-4">
-              <h5 class="text-uppercase">About</h5>
-              <p id="about">Intersection è un sito web per la creazione e la ricerca di posti di lavori finalizzata a trovare il matching perfetto tra professionista-impiego ricercato.</p>
-            </div>
-            <div class="col-md-2"></div>
-            <div class="col-md-4">
-              <h5 class="text-uppercase">Nome compagnia</h5>
-              <p id ="developers">
-                Dati aziendali [...]
-                <br>
-                Informazioni legali [...]
-              </p>
-            </div>
-            <div class="col-md-1"></div>
+
+      <script>
+        document.addEventListener('DOMContentLoaded', ()=>{
+          let workerDetails = document.querySelectorAll('.dettagli-professionista > div:not(:first-child)');
+          workerDetails.forEach((workerDetail)=>{
+            if(workerDetail.querySelector('span:not(.fw-bold)').textContent == "") {
+              workerDetail.setAttribute('style', 'display: none !important');
+            }
+          });
+        });
+      </script>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-color-4">
+      <div class="container px-2 d-flex flex-column gap-5 py-5 text-color-5">
+        <div class="footer-top d-flex flex-column flex-lg-row align-items-center gap-5">
+          <div class="w-50 d-flex flex-column flex-lg-row gap-5 align-items-center">
+            <a href="../app/index.php">
+              <img src="images/logo-1-white.png" alt="Intersection" style="height: 30px;">
+            </a>
+            <div class="text-center text-lg-start">Il primo sito che aiuta a trovare lavoro con l'intelligenza artificiale.</div>
+          </div>
+          <div class="w-50 d-flex flex-column flex-md-row justify-content-center justify-content-lg-end align-items-center gap-4">
+            <a href="mailto:info@intersection.test" class="text-decoration-none text-color-5 fw-bold">Contattaci</a>
+            <a href="/privacy-policy.html" class="text-decoration-none text-color-5 fw-bold">Privacy Policy</a>
           </div>
         </div>
-        <div class="text-center p-2" id="copyright">
-          &copy;2023 Intersection <br><img src="Images/favicon.jpg" id="favi">
+        <div class="footer-bottom d-flex flex-column align-items-center gap-3">
+          <a href="../app/index.php">
+            <img src="images/favi-1.png" style="width: 30px;">
+          </a>
+          <div>Copyright &copy; 2023. All rights reserved.</div>
         </div>
-      </footer>
+      </div>
+    </footer>
+    
     </body>
 </html>
