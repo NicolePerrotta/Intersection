@@ -182,7 +182,7 @@ session_start();
             <div class="col-md-8 mx-auto d-flex flex-column gap-5">
               <div>
                 <h1 class="text-color-2 fw-bold">Offerte di lavoro</h1>
-                <div class="text-color-5">Ecco le offerte di lavoro selezionate per te dal nostro algoritmo.</div>
+                <div class="text-color-5">Ecco le offerte di lavoro pubblicate dalla tua azienda.</div>
               </div>
               <div class="d-flex flex-column gap-4">
                 <?php 
@@ -190,7 +190,7 @@ session_start();
                   if( file_exists('.env') ) {
                     // per il sito in locale
                     $env = parse_ini_file('.env');
-                
+
                     $PGHOST = $env['PGHOST'];
                     $PGPORT = $env['PGPORT'];
                     $PGDATABASE = $env['PGDATABASE'];
@@ -205,82 +205,36 @@ session_start();
                     $PGPASSWORD = getenv('PGPASSWORD');
                   }
 
-                  $dbconn = pg_connect( "host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER password=$PGPASSWORD" ) or header( "Location: indexErrore.php?er=100" );
-                  $uid = $_SESSION['uid'];
-                  $url = 'https://algorithm-api-production.up.railway.app/recommend/jobs/$uid';
-                  $curl = curl_init( $url );
-                  curl_setopt( $curl, CURLOPT_RETURNTRANSFER, true );
-                  curl_setopt( $curl, CURLOPT_HTTPHEADER, array('Accept: application/json') );
-                  $response = curl_exec( $curl );
-                  $response = json_decode( $response );
-                  curl_close( $curl );
-                  if( $response == false ) {
-                    echo "Error: API not found";
-                  } else if( $response==NULL ) {
-                    echo "Error: there aren't yet job offers!";
-                  } else {
-                    $i = 0;
-                    while( $i < sizeof($response->ids) && $i < 10) {
-                      echo ($response->ids)[$i];
-                      $i=$i+1;
-                    }
-                  }
-
-                  $query = "SELECT * FROM job_offer ORDER BY title";
-                  $result = pg_query( $dbconn, $query );
-                  while ( $line = pg_fetch_array( $result, null, PGSQL_ASSOC ) ) :
+                  $dbconn = pg_connect( "host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER password=$PGPASSWORD" )  or header( "Location: indexErrore.php?er=100" );
+                  $company_id = $_SESSION['uid'];
+                  $query = "SELECT * FROM job_offer WHERE company_id=$1 ORDER BY title";
+                  $result = pg_query_params( $dbconn, $query, array($company_id) );
+                  while ( $line = pg_fetch_array( $result, null, PGSQL_ASSOC) ) :
                     $offer_id = $line['offer_id'];
                     $company_id = $line['company_id'];
                     $title = $line['title'];
                     $description = $line['description'];
                     $salary = $line['salary'];
                     $period = $line['period'];
-                    $q19 = "SELECT * FROM company WHERE company_id=$1 LIMIT 1";
-                    $result19 = pg_query_params( $dbconn, $q19, array($company_id) );
-                    if( pg_num_rows( $result19 ) > 0) {
-                      $co=pg_fetch_assoc($result19);  
-                      $usernameCompany = $co['username'];
-                      $company_name = $co['company_name'];
-                      if( isset( $co['logo'] ) ) {
-                        $logo = $co['logo'];
-                        $logo = pg_unescape_bytea($logo);
-                        $filename = "image_$usernameCompany.png";
-                        file_put_contents($filename, $logo);
-                      }
+                    $q19 = "SELECT count(*) AS number FROM applies_to WHERE offer_id=$1 GROUP BY (offer_id)";
+                    $result19 = pg_query_params( $dbconn, $q19, array($offer_id) );
+                    $res = pg_fetch_assoc( $result19 );
+                    if( $res ) {
+                      $applications = $res['number'];
+                    } else {
+                      $applications = 0;
                     }
                     ?>
                       <div class="offerta d-flex flex-column flex-lg-row gap-4 p-4 bg-light border border-3 rounded" style="border-color: var(--intersection-color-5) !important;">
                         <div class="col d-flex flex-column gap-2" style="flex: 2;">
-                          <div class="d-flex align-items-center gap-3 mb-2">
-                            <?php if( isset( $co['logo'] ) ) : ?>
-                              <a href=" <?php echo '../app/indexUtenti.php?uid=' . $company_id . '&sa=1' ?> ">
-                                <img src=" <?php echo $filename ?> " alt=" <?php echo $company_name ?> " class="img-fluid rounded" style="width: 80px; height: 80px; object-fit: cover;">
-                              </a>
-                            <?php endif; ?>
-                            <div>
-                              <div class="offer-title fw-bold fs-4"><?php echo $title ?></div>
-                              <a href=" <?php echo '../app/indexUtenti.php?uid=' . $company_id . '&sa=1' ?> " class="offer-company fw-bold fs-5 text-decoration-none text-reset"><?php echo $company_name ?></a>
-                            </div>
-                          </div>
+                          <div class="offer-title fw-bold fs-4"><?php echo $title ?></div>
                           <div class="offer-remuneration"><span class="fw-bold">Retribuzione:</span> <?php echo $salary ?></div>
                           <div class="offer-duration"><span class="fw-bold">Durata:</span> <?php echo $period ?></div>
+                          <div class="offer-applications"><span class="fw-bold">Candidature:</span> <?php echo $applications ?></div>
                         </div>
                         <div class="col d-flex justify-content-end align-items-center gap-3" style="flex: 1;">
                           <a href=" <?php echo '../app/indexInfoJobOffer.php?offer_id=' . $offer_id ?> " class="btn btn-primary" style="--bs-btn-bg: var(--intersection-color-3); --bs-btn-hover-bg: var(--intersection-color-2)">Dettagli</a>
-                          <?php if( isset( $_SESSION['uid'] ) && $_SESSION['sa'] == 0 ) : ?>
-                            <form action="../app/application.php" class="form-signin" method="POST" name="formPartecipazione" id="form-partecipazione">
-                              <input type="hidden" id="eid" name="eid" value=" <?php echo $offer_id ?> ">
-                              <?php 
-                                $q29 = "SELECT * FROM applies_to WHERE worker_id=$1 AND offer_id=$2 LIMIT 10";
-                                $result29 = pg_query_params( $dbconn, $q29, array($_SESSION['uid'], $offer_id));
-                                if( pg_num_rows( $result29 ) > 0 ) {
-                                  echo '<button name="partecipazione" type="submit" class="btn btn-warning">Cancella candidatura</button>';
-                                } else {
-                                  echo '<button name="partecipazione" type="submit" class="btn btn-success">Candidati</button>';
-                                }
-                              ?>
-                            </form>
-                          <?php endif; ?>
+                          <?php // <a href="/elimina-offerta.html" class="btn btn-warning">Elimina</a> ?>
                         </div>
                       </div>
                     <?php 
@@ -288,18 +242,18 @@ session_start();
 
                   if(isset($result)) pg_free_result($result);
                   if(isset($result19)) pg_free_result($result19);
-                  if(isset($result29)) pg_free_result($result29);
                   pg_close($dbconn);
-
                 ?>
-
               </div>
+              <?php if( isset( $_SESSION['uid'] ) && $_SESSION['sa'] == 1 ) : ?>
+                <a href="../app/indexCreateJobOffer.php" class="btn btn-primary" style="--bs-btn-bg: var(--intersection-color-5); --bs-btn-border-color: var(--intersection-color-5); --bs-btn-hover-bg: var(--intersection-color-2)">Crea nuova offerta</a>
+              <?php endif; ?>
             </div>
           </div>
         </section>
 
       </div>
-      
+
       <!-- Footer -->
       <footer class="bg-color-4">
         <div class="container px-2 d-flex flex-column gap-5 py-5 text-color-5">
@@ -323,6 +277,6 @@ session_start();
           </div>
         </div>
       </footer>
-
+    
     </body>
   </html>
