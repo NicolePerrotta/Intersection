@@ -13,7 +13,7 @@ import pdfplumber
 from sentence_transformers import SentenceTransformer, util
 from torch import tensor
 
-model_name = 'distiluse-base-multilingual-cased-v1'
+model_name = 'distiluse-base-multilingual-cased-v2'
 
 
 def initialize() -> None:
@@ -27,7 +27,7 @@ def extract_from_pdf(file: Union[str, Path, BinaryIO, BytesIO]) -> str:
     # Open the file
     with pdfplumber.open(file) as pdf:
         # Extract text from every page
-        texts: list[str] = [page.extract_text() for page in pdf.pages]
+        texts: list[str] = [page.extract_text(x_tolerance=1) for page in pdf.pages]
     # Join everything in a single string
     return "  \n\n".join(texts)
 
@@ -36,11 +36,23 @@ def pre_process(text: str) -> list[str]:
     """ Pre-process the text so that it can be given as input to the model """
     sentences: list[str] = nltk.sent_tokenize(text)
 
-    def regex(sentence: str) -> str:
-        sentence = re.sub(r'•\s', '', sentence)
-        return re.sub('\n', ' ', sentence)
+    # Define the patterns to replace with an empty string
+    patters_to_remove = [
+        r'•\s',  # match bullet points
+        r'http\S+',  # match URLs
+        r'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}'  # match emails
+    ]
 
-    return list(map(regex, sentences))
+    # Compile the regular expression patterns
+    regex_empty = re.compile('|'.join(patters_to_remove))
+    regex_blank = re.compile(r'\W')
+
+    def apply_regex(sentence: str) -> str:
+        sentence = regex_empty.sub('', sentence)
+        sentence = regex_blank.sub(' ', sentence)
+        return sentence.strip()
+
+    return list(map(apply_regex, sentences))
 
 
 def encode(sentences: list[str], progress_bar: bool = False) -> np.ndarray:

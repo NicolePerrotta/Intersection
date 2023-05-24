@@ -22,7 +22,10 @@ def test_extract_from_pdf():
 
 def test_pre_process():
     text = '• This is a sentence.\nThis is another sentence.'
-    expected = ['This is a sentence.', 'This is another sentence.']
+    expected = ['This is a sentence', 'This is another sentence']
+    assert algorithm.pre_process(text) == expected
+    text = 'This is an email: name.surname@gmail.com.\nThis is an URL: https://www.google.com'
+    expected = ['This is an email', 'This is an URL']
     assert algorithm.pre_process(text) == expected
 
 

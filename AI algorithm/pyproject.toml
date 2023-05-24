@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "Intersection - AI API"
-version = "0.6.0"
+version = "0.8.0"
 description = "REST API to interact with the AI algorithm behind the Intersection platform"
 authors = ["Alberto Pirillo <alberto.pirillo@mail.polimi.it>"]
 readme = "README.md"

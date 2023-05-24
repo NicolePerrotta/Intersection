@@ -95,7 +95,7 @@ session_start();
               $PGPASSWORD = getenv('PGPASSWORD');
           }
             $dbconn = pg_connect("host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER password=$PGPASSWORD")  or header("Location: indexErrore.php?er=100");
-            $url = "https://algorithm-api-production.up.railway.app/recommend/jobs/$uid";
+            $url = "http://127.0.0.1:8000/recommend/job/$uid";//"https://algorithm-api-production.up.railway.app/recommend/jobs/$uid";
             $curl = curl_init($url);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($curl, CURLOPT_HTTPHEADER, array('Accept: application/json'));
