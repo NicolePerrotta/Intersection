@@ -964,7 +964,7 @@ ob_start();
                     }
                     if( isset( $curriculum ) ) {
                       $curriculum = pg_unescape_bytea( $curriculum );
-                      $filename_curriculum = "cv_$username.pdf";
+                      $filename_curriculum = "storage/cv_$username.pdf";
                       file_put_contents($filename_curriculum, $curriculum);
                     }
                     ?>
