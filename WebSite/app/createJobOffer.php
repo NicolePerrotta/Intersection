@@ -41,8 +41,38 @@ $dbconn = pg_connect("host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER 
             $description=$_POST['description'];
             $salary=$_POST['salary'];
             $period=$_POST['period'];
-            $q1="insert into job_offer values (DEFAULT,$1,$2,$3,$4,$5)";
-            $line=pg_query_params($dbconn,$q1,array($company_id,$title,$description,$salary,$period));
+     
+            $data = array('text' => $description);  
+            $data = json_encode($data);                 
+            $url = "https://algorithm-api-production.up.railway.app/convert/string";
+            $curl = curl_init($url);
+            $headers = array(
+                "Content-Type: application/json"
+            );
+            curl_setopt($curl, CURLOPT_POST, true);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+
+            $response = curl_exec($curl);
+            curl_close($curl);
+            if($response === false)
+            {
+                echo "Error: API not found";
+            }
+            else if($response == NULL)
+            {
+                echo "Error: response=null";
+            }
+            else
+            {
+                $response = json_decode($response);   
+                $embedding = ($response->embedding);
+            }
+            $formatted = pg_escape_string(implode(',',$embedding));
+
+            $q1="insert into job_offer values (DEFAULT,$1,$2,$3,$4,$5,$6)";
+            $line=pg_query_params($dbconn,$q1,array($company_id,$title,$description,$salary,$period, "{{$formatted}}"));
             if($line)
             {           
                 header("Location: indexJobOffer.php?uid=".$company_id."&sa=1");

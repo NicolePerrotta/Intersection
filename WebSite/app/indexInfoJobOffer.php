@@ -119,11 +119,34 @@ session_start();
                                 ";
               echo"     <br>        
                         <h2 class='text-uppercase spaced' id='list'>Candidati</h2>";
-                        $q19="select * from applies_to where offer_id=$1";
-                        $result2=pg_query_params($dbconn,$q19,array($offer_id));
-                        while ($line2=pg_fetch_array($result2, null, PGSQL_ASSOC)) 
+
+
+
+
+
+                        $url = "https://algorithm-api-production.up.railway.app/ranking/$offer_id";
+                        $curl = curl_init($url);
+                        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+                        curl_setopt($curl, CURLOPT_HTTPHEADER, array('Accept: application/json'));
+                        $response = curl_exec($curl);
+                        $response = json_decode($response);
+                        curl_close($curl);
+                        if($response === false)
                         {
-                            $worker_id=$line2['worker_id'];
+                          echo "Error: API not found";
+                        }
+                        else if($response==NULL)
+                        {
+                            echo "Error: there aren't yet job offers!";
+                        }
+                        else
+                        {
+                          $i = 0;
+                          while($i<sizeof($response->ids) && $i<10)
+                          {
+                            echo ($response->relevance)[$i];
+                            $worker_id = ($response->ids)[$i];
+                            $i=$i+1;
                             $q2="select * from worker where worker_id=$1";
                             $result3=pg_query_params($dbconn,$q2,array($worker_id));
                             $line3=pg_fetch_assoc($result3);
@@ -157,8 +180,8 @@ session_start();
                               </div>";
                           
                         }
-                       echo      '
-                  </div> <br>';
+                      }
+                       echo '</div> <br>';
                         
             }
             echo '</div>';
