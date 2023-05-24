@@ -93,7 +93,7 @@ session_start();
           echo
           "</div>
             Sono un worker
-              <a class='bg-sm' href='../app/indexListJobs.php?uid=".$uid."&sa=".$sa."'>List of all the Job Offers perfect for you!</a>
+              <a class='bg-sm' href='indexListJobs.php?uid=".$uid."&sa=".$sa."'>List of all the Job Offers perfect for you!</a>
           </div>";
         }
         else //COMPANY
@@ -101,7 +101,7 @@ session_start();
             echo
             "</div>
               Sono una compagnia
-              <a class='bg-sm' href='../app/indexJobOffer.php?uid=".$uid."&sa=".$sa."'>List of all the job Offers that you created!</a>
+              <a class='bg-sm' href='indexJobOffer.php?uid=".$uid."&sa=".$sa."'>List of all the job Offers that you created!</a>
             </div>";
         }
         ?>
