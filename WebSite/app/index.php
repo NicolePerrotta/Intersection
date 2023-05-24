@@ -192,7 +192,7 @@ session_start();
           </div>
         </section>
 
-        <?php if( $_SESSION['sa'] !== 0 ) : ?>
+        <?php if(!isset($_SESSION['sa']) || (isset($_SESSION['sa']) && $_SESSION['sa'] !== 0 )) : ?>
         <section id="aziende">
           <div class="container px-3" style="padding: 140px 0 100px 0;">
             <div class="d-flex flex-column-reverse flex-lg-row align-items-center gap-5">
@@ -215,7 +215,7 @@ session_start();
         </section>
         <?php endif; ?>
 
-        <?php if( $_SESSION['sa'] !== 1 ) : ?>
+        <?php if(!isset($_SESSION['sa']) || (isset($_SESSION['sa']) && $_SESSION['sa'] !== 1 )) : ?>
         <section id="professionisti">
           <div class="container px-3" style="padding: 100px 0;">
             <div class="d-flex flex-column-reverse flex-lg-row-reverse align-items-center gap-5">
