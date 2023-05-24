@@ -320,7 +320,7 @@ session_start();
                 if( isset( $result2 ) ) pg_free_result( $result2 );
                 if( isset( $result3 ) ) pg_free_result( $result3 );
                 if( isset( $result4 ) ) pg_free_result( $result4 );
-                if( isset( $result19 ) ) pg_free_result( $result19 );
+               
                 if( isset( $result20 ) ) pg_free_result( $result20 );
                 if( isset( $result29 ) ) pg_free_result( $result29 );
                 pg_close( $dbconn );

@@ -207,7 +207,7 @@ session_start();
 
                   $dbconn = pg_connect( "host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER password=$PGPASSWORD" ) or header( "Location: indexErrore.php?er=100" );
                   $uid = $_SESSION['uid'];
-                  $url = 'https://algorithm-api-production.up.railway.app/recommend/jobs/$uid';
+                  $url = "https://algorithm-api-production.up.railway.app/recommend/jobs/$uid";
                   $curl = curl_init( $url );
                   curl_setopt( $curl, CURLOPT_RETURNTRANSFER, true );
                   curl_setopt( $curl, CURLOPT_HTTPHEADER, array('Accept: application/json') );
@@ -221,33 +221,30 @@ session_start();
                   } else {
                     $i = 0;
                     while( $i < sizeof($response->ids) && $i < 10) {
-                      echo ($response->ids)[$i];
+                      echo(($response->relevance)[$i]);
+                      $offer_id = ($response->ids)[$i];
                       $i=$i+1;
-                    }
-                  }
-
-                  $query = "SELECT * FROM job_offer ORDER BY title";
-                  $result = pg_query( $dbconn, $query );
-                  while ( $line = pg_fetch_array( $result, null, PGSQL_ASSOC ) ) :
-                    $offer_id = $line['offer_id'];
-                    $company_id = $line['company_id'];
-                    $title = $line['title'];
-                    $description = $line['description'];
-                    $salary = $line['salary'];
-                    $period = $line['period'];
-                    $q19 = "SELECT * FROM company WHERE company_id=$1 LIMIT 1";
-                    $result19 = pg_query_params( $dbconn, $q19, array($company_id) );
-                    if( pg_num_rows( $result19 ) > 0) {
-                      $co=pg_fetch_assoc($result19);  
-                      $usernameCompany = $co['username'];
-                      $company_name = $co['company_name'];
-                      if( isset( $co['logo'] ) ) {
-                        $logo = $co['logo'];
-                        $logo = pg_unescape_bytea($logo);
-                        $filename = "image_$usernameCompany.png";
-                        file_put_contents($filename, $logo);
+                      $query = "SELECT * FROM job_offer WHERE offer_id=$1";
+                      $result = pg_query_params( $dbconn, $query, array($offer_id) );
+                      $line=pg_fetch_assoc($result);  
+                      $company_id = $line['company_id'];
+                      $title = $line['title'];
+                      $description = $line['description'];
+                      $salary = $line['salary'];
+                      $period = $line['period'];
+                      $q19 = "SELECT * FROM company WHERE company_id=$1 LIMIT 1";
+                      $result19 = pg_query_params( $dbconn, $q19, array($company_id) );
+                      if( pg_num_rows( $result19 ) > 0) {
+                        $co=pg_fetch_assoc($result19);  
+                        $usernameCompany = $co['username'];
+                        $company_name = $co['company_name'];
+                        if( isset( $co['logo'] ) ) {
+                          $logo = $co['logo'];
+                          $logo = pg_unescape_bytea($logo);
+                          $filename = "image_$usernameCompany.png";
+                          file_put_contents($filename, $logo);
+                        }
                       }
-                    }
                     ?>
                       <div class="offerta d-flex flex-column flex-lg-row gap-4 p-4 bg-light border border-3 rounded" style="border-color: var(--intersection-color-5) !important;">
                         <div class="col d-flex flex-column gap-2" style="flex: 2;">
@@ -284,10 +281,11 @@ session_start();
                         </div>
                       </div>
                     <?php 
-                  endwhile;
+                    }
+                  }
 
                   if(isset($result)) pg_free_result($result);
-                  if(isset($result19)) pg_free_result($result19);
+                  //if(isset($result19)) pg_free_result($result19);
                   if(isset($result29)) pg_free_result($result29);
                   pg_close($dbconn);
 
