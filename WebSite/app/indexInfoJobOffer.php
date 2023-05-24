@@ -240,28 +240,49 @@ session_start();
                       <h4 class="fw-bold">Candidati</h4>
                       <div class="d-flex flex-column gap-3">
                     <?php 
-                    $q19 = "SELECT * FROM applies_to WHERE offer_id=$1";
-                    $result2 = pg_query_params( $dbconn, $q19, array( $offer_id ) );
-                    while( $line2 = pg_fetch_array( $result2, null, PGSQL_ASSOC ) ):
-                      $worker_id = $line2['worker_id'];
-                      $q2 = "SELECT * FROM worker WHERE worker_id=$1";
-                      $result3 = pg_query_params( $dbconn, $q2, array($worker_id) );
-                      $line3 = pg_fetch_assoc( $result3 );
-                      $nome = $line3['name'];
-                      $cognome = $line3['surname'];
-                      $username = $line3['username'];
-                      $datanascita = $line3['birth_date'];
-                      $date = date( 'd/m/Y', strtotime( $datanascita ) );
-                      $contact_email = $line3['contact_email'];
-                      $descrizione = $line3['description'];
-                      $picture = $line3['picture'];
-                      if( isset( $picture ) ) {
-                        $picture = pg_unescape_bytea( $picture );
-                        $filename = "image_$username.png";
-                        file_put_contents($filename, $picture);
-                      } else {
-                        $filename = "images/default-profile.png";
-                      }
+
+                    $url = "https://algorithm-api-production.up.railway.app/ranking/$offer_id";
+                    $curl = curl_init($url);
+                    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+                    curl_setopt($curl, CURLOPT_HTTPHEADER, array('Accept: application/json'));
+                    $response = curl_exec($curl);
+                    $response = json_decode($response);
+                    curl_close($curl);
+                    if($response === false)
+                    {
+                      echo "Error: API not found";
+                    }
+                    else if($response==NULL)
+                    {
+                        echo "Error: there aren't yet job offers!";
+                    }
+                    else
+                    {
+                      $i = 0;
+                      while($i<sizeof($response->ids) && $i<10)
+                      {
+                        echo ($response->relevance)[$i];
+                        $worker_id = ($response->ids)[$i];
+                        $i=$i+1;
+                      
+                        $q2 = "SELECT * FROM worker WHERE worker_id=$1";
+                        $result3 = pg_query_params( $dbconn, $q2, array($worker_id) );
+                        $line3 = pg_fetch_assoc( $result3 );
+                        $nome = $line3['name'];
+                        $cognome = $line3['surname'];
+                        $username = $line3['username'];
+                        $datanascita = $line3['birth_date'];
+                        $date = date( 'd/m/Y', strtotime( $datanascita ) );
+                        $contact_email = $line3['contact_email'];
+                        $picture = $line3['picture'];
+
+                        if( isset( $picture ) ) {
+                          $picture = pg_unescape_bytea( $picture );
+                          $filename = "image_$username.png";
+                          file_put_contents($filename, $picture);
+                        } else {
+                          $filename = "images/default-profile.png";
+                        }
                       ?>
                         <div class="candidato d-flex flex-column gap-4 p-4 bg-light border border-3 rounded" style="border-color: var(--intersection-color-5) !important;">
                           <div class="d-flex flex-column flex-md-row align-items-md-center gap-4">
@@ -272,11 +293,11 @@ session_start();
                               <div>Contatto: <a href=" <?php echo 'mailto:' . $contact_email ?>" class="text-decoration-none text-color-3"><?php echo $contact_email ?></a></div>
                             </div>
                           </div>
-                          <p class="mb-0"><?php echo $descrizione ?></p>
                           <a href=" <?php echo '../app/indexUtenti.php?uid=' . $worker_id . '&sa=0' ?> " class="btn btn-primary" style="--bs-btn-bg: var(--intersection-color-3); --bs-btn-hover-bg: var(--intersection-color-2)">Dettagli</a>
                         </div>
                       <?php 
-                    endwhile;
+                      }
+                    }
                   elseif( isset( $_SESSION['uid'] ) && $_SESSION['sa'] == 0 ) :
                     ?>
                       <form action="../app/application.php" class="form-signin" method="POST" name="formPartecipazione" id="form-partecipazione">

@@ -971,7 +971,6 @@ ob_start();
                     <div>
                       <img src=" <?php echo $filename_picture ?> " class="img-fluid rounded mb-4" style="width: 150px; height: 150px; object-fit: cover;">
                       <h1 class="text-color-2 fw-bold"><?php echo $nome . ' ' . $cognome ?></h1>
-                      <div class="text-color-5"><?php echo $descrizione ?></div>
                     </div>
                     <div class="d-flex flex-column gap-4">
                       <div class="dettagli-professionista">

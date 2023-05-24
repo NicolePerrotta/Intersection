@@ -478,10 +478,6 @@ session_start();
                     <input type="tel" class="form-control" name="telefono" id="telefono">
                   </div>
                   <div class="mb-3">
-                    <label for="shortDescription" class="form-label">Breve descrizione</label>
-                    <textarea class="form-control" name="shortDescription" id="shortDescription" rows="4"></textarea>
-                  </div>
-                  <div class="mb-3">
                     <label for="picture" class="form-label">Foto profilo</label>
                     <input type="file" class="form-control" name="picture" id="picture">
                   </div>
