@@ -24,7 +24,7 @@ session_start();
       <header class="top-0 w-100">
         <div class="container px-2 d-flex flex-column flex-md-row justify-content-between align-items-center gap-5 py-4">
           <div class="logo-container">
-            <a href="/index.php">
+            <a href="index.php">
               <img src="images/logo-1.png" alt="Intersection" style="height: 30px;">
             </a>
           </div>
@@ -62,12 +62,10 @@ session_start();
                 <a href=" <?php echo 'indexListJobs.php?uid=' . $_SESSION['uid'] . '&sa=' . $_SESSION['sa'] ?> " class="btn fw-bold py-2 px-3 border border-2 rounded" style="border-color: var(--intersection-color-3) !important; color: var(--intersection-color-3) !important;">Lista lavori</a>
                 <div class="dropdown">
                     <button class="btn dropdown-toggle fw-bold d-flex align-items-center gap-2" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border: none;">
-                      <img src="images/home-professionista.jpg" class="img-fluid rounded" style="width: 30px; aspect-ratio: 1; object-fit: cover;">
                       <?php 
                         if( file_exists('.env') ) {
                           // per il sito in locale
                           $env = parse_ini_file('.env');
-                      
                           $PGHOST = $env['PGHOST'];
                           $PGPORT = $env['PGPORT'];
                           $PGDATABASE = $env['PGDATABASE'];
@@ -127,7 +125,6 @@ session_start();
                         if( file_exists('.env') ) {
                           // per il sito in locale
                           $env = parse_ini_file('.env');
-                      
                           $PGHOST = $env['PGHOST'];
                           $PGPORT = $env['PGPORT'];
                           $PGDATABASE = $env['PGDATABASE'];

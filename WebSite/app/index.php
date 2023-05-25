@@ -203,7 +203,7 @@ session_start();
               <?php if( !isset( $_SESSION['uid'] ) || !isset( $_SESSION['sa'] ) ) : ?>
                 <h2 class="text-color-2 fw-bold fs-1">Sei un'azienda?</h2>
                 <p class="text-color-5" style="font-size: 24px;">Carica la tua offerta di lavoro e scopri qual è il candidato perfetto per te grazie al nostro algoritmo di Intelligenza Artificiale!</p>
-                <a href=" <?php echo '../app/indexRegistrazioneAziendale.php' ?> " class="text-color-3 text-decoration-none fw-bold py-2 px-3 border border-2 rounded" style="border-color: var(--intersection-color-3) !important; width: fit-content;">Registrati come azienda</a>
+                <a href=" <?php echo 'indexRegistrazioneAziendale.php' ?> " class="text-color-3 text-decoration-none fw-bold py-2 px-3 border border-2 rounded" style="border-color: var(--intersection-color-3) !important; width: fit-content;">Registrati come azienda</a>
               <?php else : ?>
                 <h2 class="text-color-2 fw-bold fs-1">Sei un'azienda.</h2>
                 <p class="text-color-5" style="font-size: 24px;">Carica la tua offerta di lavoro e scopri qual è il candidato perfetto per te grazie al nostro algoritmo di Intelligenza Artificiale!</p>
