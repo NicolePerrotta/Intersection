@@ -61,12 +61,10 @@ session_start();
                 <a href=" <?php echo 'indexListJobs.php?uid=' . $_SESSION['uid'] . '&sa=' . $_SESSION['sa'] ?> " class="btn fw-bold py-2 px-3 border border-2 rounded" style="border-color: var(--intersection-color-3) !important; color: var(--intersection-color-3) !important;">Lista lavori</a>
                 <div class="dropdown">
                     <button class="btn dropdown-toggle fw-bold d-flex align-items-center gap-2" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border: none;">
-                      <img src="images/home-professionista.jpg" class="img-fluid rounded" style="width: 30px; aspect-ratio: 1; object-fit: cover;">
                       <?php 
                         if( file_exists('.env') ) {
                           // per il sito in locale
                           $env = parse_ini_file('.env');
-                      
                           $PGHOST = $env['PGHOST'];
                           $PGPORT = $env['PGPORT'];
                           $PGDATABASE = $env['PGDATABASE'];
@@ -105,6 +103,7 @@ session_start();
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end" style="--bs-dropdown-min-width: 10px; --bs-dropdown-bg: #F9FBFE; --bs-dropdown-link-hover-color: var(--intersection-color-3); --bs-dropdown-link-active-color: var(--intersection-color-3); --bs-dropdown-link-active-bg: transparent; transition: none;">
                       <li><div class="dropdown-header">Azioni</div></li>
+                      <li><a class="dropdown-item" href=" <?php echo 'indexUtenti.php?uid=' . $_SESSION['uid'] . '&sa=' . $_SESSION['sa'] ?> ">Profilo</a></li>
                       <li><a class="dropdown-item" href="Logout.php">Logout</a></li>
                     </ul>
                 </div>
@@ -126,7 +125,6 @@ session_start();
                         if( file_exists('.env') ) {
                           // per il sito in locale
                           $env = parse_ini_file('.env');
-                      
                           $PGHOST = $env['PGHOST'];
                           $PGPORT = $env['PGPORT'];
                           $PGDATABASE = $env['PGDATABASE'];
@@ -165,6 +163,7 @@ session_start();
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end" style="--bs-dropdown-min-width: 10px; --bs-dropdown-bg: #F9FBFE; --bs-dropdown-link-hover-color: var(--intersection-color-3); --bs-dropdown-link-active-color: var(--intersection-color-3); --bs-dropdown-link-active-bg: transparent; transition: none;">
                       <li><div class="dropdown-header">Azioni</div></li>
+                      <li><a class="dropdown-item" href=" <?php echo 'indexUtenti.php?uid=' . $_SESSION['uid'] . '&sa=' . $_SESSION['sa'] ?> ">Profilo</a></li>
                       <li><a class="dropdown-item" href="Logout.php">Logout</a></li>
                     </ul>
                 </div>
