@@ -260,10 +260,8 @@ session_start();
                       $i = 0;
                       while($i<sizeof($response->ids) && $i<10)
                       {
-                        echo ($response->relevance)[$i];
                         $worker_id = ($response->ids)[$i];
-                        $i=$i+1;
-                      
+                        $i = $i + 1;
                         $q2 = "SELECT * FROM worker WHERE worker_id=$1";
                         $result3 = pg_query_params( $dbconn, $q2, array($worker_id) );
                         $line3 = pg_fetch_assoc( $result3 );
@@ -274,7 +272,6 @@ session_start();
                         $date = date( 'd/m/Y', strtotime( $datanascita ) );
                         $contact_email = $line3['contact_email'];
                         $picture = $line3['picture'];
-
                         if( isset( $picture ) ) {
                           $picture = pg_unescape_bytea( $picture );
                           $filename = "storage/image_$username.png";
@@ -282,6 +279,7 @@ session_start();
                         } else {
                           $filename = "images/default-profile.png";
                         }
+                        $relevance = round( ($response->relevance)[$i], 2 ) * 100;
                       ?>
                         <div class="candidato d-flex flex-column gap-4 p-4 bg-light border border-3 rounded" style="border-color: var(--intersection-color-5) !important;">
                           <div class="d-flex flex-column flex-md-row align-items-md-center gap-4">
@@ -290,6 +288,7 @@ session_start();
                               <div class="fw-bold fs-5"><?php echo $nome . ' '. $cognome ?></div>
                               <div>Data di nascita: <?php echo $date ?></div>
                               <div>Contatto: <a href=" <?php echo 'mailto:' . $contact_email ?>" class="text-decoration-none text-color-3"><?php echo $contact_email ?></a></div>
+                              <div>Compatibilità: <?php echo $relevance ?></div>
                             </div>
                           </div>
                           <a href=" <?php echo 'indexUtenti.php?uid=' . $worker_id . '&sa=0' ?> " class="btn btn-primary" style="--bs-btn-bg: var(--intersection-color-3); --bs-btn-hover-bg: var(--intersection-color-2)">Dettagli</a>
@@ -305,9 +304,9 @@ session_start();
                           $q29 = "SELECT * FROM applies_to WHERE worker_id=$1 AND offer_id=$2 LIMIT 10";
                           $result29 = pg_query_params( $dbconn, $q29, array($_SESSION['uid'], $offer_id));
                           if( pg_num_rows( $result29 ) > 0 ) {
-                            echo '<button name="partecipazione" type="submit" class="btn btn-warning">Cancella candidatura</button>';
+                            echo '<button name="partecipazione" type="submit" class="btn btn-warning w-full">Cancella candidatura</button>';
                           } else {
-                            echo '<button name="partecipazione" type="submit" class="btn btn-success">Candidati</button>';
+                            echo '<button name="partecipazione" type="submit" class="btn btn-success w-full">Candidati</button>';
                           }
                         ?>
                       </form>

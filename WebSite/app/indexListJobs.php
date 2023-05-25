@@ -271,7 +271,7 @@ session_start();
                                 $q29 = "SELECT * FROM applies_to WHERE worker_id=$1 AND offer_id=$2 LIMIT 10";
                                 $result29 = pg_query_params( $dbconn, $q29, array($_SESSION['uid'], $offer_id));
                                 if( pg_num_rows( $result29 ) > 0 ) {
-                                  echo '<button name="partecipazione" type="submit" class="btn btn-warning">Cancella candidatura</button>';
+                                  echo '<button name="partecipazione" type="submit" class="btn btn-warning">Cancella</button>';
                                 } else {
                                   echo '<button name="partecipazione" type="submit" class="btn btn-success">Candidati</button>';
                                 }
