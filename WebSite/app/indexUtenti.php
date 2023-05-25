@@ -25,7 +25,7 @@ ob_start();
       <header class="top-0 w-100">
         <div class="container px-2 d-flex flex-column flex-md-row justify-content-between align-items-center gap-5 py-4">
           <div class="logo-container">
-            <a href="../app/index.php">
+            <a href="index.php">
               <img src="images/logo-1.png" alt="Intersection" style="height: 30px;">
             </a>
           </div>
@@ -39,13 +39,13 @@ ob_start();
                   <li><a class="dropdown-item" href="#">English</a></li>
                 </ul>
             </div>
-            <a href="../app/indexLogin.php" class="text-decoration-none text-color-2 fw-bold">Accedi</a>
+            <a href="indexLogin.php" class="text-decoration-none text-color-2 fw-bold">Accedi</a>
             <div class="dropdown">
               <button class="btn dropdown-toggle fw-bold py-2 px-3 border border-2 rounded" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border-color: var(--intersection-color-3) !important; color: var(--intersection-color-3)">Registrati</button>
               <ul class="dropdown-menu dropdown-menu-end" style="--bs-dropdown-min-width: 10px; --bs-dropdown-bg: #F9FBFE; --bs-dropdown-link-hover-color: var(--intersection-color-3); --bs-dropdown-link-active-color: var(--intersection-color-3); --bs-dropdown-link-active-bg: transparent; transition: none;">
                 <li><div class="dropdown-header">Registrati come</div></li>
-                <li><a class="dropdown-item" href="../app/indexRegistrazioneAziendale.php">Azienda</a></li>
-                <li><a class="dropdown-item" href="../app/indexRegistrazione.php">Professionista</a></li>
+                <li><a class="dropdown-item" href="indexRegistrazioneAziendale.php">Azienda</a></li>
+                <li><a class="dropdown-item" href="indexRegistrazione.php">Professionista</a></li>
               </ul>
             </div>
           </div>
@@ -60,7 +60,7 @@ ob_start();
                       <li><a class="dropdown-item" href="#">English</a></li>
                     </ul>
                 </div>
-                <a href=" <?php echo '../app/indexListJobs.php?uid=' . $_SESSION['uid'] . '&sa=' . $_SESSION['sa'] ?> " class="btn fw-bold py-2 px-3 border border-2 rounded" style="border-color: var(--intersection-color-3) !important; color: var(--intersection-color-3) !important;">Lista lavori</a>
+                <a href=" <?php echo 'indexListJobs.php?uid=' . $_SESSION['uid'] . '&sa=' . $_SESSION['sa'] ?> " class="btn fw-bold py-2 px-3 border border-2 rounded" style="border-color: var(--intersection-color-3) !important; color: var(--intersection-color-3) !important;">Lista lavori</a>
                 <div class="dropdown">
                     <button class="btn dropdown-toggle fw-bold d-flex align-items-center gap-2" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border: none;">
                       <img src="images/home-professionista.jpg" class="img-fluid rounded" style="width: 30px; aspect-ratio: 1; object-fit: cover;">
@@ -107,7 +107,7 @@ ob_start();
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end" style="--bs-dropdown-min-width: 10px; --bs-dropdown-bg: #F9FBFE; --bs-dropdown-link-hover-color: var(--intersection-color-3); --bs-dropdown-link-active-color: var(--intersection-color-3); --bs-dropdown-link-active-bg: transparent; transition: none;">
                       <li><div class="dropdown-header">Azioni</div></li>
-                      <li><a class="dropdown-item" href="../app/Logout.php">Logout</a></li>
+                      <li><a class="dropdown-item" href="Logout.php">Logout</a></li>
                     </ul>
                 </div>
               </div>
@@ -121,7 +121,7 @@ ob_start();
                       <li><a class="dropdown-item" href="#">English</a></li>
                     </ul>
                 </div>
-                <a href=" <?php echo '../app/indexJobOffers.php?uid=' . $_SESSION['uid'] . '&sa=' . $_SESSION['sa'] ?> " class="btn fw-bold py-2 px-3 border border-2 rounded" style="border-color: var(--intersection-color-3) !important; color: var(--intersection-color-3) !important;">Lista offerte</a>
+                <a href=" <?php echo 'indexJobOffers.php?uid=' . $_SESSION['uid'] . '&sa=' . $_SESSION['sa'] ?> " class="btn fw-bold py-2 px-3 border border-2 rounded" style="border-color: var(--intersection-color-3) !important; color: var(--intersection-color-3) !important;">Lista offerte</a>
                 <div class="dropdown">
                     <button class="btn dropdown-toggle fw-bold d-flex align-items-center gap-2" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border: none;">
                       <?php 
@@ -167,7 +167,7 @@ ob_start();
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end" style="--bs-dropdown-min-width: 10px; --bs-dropdown-bg: #F9FBFE; --bs-dropdown-link-hover-color: var(--intersection-color-3); --bs-dropdown-link-active-color: var(--intersection-color-3); --bs-dropdown-link-active-bg: transparent; transition: none;">
                       <li><div class="dropdown-header">Azioni</div></li>
-                      <li><a class="dropdown-item" href="../app/Logout.php">Logout</a></li>
+                      <li><a class="dropdown-item" href="Logout.php">Logout</a></li>
                     </ul>
                 </div>
               </div>
@@ -1795,7 +1795,7 @@ ob_start();
       <div class="container px-2 d-flex flex-column gap-5 py-5 text-color-5">
         <div class="footer-top d-flex flex-column flex-lg-row align-items-center gap-5">
           <div class="w-50 d-flex flex-column flex-lg-row gap-5 align-items-center">
-            <a href="../app/index.php">
+            <a href="index.php">
               <img src="images/logo-1-white.png" alt="Intersection" style="height: 30px;">
             </a>
             <div class="text-center text-lg-start">Il primo sito che aiuta a trovare lavoro con l'intelligenza artificiale.</div>
@@ -1806,7 +1806,7 @@ ob_start();
           </div>
         </div>
         <div class="footer-bottom d-flex flex-column align-items-center gap-3">
-          <a href="../app/index.php">
+          <a href="index.php">
             <img src="images/favi-1.png" style="width: 30px;">
           </a>
           <div>Copyright &copy; 2023. All rights reserved.</div>

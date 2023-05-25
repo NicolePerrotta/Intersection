@@ -23,7 +23,7 @@ session_start();
       <header class="top-0 w-100">
         <div class="container px-2 d-flex flex-column flex-md-row justify-content-between align-items-center gap-5 py-4">
           <div class="logo-container">
-            <a href="../app/index.php">
+            <a href="index.php">
               <img src="images/logo-1.png" alt="Intersection" style="height: 30px;">
             </a>
           </div>
@@ -37,13 +37,13 @@ session_start();
                   <li><a class="dropdown-item" href="#">English</a></li>
                 </ul>
             </div>
-            <a href="../app/indexLogin.php" class="text-decoration-none text-color-2 fw-bold">Accedi</a>
+            <a href="indexLogin.php" class="text-decoration-none text-color-2 fw-bold">Accedi</a>
             <div class="dropdown">
               <button class="btn dropdown-toggle fw-bold py-2 px-3 border border-2 rounded" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border-color: var(--intersection-color-3) !important; color: var(--intersection-color-3)">Registrati</button>
               <ul class="dropdown-menu dropdown-menu-end" style="--bs-dropdown-min-width: 10px; --bs-dropdown-bg: #F9FBFE; --bs-dropdown-link-hover-color: var(--intersection-color-3); --bs-dropdown-link-active-color: var(--intersection-color-3); --bs-dropdown-link-active-bg: transparent; transition: none;">
                 <li><div class="dropdown-header">Registrati come</div></li>
-                <li><a class="dropdown-item" href="../app/indexRegistrazioneAziendale.php">Azienda</a></li>
-                <li><a class="dropdown-item" href="../app/indexRegistrazione.php">Professionista</a></li>
+                <li><a class="dropdown-item" href="indexRegistrazioneAziendale.php">Azienda</a></li>
+                <li><a class="dropdown-item" href="indexRegistrazione.php">Professionista</a></li>
               </ul>
             </div>
           </div>
@@ -58,7 +58,7 @@ session_start();
                       <li><a class="dropdown-item" href="#">English</a></li>
                     </ul>
                 </div>
-                <a href=" <?php echo '../app/indexListJobs.php?uid=' . $_SESSION['uid'] . '&sa=' . $_SESSION['sa'] ?> " class="btn fw-bold py-2 px-3 border border-2 rounded" style="border-color: var(--intersection-color-3) !important; color: var(--intersection-color-3) !important;">Lista lavori</a>
+                <a href=" <?php echo 'indexListJobs.php?uid=' . $_SESSION['uid'] . '&sa=' . $_SESSION['sa'] ?> " class="btn fw-bold py-2 px-3 border border-2 rounded" style="border-color: var(--intersection-color-3) !important; color: var(--intersection-color-3) !important;">Lista lavori</a>
                 <div class="dropdown">
                     <button class="btn dropdown-toggle fw-bold d-flex align-items-center gap-2" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border: none;">
                       <img src="images/home-professionista.jpg" class="img-fluid rounded" style="width: 30px; aspect-ratio: 1; object-fit: cover;">
@@ -105,7 +105,7 @@ session_start();
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end" style="--bs-dropdown-min-width: 10px; --bs-dropdown-bg: #F9FBFE; --bs-dropdown-link-hover-color: var(--intersection-color-3); --bs-dropdown-link-active-color: var(--intersection-color-3); --bs-dropdown-link-active-bg: transparent; transition: none;">
                       <li><div class="dropdown-header">Azioni</div></li>
-                      <li><a class="dropdown-item" href="../app/Logout.php">Logout</a></li>
+                      <li><a class="dropdown-item" href="Logout.php">Logout</a></li>
                     </ul>
                 </div>
               </div>
@@ -119,7 +119,7 @@ session_start();
                       <li><a class="dropdown-item" href="#">English</a></li>
                     </ul>
                 </div>
-                <a href=" <?php echo '../app/indexJobOffers.php?uid=' . $_SESSION['uid'] . '&sa=' . $_SESSION['sa'] ?> " class="btn fw-bold py-2 px-3 border border-2 rounded" style="border-color: var(--intersection-color-3) !important; color: var(--intersection-color-3) !important;">Lista offerte</a>
+                <a href=" <?php echo 'indexJobOffers.php?uid=' . $_SESSION['uid'] . '&sa=' . $_SESSION['sa'] ?> " class="btn fw-bold py-2 px-3 border border-2 rounded" style="border-color: var(--intersection-color-3) !important; color: var(--intersection-color-3) !important;">Lista offerte</a>
                 <div class="dropdown">
                     <button class="btn dropdown-toggle fw-bold d-flex align-items-center gap-2" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border: none;">
                       <?php 
@@ -165,7 +165,7 @@ session_start();
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end" style="--bs-dropdown-min-width: 10px; --bs-dropdown-bg: #F9FBFE; --bs-dropdown-link-hover-color: var(--intersection-color-3); --bs-dropdown-link-active-color: var(--intersection-color-3); --bs-dropdown-link-active-bg: transparent; transition: none;">
                       <li><div class="dropdown-header">Azioni</div></li>
-                      <li><a class="dropdown-item" href="../app/Logout.php">Logout</a></li>
+                      <li><a class="dropdown-item" href="Logout.php">Logout</a></li>
                     </ul>
                 </div>
               </div>
@@ -250,22 +250,22 @@ session_start();
                         <div class="col d-flex flex-column gap-2" style="flex: 2;">
                           <div class="d-flex align-items-center gap-3 mb-2">
                             <?php if( isset( $co['logo'] ) ) : ?>
-                              <a href=" <?php echo '../app/indexUtenti.php?uid=' . $company_id . '&sa=1' ?> ">
+                              <a href=" <?php echo 'indexUtenti.php?uid=' . $company_id . '&sa=1' ?> ">
                                 <img src=" <?php echo $filename ?> " alt=" <?php echo $company_name ?> " class="img-fluid rounded" style="width: 80px; height: 80px; object-fit: cover;">
                               </a>
                             <?php endif; ?>
                             <div>
                               <div class="offer-title fw-bold fs-4"><?php echo $title ?></div>
-                              <a href=" <?php echo '../app/indexUtenti.php?uid=' . $company_id . '&sa=1' ?> " class="offer-company fw-bold fs-5 text-decoration-none text-reset"><?php echo $company_name ?></a>
+                              <a href=" <?php echo 'indexUtenti.php?uid=' . $company_id . '&sa=1' ?> " class="offer-company fw-bold fs-5 text-decoration-none text-reset"><?php echo $company_name ?></a>
                             </div>
                           </div>
                           <div class="offer-remuneration"><span class="fw-bold">Retribuzione:</span> <?php echo $salary ?></div>
                           <div class="offer-duration"><span class="fw-bold">Durata:</span> <?php echo $period ?></div>
                         </div>
                         <div class="col d-flex justify-content-end align-items-center gap-3" style="flex: 1;">
-                          <a href=" <?php echo '../app/indexInfoJobOffer.php?offer_id=' . $offer_id ?> " class="btn btn-primary" style="--bs-btn-bg: var(--intersection-color-3); --bs-btn-hover-bg: var(--intersection-color-2)">Dettagli</a>
+                          <a href=" <?php echo 'indexInfoJobOffer.php?offer_id=' . $offer_id ?> " class="btn btn-primary" style="--bs-btn-bg: var(--intersection-color-3); --bs-btn-hover-bg: var(--intersection-color-2)">Dettagli</a>
                           <?php if( isset( $_SESSION['uid'] ) && $_SESSION['sa'] == 0 ) : ?>
-                            <form action="../app/application.php" class="form-signin" method="POST" name="formPartecipazione" id="form-partecipazione">
+                            <form action="application.php" class="form-signin" method="POST" name="formPartecipazione" id="form-partecipazione">
                               <input type="hidden" id="eid" name="eid" value=" <?php echo $offer_id ?> ">
                               <?php 
                                 $q29 = "SELECT * FROM applies_to WHERE worker_id=$1 AND offer_id=$2 LIMIT 10";
@@ -285,7 +285,6 @@ session_start();
                   }
 
                   if(isset($result)) pg_free_result($result);
-                  //if(isset($result19)) pg_free_result($result19);
                   if(isset($result29)) pg_free_result($result29);
                   pg_close($dbconn);
 
@@ -303,7 +302,7 @@ session_start();
         <div class="container px-2 d-flex flex-column gap-5 py-5 text-color-5">
           <div class="footer-top d-flex flex-column flex-lg-row align-items-center gap-5">
             <div class="w-50 d-flex flex-column flex-lg-row gap-5 align-items-center">
-              <a href="../app/index.php">
+              <a href="index.php">
                 <img src="images/logo-1-white.png" alt="Intersection" style="height: 30px;">
               </a>
               <div class="text-center text-lg-start">Il primo sito che aiuta a trovare lavoro con l'intelligenza artificiale.</div>
@@ -314,7 +313,7 @@ session_start();
             </div>
           </div>
           <div class="footer-bottom d-flex flex-column align-items-center gap-3">
-            <a href="../app/index.php">
+            <a href="index.php">
               <img src="images/favi-1.png" style="width: 30px;">
             </a>
             <div>Copyright &copy; 2023. All rights reserved.</div>
