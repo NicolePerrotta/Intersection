@@ -88,7 +88,7 @@ session_start();
                             $propic = $co['picture'];
                             $usernameWorker = $co['username'];
                             $profile_picture = pg_unescape_bytea($propic);
-                            $picture_filename = "image_$usernameWorker.png";
+                            $picture_filename = "storage/image_$usernameWorker.png";
                             file_put_contents($picture_filename, $profile_picture);
                             echo '<img src="' . $picture_filename . '" class="img-fluid rounded" style="width: 30px; aspect-ratio: 1; object-fit: cover;">';
                             } else {
@@ -148,7 +148,7 @@ session_start();
                             $logo = $co['logo'];
                             $usernameCompany = $co['username'];
                             $logo = pg_unescape_bytea($logo);
-                            $logo_filename = "image_$usernameCompany.png";
+                            $logo_filename = "storage/image_$usernameCompany.png";
                             file_put_contents($logo_filename, $logo);
                             echo '<img src="' . $logo_filename . '" class="img-fluid rounded" style="width: 30px; aspect-ratio: 1; object-fit: cover;">';
                           } else {

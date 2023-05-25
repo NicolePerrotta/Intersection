@@ -89,7 +89,7 @@ ob_start();
                             $propic = $co['picture'];
                             $usernameWorker = $co['username'];
                             $profile_picture = pg_unescape_bytea($propic);
-                            $picture_filename = "image_$usernameWorker.png";
+                            $picture_filename = "storage/image_$usernameWorker.png";
                             file_put_contents($picture_filename, $profile_picture);
                             echo '<img src="' . $picture_filename . '" class="img-fluid rounded" style="width: 30px; aspect-ratio: 1; object-fit: cover;">';
                             } else {
@@ -149,7 +149,7 @@ ob_start();
                             $logo = $co['logo'];
                             $usernameCompany = $co['username'];
                             $logo = pg_unescape_bytea($logo);
-                            $logo_filename = "image_$usernameCompany.png";
+                            $logo_filename = "storage/image_$usernameCompany.png";
                             file_put_contents($logo_filename, $logo);
                             echo '<img src="' . $logo_filename . '" class="img-fluid rounded" style="width: 30px; aspect-ratio: 1; object-fit: cover;">';
                           } else {
@@ -956,7 +956,7 @@ ob_start();
                     $picture = $line["picture"];
                     if( isset( $picture ) ) {
                       $picture = pg_unescape_bytea( $picture );
-                      $filename_picture = "image_$username.png";
+                      $filename_picture = "storage/image_$username.png";
                       file_put_contents($filename_picture, $picture);
                     } else {
                       $filename_picture = "images/default-profile.png";
@@ -1740,7 +1740,7 @@ ob_start();
                     $logo = $line["logo"];
                     if( isset( $logo ) ) {
                       $logo = pg_unescape_bytea( $logo );
-                      $filename_logo = "image_$username.png";
+                      $filename_logo = "storage/image_$username.png";
                       file_put_contents($filename_logo, $logo);
                     } else {
                       $filename_logo = "images/default-profile.png";
