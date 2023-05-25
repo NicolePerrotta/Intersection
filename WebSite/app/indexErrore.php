@@ -104,6 +104,7 @@ session_start();
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end" style="--bs-dropdown-min-width: 10px; --bs-dropdown-bg: #F9FBFE; --bs-dropdown-link-hover-color: var(--intersection-color-3); --bs-dropdown-link-active-color: var(--intersection-color-3); --bs-dropdown-link-active-bg: transparent; transition: none;">
                       <li><div class="dropdown-header">Azioni</div></li>
+                      <li><a class="dropdown-item" href=" <?php echo 'indexUtenti.php?uid=' . $_SESSION['uid'] . '&sa=' . $_SESSION['sa'] ?> ">Profilo</a></li>
                       <li><a class="dropdown-item" href="Logout.php">Logout</a></li>
                     </ul>
                 </div>
@@ -163,6 +164,7 @@ session_start();
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end" style="--bs-dropdown-min-width: 10px; --bs-dropdown-bg: #F9FBFE; --bs-dropdown-link-hover-color: var(--intersection-color-3); --bs-dropdown-link-active-color: var(--intersection-color-3); --bs-dropdown-link-active-bg: transparent; transition: none;">
                       <li><div class="dropdown-header">Azioni</div></li>
+                      <li><a class="dropdown-item" href=" <?php echo 'indexUtenti.php?uid=' . $_SESSION['uid'] . '&sa=' . $_SESSION['sa'] ?> ">Profilo</a></li>
                       <li><a class="dropdown-item" href="Logout.php">Logout</a></li>
                     </ul>
                 </div>
