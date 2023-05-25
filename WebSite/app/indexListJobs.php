@@ -221,6 +221,7 @@ session_start();
                     $i = 0;
                     while( $i < sizeof( $response->ids ) && $i < 10) {
                       $offer_id = ($response->ids)[$i];
+                      $relevance = round( ($response->relevance)[$i], 2 ) * 100;
                       $i = $i + 1;
                       $query = "SELECT * FROM job_offer WHERE offer_id=$1";
                       $result = pg_query_params( $dbconn, $query, array($offer_id) );
@@ -230,7 +231,6 @@ session_start();
                       $description = $line['description'];
                       $salary = $line['salary'];
                       $period = $line['period'];
-                      $relevance = round( ($response->relevance)[$i], 2 ) * 100;
                       $q19 = "SELECT * FROM company WHERE company_id=$1 LIMIT 1";
                       $result19 = pg_query_params( $dbconn, $q19, array( $company_id ) );
                       if( pg_num_rows( $result19 ) > 0) {

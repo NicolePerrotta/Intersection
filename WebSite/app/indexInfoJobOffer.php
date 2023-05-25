@@ -258,9 +258,9 @@ session_start();
                     else
                     {
                       $i = 0;
-                      while($i<sizeof($response->ids) && $i<10)
-                      {
+                      while($i<sizeof($response->ids) && $i<10) {
                         $worker_id = ($response->ids)[$i];
+                        $relevance = round( ($response->relevance)[$i], 2 ) * 100;
                         $i = $i + 1;
                         $q2 = "SELECT * FROM worker WHERE worker_id=$1";
                         $result3 = pg_query_params( $dbconn, $q2, array($worker_id) );
@@ -279,16 +279,15 @@ session_start();
                         } else {
                           $filename = "images/default-profile.png";
                         }
-                        $relevance = round( ($response->relevance)[$i], 2 ) * 100;
                       ?>
                         <div class="candidato d-flex flex-column gap-4 p-4 bg-light border border-3 rounded" style="border-color: var(--intersection-color-5) !important;">
                           <div class="d-flex flex-column flex-md-row align-items-md-center gap-4">
-                            <img src=" <?php echo $filename ?> " class="img-fluid rounded" style="width: 80px; height: 80px; object-fit: cover;">
+                            <img src=" <?php echo $filename ?> " class="img-fluid rounded" style="width: 110px; height: 110px; object-fit: cover;">
                             <div>
                               <div class="fw-bold fs-5"><?php echo $nome . ' '. $cognome ?></div>
                               <div>Data di nascita: <?php echo $date ?></div>
                               <div>Contatto: <a href=" <?php echo 'mailto:' . $contact_email ?>" class="text-decoration-none text-color-3"><?php echo $contact_email ?></a></div>
-                              <div>Compatibilità: <?php echo $relevance ?></div>
+                              <div>Compatibilità: <?php echo $relevance . ' %' ?></div>
                             </div>
                           </div>
                           <a href=" <?php echo 'indexUtenti.php?uid=' . $worker_id . '&sa=0' ?> " class="btn btn-primary" style="--bs-btn-bg: var(--intersection-color-3); --bs-btn-hover-bg: var(--intersection-color-2)">Dettagli</a>
