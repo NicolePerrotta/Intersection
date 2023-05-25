@@ -215,14 +215,13 @@ session_start();
                   curl_close( $curl );
                   if( $response == false ) {
                     echo "Error: API not found";
-                  } else if( $response==NULL ) {
+                  } else if( $response == NULL ) {
                     echo "Error: there aren't yet job offers!";
                   } else {
                     $i = 0;
-                    while( $i < sizeof($response->ids) && $i < 10) {
-                      echo(($response->relevance)[$i]);
+                    while( $i < sizeof( $response->ids ) && $i < 10) {
                       $offer_id = ($response->ids)[$i];
-                      $i=$i+1;
+                      $i = $i + 1;
                       $query = "SELECT * FROM job_offer WHERE offer_id=$1";
                       $result = pg_query_params( $dbconn, $query, array($offer_id) );
                       $line=pg_fetch_assoc($result);  
@@ -231,10 +230,11 @@ session_start();
                       $description = $line['description'];
                       $salary = $line['salary'];
                       $period = $line['period'];
+                      $relevance = round( ($response->relevance)[$i], 2 ) * 100;
                       $q19 = "SELECT * FROM company WHERE company_id=$1 LIMIT 1";
-                      $result19 = pg_query_params( $dbconn, $q19, array($company_id) );
+                      $result19 = pg_query_params( $dbconn, $q19, array( $company_id ) );
                       if( pg_num_rows( $result19 ) > 0) {
-                        $co=pg_fetch_assoc($result19);  
+                        $co = pg_fetch_assoc( $result19 );  
                         $usernameCompany = $co['username'];
                         $company_name = $co['company_name'];
                         if( isset( $co['logo'] ) ) {
@@ -260,6 +260,7 @@ session_start();
                           </div>
                           <div class="offer-remuneration"><span class="fw-bold">Retribuzione:</span> <?php echo $salary ?></div>
                           <div class="offer-duration"><span class="fw-bold">Durata:</span> <?php echo $period ?></div>
+                          <div class="offer-relevance"><span class="fw-bold">Compatibilità:</span> <?php echo $relevance . ' %' ?></div>
                         </div>
                         <div class="col d-flex justify-content-end align-items-center gap-3" style="flex: 1;">
                           <a href=" <?php echo 'indexInfoJobOffer.php?offer_id=' . $offer_id ?> " class="btn btn-primary" style="--bs-btn-bg: var(--intersection-color-3); --bs-btn-hover-bg: var(--intersection-color-2)">Dettagli</a>
