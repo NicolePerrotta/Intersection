@@ -227,7 +227,7 @@ if( !isset( $_GET['lang'] ) ) {
                       <li><a class="dropdown-item" href="indexRegistrazioneAziendale.php?lang=en">English</a></li>
                     </ul>
                 </div>
-                <a href=" <?php echo 'indexListJobs.php?uid=' . $_SESSION['uid'] . '&sa=' . $_SESSION['sa'] ?> " class="btn fw-bold py-2 px-3 border border-2 rounded" style="border-color: var(--intersection-color-3) !important; color: var(--intersection-color-3) !important;">Lista lavori</a>
+                <a href=" <?php echo 'indexListJobs.php?uid=' . $_SESSION['uid'] . '&sa=' . $_SESSION['sa'] ?> " class="btn fw-bold py-2 px-3 border border-2 rounded" style="border-color: var(--intersection-color-3) !important; color: var(--intersection-color-3) !important;">Jobs list</a>
                 <div class="dropdown">
                     <button class="btn dropdown-toggle fw-bold d-flex align-items-center gap-2" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border: none;">
                       <?php 
@@ -287,7 +287,7 @@ if( !isset( $_GET['lang'] ) ) {
                       <li><a class="dropdown-item" href="indexRegistrazioneAziendale.php?lang=en">English</a></li>
                     </ul>
                 </div>
-                <a href=" <?php echo 'indexJobOffers.php?uid=' . $_SESSION['uid'] . '&sa=' . $_SESSION['sa'] ?> " class="btn fw-bold py-2 px-3 border border-2 rounded" style="border-color: var(--intersection-color-3) !important; color: var(--intersection-color-3) !important;">Lista offerte</a>
+                <a href=" <?php echo 'indexJobOffers.php?uid=' . $_SESSION['uid'] . '&sa=' . $_SESSION['sa'] ?> " class="btn fw-bold py-2 px-3 border border-2 rounded" style="border-color: var(--intersection-color-3) !important; color: var(--intersection-color-3) !important;">Offers list</a>
                 <div class="dropdown">
                     <button class="btn dropdown-toggle fw-bold d-flex align-items-center gap-2" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border: none;">
                       <?php 
@@ -628,7 +628,7 @@ if( !isset( $_GET['lang'] ) ) {
                     <input type="tel" class="form-control" name="telefono" id="telefono">
                   </div>
                   <div class="mb-3">
-                    <label for="descrizione" class="form-label">Breve descrizione</label>
+                    <label for="descrizione" class="form-label">Breve descrizione *</label>
                     <textarea class="form-control" name="descrizione" id="descrizione" rows="4"></textarea>
                   </div>
                   <div class="mb-3 mb-5">
@@ -979,8 +979,8 @@ if( !isset( $_GET['lang'] ) ) {
                     <input type="tel" class="form-control" name="telefono" id="telefono">
                   </div>
                   <div class="mb-3">
-                    <label for="shortDescription" class="form-label">Short description</label>
-                    <textarea class="form-control" name="shortDescription" id="shortDescription" rows="4"></textarea>
+                    <label for="descrizione" class="form-label">Short description *</label>
+                    <textarea class="form-control" name="descrizione" id="descrizione" rows="4"></textarea>
                   </div>
                   <div class="mb-3 mb-5">
                     <label for="logo" class="form-label">Profile picture</label>
