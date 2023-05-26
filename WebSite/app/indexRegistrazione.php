@@ -679,7 +679,7 @@ if( !isset( $_GET['lang'] ) ) {
                   </div>
                   <button type="submit" name="registrationButton" class="btn btn-primary w-100 fw-bold" style="--bs-btn-bg: var(--intersection-color-3); --bs-btn-hover-bg: var(--intersection-color-2)">Registrati</button>
                 </form>
-                <div class="text-color-5 text-center">Cliccando su <span class="fw-semibold">Registrati</span> accetti che i tuoi dati vengano utilizzati secondo quanto riportato nella <a href="/privacy-policy.html" class="text-decoration-none text-color-2 fw-bold">Privacy Policy</a>.</div>
+                <div class="text-color-5 text-center">Cliccando su <span class="fw-semibold">Registrati</span> accetti che i tuoi dati vengano utilizzati secondo quanto riportato nella <a href="indexPrivacyPolicy.php" class="text-decoration-none text-color-2 fw-bold">Privacy Policy</a>.</div>
               </div>
             </div>
           </div>
@@ -1079,7 +1079,7 @@ if( !isset( $_GET['lang'] ) ) {
                   </div>
                   <button type="submit" name="registrationButton" class="btn btn-primary w-100 fw-bold" style="--bs-btn-bg: var(--intersection-color-3); --bs-btn-hover-bg: var(--intersection-color-2)">Sign up</button>
                 </form>
-                <div class="text-color-5 text-center">By clicking on <span class="fw-semibold">Sign up</span> you accept that your data will be used as reported in the <a href="/privacy-policy.html" class="text-decoration-none text-color-2 fw-bold">Privacy Policy</a>.</div>
+                <div class="text-color-5 text-center">By clicking on <span class="fw-semibold">Sign up</span> you accept that your data will be used as reported in the <a href="indexPrivacyPolicy.php" class="text-decoration-none text-color-2 fw-bold">Privacy Policy</a>.</div>
               </div>
             </div>
           </div>
@@ -1156,7 +1156,7 @@ if( !isset( $_GET['lang'] ) ) {
             </div>
             <div class="w-50 d-flex flex-column flex-md-row justify-content-center justify-content-lg-end align-items-center gap-4">
               <a href="mailto:info@intersection.test" class="text-decoration-none text-color-5 fw-bold">Contattaci</a>
-              <a href="/privacy-policy.html" class="text-decoration-none text-color-5 fw-bold">Privacy Policy</a>
+              <a href="indexPrivacyPolicy.php" class="text-decoration-none text-color-5 fw-bold">Privacy Policy</a>
             </div>
           </div>
           <div class="footer-bottom d-flex flex-column align-items-center gap-3">
@@ -1182,7 +1182,7 @@ if( !isset( $_GET['lang'] ) ) {
             </div>
             <div class="w-50 d-flex flex-column flex-md-row justify-content-center justify-content-lg-end align-items-center gap-4">
               <a href="mailto:info@intersection.test" class="text-decoration-none text-color-5 fw-bold">Contact us</a>
-              <a href="/privacy-policy.html" class="text-decoration-none text-color-5 fw-bold">Privacy Policy</a>
+              <a href="indexPrivacyPolicy.php" class="text-decoration-none text-color-5 fw-bold">Privacy Policy</a>
             </div>
           </div>
           <div class="footer-bottom d-flex flex-column align-items-center gap-3">

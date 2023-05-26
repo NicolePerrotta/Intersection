@@ -510,7 +510,7 @@ ob_start();
             </div>
             <div class="w-50 d-flex flex-column flex-md-row justify-content-center justify-content-lg-end align-items-center gap-4">
               <a href="mailto:info@intersection.test" class="text-decoration-none text-color-5 fw-bold">Contattaci</a>
-              <a href="/privacy-policy.html" class="text-decoration-none text-color-5 fw-bold">Privacy Policy</a>
+              <a href="indexPrivacyPolicy.php" class="text-decoration-none text-color-5 fw-bold">Privacy Policy</a>
             </div>
           </div>
           <div class="footer-bottom d-flex flex-column align-items-center gap-3">
@@ -536,7 +536,7 @@ ob_start();
             </div>
             <div class="w-50 d-flex flex-column flex-md-row justify-content-center justify-content-lg-end align-items-center gap-4">
               <a href="mailto:info@intersection.test" class="text-decoration-none text-color-5 fw-bold">Contact us</a>
-              <a href="/privacy-policy.html" class="text-decoration-none text-color-5 fw-bold">Privacy Policy</a>
+              <a href="indexPrivacyPolicy.php" class="text-decoration-none text-color-5 fw-bold">Privacy Policy</a>
             </div>
           </div>
           <div class="footer-bottom d-flex flex-column align-items-center gap-3">

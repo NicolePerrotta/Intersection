@@ -386,7 +386,7 @@ if( !isset( $_GET['lang'] ) ) {
                     <button type="submit" name="creationButton" class="btn btn-primary w-100 fw-bold" style="--bs-btn-bg: var(--intersection-color-3); --bs-btn-hover-bg: var(--intersection-color-2)">Pubblica offerta</button>
                   <?php endif; ?>
                 </form>
-                <div class="text-color-5 text-center">Cliccando su <span class="fw-semibold">Pubblica offerta</span> accetti che l'offerta di lavoro venga pubblicata sul portale e che i dati relativi siano trattati secondo quanto riportato nella <a href="/privacy-policy.html" class="text-decoration-none text-color-2 fw-bold">Privacy Policy</a>.</div>
+                <div class="text-color-5 text-center">Cliccando su <span class="fw-semibold">Pubblica offerta</span> accetti che l'offerta di lavoro venga pubblicata sul portale e che i dati relativi siano trattati secondo quanto riportato nella <a href="indexPrivacyPolicy.php" class="text-decoration-none text-color-2 fw-bold">Privacy Policy</a>.</div>
               </div>
             </div>
           </div>
@@ -438,7 +438,7 @@ if( !isset( $_GET['lang'] ) ) {
                     <button type="submit" name="creationButton" class="btn btn-primary w-100 fw-bold" style="--bs-btn-bg: var(--intersection-color-3); --bs-btn-hover-bg: var(--intersection-color-2)">Publish job offer</button>
                   <?php endif; ?>
                 </form>
-                <div class="text-color-5 text-center">By clicking on <span class="fw-semibold">Publish job offer</span> you accept that the job offer is published on the portal and that the relative data are treated as reported in the <a href="/privacy-policy.html" class="text-decoration-none text-color-2 fw-bold">Privacy Policy</a>.</div>
+                <div class="text-color-5 text-center">By clicking on <span class="fw-semibold">Publish job offer</span> you accept that the job offer is published on the portal and that the relative data are treated as reported in the <a href="indexPrivacyPolicy.php" class="text-decoration-none text-color-2 fw-bold">Privacy Policy</a>.</div>
               </div>
             </div>
           </div>
@@ -460,7 +460,7 @@ if( !isset( $_GET['lang'] ) ) {
             </div>
             <div class="w-50 d-flex flex-column flex-md-row justify-content-center justify-content-lg-end align-items-center gap-4">
               <a href="mailto:info@intersection.test" class="text-decoration-none text-color-5 fw-bold">Contattaci</a>
-              <a href="/privacy-policy.html" class="text-decoration-none text-color-5 fw-bold">Privacy Policy</a>
+              <a href="indexPrivacyPolicy.php" class="text-decoration-none text-color-5 fw-bold">Privacy Policy</a>
             </div>
           </div>
           <div class="footer-bottom d-flex flex-column align-items-center gap-3">
@@ -486,7 +486,7 @@ if( !isset( $_GET['lang'] ) ) {
             </div>
             <div class="w-50 d-flex flex-column flex-md-row justify-content-center justify-content-lg-end align-items-center gap-4">
               <a href="mailto:info@intersection.test" class="text-decoration-none text-color-5 fw-bold">Contact us</a>
-              <a href="/privacy-policy.html" class="text-decoration-none text-color-5 fw-bold">Privacy Policy</a>
+              <a href="indexPrivacyPolicy.php" class="text-decoration-none text-color-5 fw-bold">Privacy Policy</a>
             </div>
           </div>
           <div class="footer-bottom d-flex flex-column align-items-center gap-3">
