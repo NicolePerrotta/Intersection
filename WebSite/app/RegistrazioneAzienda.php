@@ -82,7 +82,7 @@ $dbconn = pg_connect("host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER 
                     $telefono=$_POST['telefono'];
                     $logo=$_FILES['logo'];
 
-                    if(isset($_FILES['logo']))
+                    if(is_uploaded_file($_FILES['logo']))
                     {
                       $data = file_get_contents($_FILES['logo']['tmp_name']);
                       $logo = pg_escape_bytea($dbconn, $data);
