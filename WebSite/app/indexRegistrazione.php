@@ -31,7 +31,7 @@ if( !isset( $_GET['lang'] ) ) {
 
     <body>
 
-    <?php if( $_SESSION['lang'] == 'it' ): ?>
+      <?php if( $_SESSION['lang'] == 'it' ): ?>
       <!-- Header IT -->
       <header class="top-0 w-100">
         <div class="container px-2 d-flex flex-column flex-md-row justify-content-between align-items-center gap-5 py-4">
