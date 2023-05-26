@@ -45,3 +45,7 @@ body {
 a.text-color-5:hover {
     color: white;
 }
+
+.page-content {
+    min-height: 80vh;
+}
