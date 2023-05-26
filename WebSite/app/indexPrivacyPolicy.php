@@ -47,9 +47,9 @@ ob_start();
             <div class="dropdown">
               <button class="btn dropdown-toggle fw-bold" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border: none;">IT</button>
                 <ul class="dropdown-menu dropdown-menu-end" style="--bs-dropdown-min-width: 10px; --bs-dropdown-bg: #F9FBFE; --bs-dropdown-link-hover-color: var(--intersection-color-3); --bs-dropdown-link-active-color: var(--intersection-color-3); --bs-dropdown-link-active-bg: transparent; transition: none;">
-                  <li><div class="dropdown-header">Seleziona lingua</div></li>
-                  <li><a class="dropdown-item" href=" <?php echo 'indexUtenti.php?lang=it&uid=' . $_GET['uid'] . '&sa=' . $_GET['sa'] ?> ">Italiano</a></li>
-                  <li><a class="dropdown-item" href=" <?php echo 'indexUtenti.php?lang=en&uid=' . $_GET['uid'] . '&sa=' . $_GET['sa'] ?> ">English</a></li>
+                    <li><div class="dropdown-header">Seleziona lingua</div></li>
+                    <li><a class="dropdown-item" href="indexPrivacyPolicy.php?lang=it">Italiano</a></li>
+                    <li><a class="dropdown-item" href="indexPrivacyPolicy.php?lang=en">English</a></li>
                 </ul>
             </div>
             <a href="indexLogin.php" class="text-decoration-none text-color-2 fw-bold">Accedi</a>
@@ -68,9 +68,9 @@ ob_start();
                 <div class="dropdown">
                     <button class="btn dropdown-toggle fw-bold" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border: none;">IT</button>
                     <ul class="dropdown-menu dropdown-menu-end" style="--bs-dropdown-min-width: 10px; --bs-dropdown-bg: #F9FBFE; --bs-dropdown-link-hover-color: var(--intersection-color-3); --bs-dropdown-link-active-color: var(--intersection-color-3); --bs-dropdown-link-active-bg: transparent; transition: none;">
-                      <li><div class="dropdown-header">Seleziona lingua</div></li>
-                      <li><a class="dropdown-item" href=" <?php echo 'indexUtenti.php?lang=it&uid=' . $_GET['uid'] . '&sa=' . $_GET['sa'] ?> ">Italiano</a></li>
-                      <li><a class="dropdown-item" href=" <?php echo 'indexUtenti.php?lang=en&uid=' . $_GET['uid'] . '&sa=' . $_GET['sa'] ?> ">English</a></li>
+                        <li><div class="dropdown-header">Seleziona lingua</div></li>
+                        <li><a class="dropdown-item" href="indexPrivacyPolicy.php?lang=it">Italiano</a></li>
+                        <li><a class="dropdown-item" href="indexPrivacyPolicy.php?lang=en">English</a></li>
                     </ul>
                 </div>
                 <a href=" <?php echo 'indexListJobs.php?uid=' . $_SESSION['uid'] . '&sa=' . $_SESSION['sa'] ?> " class="btn fw-bold py-2 px-3 border border-2 rounded" style="border-color: var(--intersection-color-3) !important; color: var(--intersection-color-3) !important;">Lista lavori</a>
@@ -354,7 +354,7 @@ ob_start();
             <div class="col-md-8 mx-auto d-flex flex-column gap-5">
                 <h1 class="text-color-2 fw-bold">Privacy Policy</h1>
                 <div>
-                    <p>In Intersection, accessibile da https://intersection.up.railway.app, una delle nostre principali priorità è la privacy dei nostri visitatori. Questo documento sulla politica sulla privacy contiene i tipi di informazioni raccolte e registrate da Intersection e il modo in cui le utilizziamo.</p>
+                    <p>In Intersection, una delle nostre principali priorità è la privacy dei nostri visitatori. Questo documento sulla politica sulla privacy contiene i tipi di informazioni raccolte e registrate da Intersection e il modo in cui le utilizziamo.</p>
 
                     <p>Se hai ulteriori domande o hai bisogno di ulteriori informazioni sulla nostra Privacy Policy, non esitare a contattarci.</p>
                     <p>La presente Privacy Policy si applica solo alle nostre attività online ed è valida per i visitatori del nostro sito Web per quanto riguarda le informazioni che hanno condiviso e/o raccolto in Intersection. Questa politica non è applicabile alle informazioni raccolte offline o tramite canali diversi da questo sito web.</p>
@@ -430,7 +430,7 @@ ob_start();
             <div class="col-md-8 mx-auto d-flex flex-column gap-5">
                 <h1 class="text-color-2 fw-bold">Privacy Policy</h1>
                 <div>
-                    <p>At Intersection, accessible from https://intersection.up.railway.app, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by Intersection and how we use it.</p>
+                    <p>At Intersection, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by Intersection and how we use it.</p>
 
                     <p>If you have additional questions or require more information about our Privacy Policy, do not hesitate to contact us.</p>
                     <p>This Privacy Policy applies only to our online activities and is valid for visitors to our website with regards to the information that they shared and/or collect in Intersection. This policy is not applicable to any information collected offline or via channels other than this website.</p>
