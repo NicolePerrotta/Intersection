@@ -280,7 +280,7 @@ if( !isset( $_GET['lang'] ) ) {
             <?php elseif( $_SESSION['sa'] == 1 ) : ?>
               <div class="menu-container d-flex align-items-center gap-4">
                 <div class="dropdown">
-                    <button class="btn dropdown-toggle fw-bold" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border: none;">IT</button>
+                    <button class="btn dropdown-toggle fw-bold" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border: none;">EN</button>
                     <ul class="dropdown-menu dropdown-menu-end" style="--bs-dropdown-min-width: 10px; --bs-dropdown-bg: #F9FBFE; --bs-dropdown-link-hover-color: var(--intersection-color-3); --bs-dropdown-link-active-color: var(--intersection-color-3); --bs-dropdown-link-active-bg: transparent; transition: none;">
                       <li><div class="dropdown-header">Select language</div></li>
                       <li><a class="dropdown-item" href="#">Italiano</a></li>
@@ -343,7 +343,8 @@ if( !isset( $_GET['lang'] ) ) {
       </header>
       <?php endif; ?>
 
-      <!-- Page content -->
+      <?php if( $_SESSION['lang'] == 'it' ): ?>
+      <!-- Page content IT -->
       <div class="page-content">
         <section id="hero" class="bg-color-1-light">
           <div class="container px-5 px-md-2" style="padding: 200px 0;">
@@ -425,7 +426,7 @@ if( !isset( $_GET['lang'] ) ) {
                   <div class="col d-flex flex-column align-items-center gap-4 p-5 bg-white rounded">
                     <img src="images/unionbank-logo.png" alt="Netflix" class="img-fluid">
                     <div class="border-bottom border-3 opacity-25 w-25 rounded" style="--bs-border-color: var(--intersection-color-5);"></div>
-                    <div class="text-center text-color-5">Supportiamo UnionBank nella ricerca di sviluppatori in linea con gli standard</div>
+                    <div class="text-center text-color-5">Siamo al fianco di UnionBank per comporre team sempre più efficienti</div>
                   </div>
                   <div class="col d-flex flex-column align-items-center gap-4 p-5 bg-white rounded">
                     <img src="images/google-logo.png" alt="Netflix" class="img-fluid">
@@ -438,8 +439,108 @@ if( !isset( $_GET['lang'] ) ) {
           </div>
         </section>
       </div>
+      <?php endif; ?>
 
-      <!-- Footer -->
+      <?php if( $_SESSION['lang'] == 'en' ): ?>
+      <!-- Page content EN -->
+      <div class="page-content">
+        <section id="hero" class="bg-color-1-light">
+          <div class="container px-5 px-md-2" style="padding: 200px 0;">
+            <div class="row align-items-center gap-5 gap-md-0">
+              <div class="col-md-6 d-flex flex-column gap-5">
+                <div>
+                  <img src="images/home-dots-1.png" style="width: auto; height: 30px;">
+                </div>
+                <h2 class="text-color-2 fw-bold fs-1">The first website that helps you find your next job with artificial intelligence</h2>
+              </div>
+              <div class="col-md-6 d-flex justify-content-end">
+                <img src="images/home-hero.jpg" class="img-fluid" style="border-radius: 0 30px 0 30px;">
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <?php if(!isset($_SESSION['sa']) || (isset($_SESSION['sa']) && $_SESSION['sa'] !== 0 )) : ?>
+        <section id="aziende">
+          <div class="container px-3" style="padding: 140px 0 100px 0;">
+            <div class="d-flex flex-column-reverse flex-lg-row align-items-center gap-5">
+              <div style="flex: 1;">
+                <img src="images/home-azienda.jpg" class="img-fluid rounded">
+              </div>
+              <div class="d-flex flex-column gap-3" style="flex: 2; padding: 5rem;">
+              <?php if( !isset( $_SESSION['uid'] ) || !isset( $_SESSION['sa'] ) ) : ?>
+                <h2 class="text-color-2 fw-bold fs-1">Are you a company?</h2>
+                <p class="text-color-5" style="font-size: 24px;">Upload your job offer and find out which candidate is perfect for you thanks to our Artificial Intelligence algorithm!</p>
+                <a href=" <?php echo 'indexRegistrazioneAziendale.php' ?> " class="text-color-3 text-decoration-none fw-bold py-2 px-3 border border-2 rounded" style="border-color: var(--intersection-color-3) !important; width: fit-content;">Sign up as company</a>
+              <?php else : ?>
+                <h2 class="text-color-2 fw-bold fs-1">You are a company.</h2>
+                <p class="text-color-5" style="font-size: 24px;">Upload your job offer and find out which candidate is perfect for you thanks to our Artificial Intelligence algorithm!</p>
+                <a href=" <?php echo 'indexJobOffers.php?uid=' . $_SESSION['uid'] . '&sa=' . $_SESSION['sa'] ?> " class="text-color-3 text-decoration-none fw-bold py-2 px-3 border border-2 rounded" style="border-color: var(--intersection-color-3) !important; width: fit-content;">Go to the published job offers</a>
+              <?php endif; ?>
+              </div>
+            </div>
+          </div>
+        </section>
+        <?php endif; ?>
+
+        <?php if(!isset($_SESSION['sa']) || (isset($_SESSION['sa']) && $_SESSION['sa'] !== 1 )) : ?>
+        <section id="professionisti">
+          <div class="container px-3" style="padding: 100px 0;">
+            <div class="d-flex flex-column-reverse flex-lg-row-reverse align-items-center gap-5">
+              <div style="flex: 1;">
+                <img src="images/home-professionista.jpg" class="img-fluid rounded">
+              </div>
+              <div class="d-flex flex-column gap-3" style="flex: 2; padding: 5rem;">
+              <?php if( !isset( $_SESSION['uid'] ) || !isset( $_SESSION['sa'] ) ) : ?>
+                <h2 class="text-color-2 fw-bold fs-1">Are you a professional?</h2>
+                <p class="text-color-5" style="font-size: 24px;">Upload your CV: we will take care of everything else with our Artificial Intelligence algorithm!</p>
+                <a href=" <?php echo 'indexRegistrazione.php' ?> " class="text-color-3 text-decoration-none fw-bold py-2 px-3 border border-2 rounded" style="border-color: var(--intersection-color-3) !important; width: fit-content;">Sign up as professional</a>
+              <?php else : ?>
+                <h2 class="text-color-2 fw-bold fs-1">You are a professional.</h2>
+                <p class="text-color-5" style="font-size: 24px;">Upload your CV: we will take care of everything else with our Artificial Intelligence algorithm!</p>
+                <a href=" <?php echo 'indexListJobs.php?uid=' . $_SESSION['uid'] . '&sa=' . $_SESSION['sa'] ?> " class="text-color-3 text-decoration-none fw-bold py-2 px-3 border border-2 rounded" style="border-color: var(--intersection-color-3) !important; width: fit-content;">Go to the job offers selected for you</a>
+              <?php endif; ?>
+              </div>
+            </div>
+          </div>
+        </section>
+        <?php endif; ?>
+
+        <section id="testimonial">
+          <div class="container px-3" style="padding: 100px 0 140px 0;">
+            <div class="d-flex flex-column gap-5">
+              <h2 class="text-color-2 fw-bold fs-1 text-center">We help companies find the ideal candidate among thousands of professionals</h2>
+              <div class="d-flex flex-column-reverse flex-lg-row align-items-center gap-5 position-relative">
+                <img src="images/home-testimonial.jpg" class="img-fluid rounded" style="width: 40%;">
+                <div class="testimonials-container row flex-column flex-md-row gap-3 z-2 mt-0 ms-0">
+                  <style scoped>
+                    .testimonials-container { @media (min-width: 992px) { position: absolute; margin: 60px 0 0 30% !important; } }
+                  </style>
+                  <div class="col d-flex flex-column align-items-center gap-4 p-5 bg-white rounded">
+                    <img src="images/netflix-logo.png" alt="Netflix" class="img-fluid">
+                    <div class="border-bottom border-3 opacity-25 w-25 rounded" style="--bs-border-color: var(--intersection-color-5);"></div>
+                    <div class="text-center text-color-5">We helped Netflix find the right candidate for the company's needs</div>
+                  </div>
+                  <div class="col d-flex flex-column align-items-center gap-4 p-5 bg-white rounded">
+                    <img src="images/unionbank-logo.png" alt="Netflix" class="img-fluid">
+                    <div class="border-bottom border-3 opacity-25 w-25 rounded" style="--bs-border-color: var(--intersection-color-5);"></div>
+                    <div class="text-center text-color-5">We work alongside UnionBank to compose ever more efficient teams</div>
+                  </div>
+                  <div class="col d-flex flex-column align-items-center gap-4 p-5 bg-white rounded">
+                    <img src="images/google-logo.png" alt="Netflix" class="img-fluid">
+                    <div class="border-bottom border-3 opacity-25 w-25 rounded" style="--bs-border-color: var(--intersection-color-5);"></div>
+                    <div class="text-center text-color-5">We support Google in finding developers in line with the standards</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+      <?php endif; ?>
+
+      <?php if( $_SESSION['lang'] == 'it' ): ?>
+      <!-- Footer IT -->
       <footer class="bg-color-4">
         <div class="container px-2 d-flex flex-column gap-5 py-5 text-color-5">
           <div class="footer-top d-flex flex-column flex-lg-row align-items-center gap-5">
@@ -462,6 +563,33 @@ if( !isset( $_GET['lang'] ) ) {
           </div>
         </div>
       </footer>
+      <?php endif; ?>
+
+      <?php if( $_SESSION['lang'] == 'en' ): ?>
+      <!-- Footer EN -->
+      <footer class="bg-color-4">
+        <div class="container px-2 d-flex flex-column gap-5 py-5 text-color-5">
+          <div class="footer-top d-flex flex-column flex-lg-row align-items-center gap-5">
+            <div class="w-50 d-flex flex-column flex-lg-row gap-5 align-items-center">
+              <a href="index.php">
+                <img src="images/logo-1-white.png" alt="Intersection" style="height: 30px;">
+              </a>
+              <div class="text-center text-lg-start">The first website that helps you find your next job with artificial intelligence.</div>
+            </div>
+            <div class="w-50 d-flex flex-column flex-md-row justify-content-center justify-content-lg-end align-items-center gap-4">
+              <a href="mailto:info@intersection.test" class="text-decoration-none text-color-5 fw-bold">Contact us</a>
+              <a href="/privacy-policy.html" class="text-decoration-none text-color-5 fw-bold">Privacy Policy</a>
+            </div>
+          </div>
+          <div class="footer-bottom d-flex flex-column align-items-center gap-3">
+            <a href="index.php">
+              <img src="images/favi-1.png" style="width: 30px;">
+            </a>
+            <div>Copyright &copy; 2023. All rights reserved.</div>
+          </div>
+        </div>
+      </footer>
+      <?php endif; ?>
 
     </body>
   </html>
