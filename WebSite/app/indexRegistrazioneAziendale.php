@@ -488,6 +488,10 @@ session_start();
                     <input type="password" class="form-control" name="passwordRA2" id="passwordRA2" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
                     <div id="errorePassword" class="d-none text-danger mt-1">Password di conferma errata</div>
                   </div>
+                  <div class="mb-4">
+                    <label for="descrizione" class="form-label">Descrizione *</label>
+                    <input type="descrizione" class="form-control" name="descrizione" id="descrizione" required>
+                  </div>
                   <button type="submit" name="registrationButton" class="btn btn-primary w-100 fw-bold" style="--bs-btn-bg: var(--intersection-color-3); --bs-btn-hover-bg: var(--intersection-color-2)">Registrati</button>
                 </form>
                 <div class="text-color-5 text-center">Cliccando su <span class="fw-semibold">Registrati</span> accetti che i tuoi dati vengano utilizzati secondo quanto riportato nella <a href="/privacy-policy.html" class="text-decoration-none text-color-2 fw-bold">Privacy Policy</a>.</div>
