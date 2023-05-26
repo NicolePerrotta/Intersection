@@ -118,7 +118,7 @@ $dbconn = pg_connect("host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER 
                         $embedding = ($response->embedding);
                     }
                     $formatted = pg_escape_string(implode(',',$embedding));
-                    $q7="insert into worker values (DEFAULT,$1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15)";
+                    $q7="INSERT INTO worker VALUES (DEFAULT,$1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15)";
                     $data=pg_query_params($dbconn,$q7,array($nome,$cognome,$user,$email,$password,$nascita,$indirizzo,$citta,$nazione,$genere,$emailC,$telefono,$curriculum,"{{$formatted}}",$picture));
                     if($data)
                     {
