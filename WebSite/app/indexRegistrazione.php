@@ -772,7 +772,7 @@ if( !isset( $_GET['lang'] ) ) {
                     <div id="erroreEta2" class="d-none text-danger mt-1">Wrong age</div>
                   </div>
                   <div class="mb-3">
-                    <label for="gender" class="form-label">Genre *</label>
+                    <label for="gender" class="form-label">Gender *</label>
                     <div class="d-flex gap-4">
                       <input class="btn-check" type="radio" name="genere" id="maschio" value="Maschio" required>
                       <label class="btn btn-sm btn-outline-secondary" for="maschio">Male</label>
@@ -780,7 +780,7 @@ if( !isset( $_GET['lang'] ) ) {
                       <label class="btn btn-sm btn-outline-secondary" for="femmina">Female</label>
                       <input class="btn-check" type="radio" name="genere" id="altro" value="Altro">
                       <label class="btn btn-sm btn-outline-secondary" for="altro">Other</label>
-                      <div class="invalid-feedback">Please select a genre</div>
+                      <div class="invalid-feedback">Please select a gender</div>
                     </div>
                   </div>
                   <div class="mb-3">

@@ -1119,7 +1119,7 @@ ob_start();
                           $nazione = "Ciao";
                           break;
                       }
-                      $genere = $line["genre"];
+                      $genere = $line["gender"];
                       $date = date( 'd/m/Y', strtotime( $datanascita ) );
                       $contact_email = $line["contact_email"];
                       $telephone_number = $line["telephone_number"];
@@ -2735,7 +2735,7 @@ ob_start();
                           $nazione = "Ciao";
                           break;
                       }
-                      $genere = $line["genre"];
+                      $genere = $line["gender"];
                       $date = date( 'd/m/Y', strtotime( $datanascita ) );
                       $contact_email = $line["contact_email"];
                       $telephone_number = $line["telephone_number"];
@@ -2762,7 +2762,7 @@ ob_start();
                         <div class="dettagli-professionista">
                           <div class="fw-bold fs-5 mb-2">Details</div>
                           <div class="user-birthday"><span class="fw-bold">Date of birth:</span> <span><?php echo $date ?></span></div>
-                          <div class="user-gender"><span class="fw-bold">Genre:</span> <span><?php echo $genere ?></span></div>
+                          <div class="user-gender"><span class="fw-bold">Gender:</span> <span><?php echo $genere ?></span></div>
                           <div class="user-address"><span class="fw-bold">Address:</span> <span><?php echo $indirizzo ?></span></div>
                           <div class="user-city"><span class="fw-bold">City:</span> <span><?php echo $citta ?></span></div>
                           <div class="user-country"><span class="fw-bold">Country:</span> <span><?php echo $nazione ?></span></div>
