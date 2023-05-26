@@ -29,7 +29,7 @@ CREATE TABLE company
    username varchar(50) UNIQUE,
    email email UNIQUE,
    password varchar(50) UNIQUE,
-   VAT_number numeric(11,0) UNIQUE,
+   VAT_number varchar(50) UNIQUE,
    address varchar(50),
    city varchar(50),
    country varchar(50),

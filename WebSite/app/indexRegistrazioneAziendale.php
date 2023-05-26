@@ -628,8 +628,8 @@ if( !isset( $_GET['lang'] ) ) {
                     <input type="tel" class="form-control" name="telefono" id="telefono">
                   </div>
                   <div class="mb-3">
-                    <label for="shortDescription" class="form-label">Breve descrizione</label>
-                    <textarea class="form-control" name="shortDescription" id="shortDescription" rows="4"></textarea>
+                    <label for="descrizione" class="form-label">Breve descrizione</label>
+                    <textarea class="form-control" name="descrizione" id="descrizione" rows="4"></textarea>
                   </div>
                   <div class="mb-3 mb-5">
                     <label for="logo" class="form-label">Foto profilo</label>
@@ -657,10 +657,6 @@ if( !isset( $_GET['lang'] ) ) {
                     <label for="passwordRA2" class="form-label">Conferma Password *</label>
                     <input type="password" class="form-control" name="passwordRA2" id="passwordRA2" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
                     <div id="errorePassword" class="d-none text-danger mt-1">Password di conferma errata</div>
-                  </div>
-                  <div class="mb-4">
-                    <label for="descrizione" class="form-label">Descrizione *</label>
-                    <input type="descrizione" class="form-control" name="descrizione" id="descrizione" required>
                   </div>
                   <button type="submit" name="registrationButton" class="btn btn-primary w-100 fw-bold" style="--bs-btn-bg: var(--intersection-color-3); --bs-btn-hover-bg: var(--intersection-color-2)">Registrati</button>
                 </form>
