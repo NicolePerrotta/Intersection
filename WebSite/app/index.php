@@ -199,7 +199,7 @@ if( !isset( $_GET['lang'] ) ) {
           <?php if( !isset( $_SESSION['uid'] ) ) : ?>
           <div class="menu-container d-flex align-items-center gap-4">
             <div class="dropdown">
-              <button class="btn dropdown-toggle fw-bold" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border: none;">IT</button>
+              <button class="btn dropdown-toggle fw-bold" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border: none;">EN</button>
                 <ul class="dropdown-menu dropdown-menu-end" style="--bs-dropdown-min-width: 10px; --bs-dropdown-bg: #F9FBFE; --bs-dropdown-link-hover-color: var(--intersection-color-3); --bs-dropdown-link-active-color: var(--intersection-color-3); --bs-dropdown-link-active-bg: transparent; transition: none;">
                   <li><div class="dropdown-header">Select language</div></li>
                   <li><a class="dropdown-item" href="index.php?lang=it">Italiano</a></li>
@@ -220,7 +220,7 @@ if( !isset( $_GET['lang'] ) ) {
             <?php if( $_SESSION['sa'] == 0 ) : ?>
               <div class="menu-container d-flex align-items-center gap-4">
                 <div class="dropdown">
-                    <button class="btn dropdown-toggle fw-bold" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border: none;">IT</button>
+                    <button class="btn dropdown-toggle fw-bold" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border: none;">EN</button>
                     <ul class="dropdown-menu dropdown-menu-end" style="--bs-dropdown-min-width: 10px; --bs-dropdown-bg: #F9FBFE; --bs-dropdown-link-hover-color: var(--intersection-color-3); --bs-dropdown-link-active-color: var(--intersection-color-3); --bs-dropdown-link-active-bg: transparent; transition: none;">
                       <li><div class="dropdown-header">Select language</div></li>
                       <li><a class="dropdown-item" href="#">Italiano</a></li>
