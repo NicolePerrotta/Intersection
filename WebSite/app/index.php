@@ -369,7 +369,7 @@ if( !isset( $_GET['lang'] ) ) {
               <div style="flex: 1;">
                 <img src="images/home-azienda.jpg" class="img-fluid rounded">
               </div>
-              <div class="d-flex flex-column gap-3" style="flex: 2; padding: 5rem;">
+              <div class="d-flex flex-column gap-3" style="flex: 2; padding: 3rem;">
               <?php if( !isset( $_SESSION['uid'] ) || !isset( $_SESSION['sa'] ) ) : ?>
                 <h2 class="text-color-2 fw-bold fs-1">Sei un'azienda?</h2>
                 <p class="text-color-5" style="font-size: 24px;">Carica la tua offerta di lavoro e scopri qual è il candidato perfetto per te grazie al nostro algoritmo di Intelligenza Artificiale!</p>
@@ -392,7 +392,7 @@ if( !isset( $_GET['lang'] ) ) {
               <div style="flex: 1;">
                 <img src="images/home-professionista.jpg" class="img-fluid rounded">
               </div>
-              <div class="d-flex flex-column gap-3" style="flex: 2; padding: 5rem;">
+              <div class="d-flex flex-column gap-3" style="flex: 2; padding: 3rem;">
               <?php if( !isset( $_SESSION['uid'] ) || !isset( $_SESSION['sa'] ) ) : ?>
                 <h2 class="text-color-2 fw-bold fs-1">Sei un professionista?</h2>
                 <p class="text-color-5" style="font-size: 24px;">Carica il tuo curriculum: penseremo noi a tutto il resto con il nostro algoritmo di Intelligenza Artificiale!</p>
@@ -467,7 +467,7 @@ if( !isset( $_GET['lang'] ) ) {
               <div style="flex: 1;">
                 <img src="images/home-azienda.jpg" class="img-fluid rounded">
               </div>
-              <div class="d-flex flex-column gap-3" style="flex: 2; padding: 5rem;">
+              <div class="d-flex flex-column gap-3" style="flex: 2; padding: 3rem;">
               <?php if( !isset( $_SESSION['uid'] ) || !isset( $_SESSION['sa'] ) ) : ?>
                 <h2 class="text-color-2 fw-bold fs-1">Are you a company?</h2>
                 <p class="text-color-5" style="font-size: 24px;">Upload your job offer and find out which candidate is perfect for you thanks to our Artificial Intelligence algorithm!</p>
@@ -490,7 +490,7 @@ if( !isset( $_GET['lang'] ) ) {
               <div style="flex: 1;">
                 <img src="images/home-professionista.jpg" class="img-fluid rounded">
               </div>
-              <div class="d-flex flex-column gap-3" style="flex: 2; padding: 5rem;">
+              <div class="d-flex flex-column gap-3" style="flex: 2; padding: 3rem;">
               <?php if( !isset( $_SESSION['uid'] ) || !isset( $_SESSION['sa'] ) ) : ?>
                 <h2 class="text-color-2 fw-bold fs-1">Are you a professional?</h2>
                 <p class="text-color-5" style="font-size: 24px;">Upload your CV: we will take care of everything else with our Artificial Intelligence algorithm!</p>
