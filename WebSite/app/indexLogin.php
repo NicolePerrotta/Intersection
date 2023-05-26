@@ -14,7 +14,6 @@ if( !isset( $_GET['lang'] ) ) {
       <meta charset="UTF-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Login - Intersection</title>
       <title>
         <?php 
           if( $_SESSION['lang'] == 'it' ) { echo "Login - Intersection"; }
@@ -32,7 +31,7 @@ if( !isset( $_GET['lang'] ) ) {
 
     <body>
 
-    <?php if( $_SESSION['lang'] == 'it' ): ?>
+      <?php if( $_SESSION['lang'] == 'it' ): ?>
       <!-- Header IT -->
       <header class="top-0 w-100">
         <div class="container px-2 d-flex flex-column flex-md-row justify-content-between align-items-center gap-5 py-4">
@@ -224,8 +223,8 @@ if( !isset( $_GET['lang'] ) ) {
                     <button class="btn dropdown-toggle fw-bold" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border: none;">EN</button>
                     <ul class="dropdown-menu dropdown-menu-end" style="--bs-dropdown-min-width: 10px; --bs-dropdown-bg: #F9FBFE; --bs-dropdown-link-hover-color: var(--intersection-color-3); --bs-dropdown-link-active-color: var(--intersection-color-3); --bs-dropdown-link-active-bg: transparent; transition: none;">
                       <li><div class="dropdown-header">Select language</div></li>
-                      <li><a class="dropdown-item" href="#">Italiano</a></li>
-                      <li><a class="dropdown-item" href="#">English</a></li>
+                      <li><a class="dropdown-item" href="indexLogin.php?lang=it">Italiano</a></li>
+                      <li><a class="dropdown-item" href="indexLogin.php?lang=en">English</a></li>
                     </ul>
                 </div>
                 <a href=" <?php echo 'indexListJobs.php?uid=' . $_SESSION['uid'] . '&sa=' . $_SESSION['sa'] ?> " class="btn fw-bold py-2 px-3 border border-2 rounded" style="border-color: var(--intersection-color-3) !important; color: var(--intersection-color-3) !important;">Lista lavori</a>
@@ -284,8 +283,8 @@ if( !isset( $_GET['lang'] ) ) {
                     <button class="btn dropdown-toggle fw-bold" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border: none;">EN</button>
                     <ul class="dropdown-menu dropdown-menu-end" style="--bs-dropdown-min-width: 10px; --bs-dropdown-bg: #F9FBFE; --bs-dropdown-link-hover-color: var(--intersection-color-3); --bs-dropdown-link-active-color: var(--intersection-color-3); --bs-dropdown-link-active-bg: transparent; transition: none;">
                       <li><div class="dropdown-header">Select language</div></li>
-                      <li><a class="dropdown-item" href="#">Italiano</a></li>
-                      <li><a class="dropdown-item" href="#">English</a></li>
+                      <li><a class="dropdown-item" href="indexLogin.php?lang=it">Italiano</a></li>
+                      <li><a class="dropdown-item" href="indexLogin.php?lang=en">English</a></li>
                     </ul>
                 </div>
                 <a href=" <?php echo 'indexJobOffers.php?uid=' . $_SESSION['uid'] . '&sa=' . $_SESSION['sa'] ?> " class="btn fw-bold py-2 px-3 border border-2 rounded" style="border-color: var(--intersection-color-3) !important; color: var(--intersection-color-3) !important;">Lista offerte</a>
@@ -394,7 +393,7 @@ if( !isset( $_GET['lang'] ) ) {
                     <label for="password" class="form-label">Password</label>
                     <input type="password" class="form-control" name="password" id="password" required>
                   </div>
-                  <button id="login-button" name="loginButton" type="submit" class="btn btn-primary w-100 fw-bold" style="--bs-btn-bg: var(--intersection-color-3); --bs-btn-hover-bg: var(--intersection-color-2)">Accedi</button>
+                  <button id="login-button" name="loginButton" type="submit" class="btn btn-primary w-100 fw-bold" style="--bs-btn-bg: var(--intersection-color-3); --bs-btn-hover-bg: var(--intersection-color-2)">Login</button>
                 </form>
                 <div class="text-color-5 text-center">Don't have an account yet? Sign up as <a href="indexRegistrazione.php" class="text-decoration-none text-color-2 fw-bold">professional</a> or as <a href="indexRegistrazioneAziendale.php" class="text-decoration-none text-color-2 fw-bold">company</a>.</div>
               </div>
