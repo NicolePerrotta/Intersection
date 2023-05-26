@@ -1,5 +1,12 @@
 <?php
 session_start();
+if( !isset( $_GET['lang'] ) ) {
+  if( !isset( $_SESSION['lang'] ) ) {
+    $_SESSION['lang'] = 'it';
+  }
+} else {
+  $_SESSION['lang'] = $_GET['lang'];
+}
 ?>
 <!DOCTYPE html>
   <html>
@@ -19,6 +26,8 @@ session_start();
 
     <body>
 
+      <?php echo $_SESSION['lang'] ?>
+
       <!-- Header -->
       <header class="position-absolute top-0 w-100">
         <div class="container px-2 d-flex flex-column flex-md-row justify-content-between align-items-center gap-5 py-4">
@@ -33,8 +42,8 @@ session_start();
               <button class="btn dropdown-toggle fw-bold" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border: none;">IT</button>
                 <ul class="dropdown-menu dropdown-menu-end" style="--bs-dropdown-min-width: 10px; --bs-dropdown-bg: #F9FBFE; --bs-dropdown-link-hover-color: var(--intersection-color-3); --bs-dropdown-link-active-color: var(--intersection-color-3); --bs-dropdown-link-active-bg: transparent; transition: none;">
                   <li><div class="dropdown-header">Seleziona lingua</div></li>
-                  <li><a class="dropdown-item" href="#">Italiano</a></li>
-                  <li><a class="dropdown-item" href="#">English</a></li>
+                  <li><a class="dropdown-item" href="index.php?lang=it">Italiano</a></li>
+                  <li><a class="dropdown-item" href="index.php?lang=en">English</a></li>
                 </ul>
             </div>
             <a href="indexLogin.php" class="text-decoration-none text-color-2 fw-bold">Accedi</a>
