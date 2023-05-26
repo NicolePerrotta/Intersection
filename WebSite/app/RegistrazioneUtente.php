@@ -78,7 +78,7 @@ $dbconn = pg_connect("host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER 
                     $data = file_get_contents($_FILES['curriculum']['tmp_name']);
                     $curriculum = pg_escape_bytea($dbconn, $data);
 
-                    if(is_uploaded_file($_FILES['picture']))
+                    if(is_uploaded_file($_FILES['picture']['tmp_name']))
                     {
                         $data1 = file_get_contents($_FILES['picture']['tmp_name']);
                         $picture = pg_escape_bytea($dbconn, $data1);
