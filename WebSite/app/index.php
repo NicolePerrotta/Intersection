@@ -14,7 +14,12 @@ if( !isset( $_GET['lang'] ) ) {
       <meta charset="UTF-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Intersection - Trova lavoro con l'intelligenza artificiale</title>
+      <title>
+        <?php 
+          if( $_SESSION['lang'] == 'it' ) { echo "Intersection - Trova lavoro con l'intelligenza artificiale"; }
+          if( $_SESSION['lang'] == 'en' ) { echo "Intersection - Find your job with artificial intelligence"; }
+        ?>
+      </title>
       <link rel="icon" href="images/favi-1.png" type="favicon">
       <link rel="stylesheet" href="css/style.css">
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
@@ -26,9 +31,8 @@ if( !isset( $_GET['lang'] ) ) {
 
     <body>
 
-      <?php echo $_SESSION['lang'] ?>
-
-      <!-- Header -->
+      <?php if( $_SESSION['lang'] == 'it' ): ?>
+      <!-- Header IT -->
       <header class="position-absolute top-0 w-100">
         <div class="container px-2 d-flex flex-column flex-md-row justify-content-between align-items-center gap-5 py-4">
           <div class="logo-container">
@@ -181,6 +185,163 @@ if( !isset( $_GET['lang'] ) ) {
           <?php endif; ?>
         </div>
       </header>
+      <?php endif; ?>
+
+      <?php if( $_SESSION['lang'] == 'en' ): ?>
+      <!-- Header EN -->
+      <header class="position-absolute top-0 w-100">
+        <div class="container px-2 d-flex flex-column flex-md-row justify-content-between align-items-center gap-5 py-4">
+          <div class="logo-container">
+            <a href="index.php">
+              <img src="images/logo-1.png" alt="Intersection" style="height: 30px;">
+            </a>
+          </div>
+          <?php if( !isset( $_SESSION['uid'] ) ) : ?>
+          <div class="menu-container d-flex align-items-center gap-4">
+            <div class="dropdown">
+              <button class="btn dropdown-toggle fw-bold" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border: none;">IT</button>
+                <ul class="dropdown-menu dropdown-menu-end" style="--bs-dropdown-min-width: 10px; --bs-dropdown-bg: #F9FBFE; --bs-dropdown-link-hover-color: var(--intersection-color-3); --bs-dropdown-link-active-color: var(--intersection-color-3); --bs-dropdown-link-active-bg: transparent; transition: none;">
+                  <li><div class="dropdown-header">Select language</div></li>
+                  <li><a class="dropdown-item" href="index.php?lang=it">Italiano</a></li>
+                  <li><a class="dropdown-item" href="index.php?lang=en">English</a></li>
+                </ul>
+            </div>
+            <a href="indexLogin.php" class="text-decoration-none text-color-2 fw-bold">Login</a>
+            <div class="dropdown">
+              <button class="btn dropdown-toggle fw-bold py-2 px-3 border border-2 rounded" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border-color: var(--intersection-color-3) !important; color: var(--intersection-color-3)">Sign up</button>
+              <ul class="dropdown-menu dropdown-menu-end" style="--bs-dropdown-min-width: 10px; --bs-dropdown-bg: #F9FBFE; --bs-dropdown-link-hover-color: var(--intersection-color-3); --bs-dropdown-link-active-color: var(--intersection-color-3); --bs-dropdown-link-active-bg: transparent; transition: none;">
+                <li><div class="dropdown-header">Sign up as</div></li>
+                <li><a class="dropdown-item" href="indexRegistrazioneAziendale.php">Company</a></li>
+                <li><a class="dropdown-item" href="indexRegistrazione.php">Professional</a></li>
+              </ul>
+            </div>
+          </div>
+          <?php else : ?>
+            <?php if( $_SESSION['sa'] == 0 ) : ?>
+              <div class="menu-container d-flex align-items-center gap-4">
+                <div class="dropdown">
+                    <button class="btn dropdown-toggle fw-bold" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border: none;">IT</button>
+                    <ul class="dropdown-menu dropdown-menu-end" style="--bs-dropdown-min-width: 10px; --bs-dropdown-bg: #F9FBFE; --bs-dropdown-link-hover-color: var(--intersection-color-3); --bs-dropdown-link-active-color: var(--intersection-color-3); --bs-dropdown-link-active-bg: transparent; transition: none;">
+                      <li><div class="dropdown-header">Select language</div></li>
+                      <li><a class="dropdown-item" href="#">Italiano</a></li>
+                      <li><a class="dropdown-item" href="#">English</a></li>
+                    </ul>
+                </div>
+                <a href=" <?php echo 'indexListJobs.php?uid=' . $_SESSION['uid'] . '&sa=' . $_SESSION['sa'] ?> " class="btn fw-bold py-2 px-3 border border-2 rounded" style="border-color: var(--intersection-color-3) !important; color: var(--intersection-color-3) !important;">Lista lavori</a>
+                <div class="dropdown">
+                    <button class="btn dropdown-toggle fw-bold d-flex align-items-center gap-2" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border: none;">
+                      <?php 
+                        if( file_exists('.env') ) {
+                          // per il sito in locale
+                          $env = parse_ini_file('.env');
+                          $PGHOST = $env['PGHOST'];
+                          $PGPORT = $env['PGPORT'];
+                          $PGDATABASE = $env['PGDATABASE'];
+                          $PGUSER = $env['PGUSER'];
+                          $PGPASSWORD = $env['PGPASSWORD'];
+                        } else {
+                          // per il sito deployato
+                          $PGHOST = getenv('PGHOST');
+                          $PGPORT = getenv('PGPORT');
+                          $PGDATABASE = getenv('PGDATABASE');
+                          $PGUSER = getenv('PGUSER');
+                          $PGPASSWORD = getenv('PGPASSWORD');
+                        }
+                        $dbconn = pg_connect( "host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER password=$PGPASSWORD" ) or header( "Location: indexErrore.php?er=100" );
+                        $q19 = "SELECT * FROM worker WHERE worker_id=$1 LIMIT 1";
+                        $result19 = pg_query_params( $dbconn, $q19, array($_SESSION['uid']) );
+                        if( pg_num_rows( $result19 ) > 0) {
+                          $co=pg_fetch_assoc($result19);  
+                          if( isset( $co['picture'] ) ) {
+                            $propic = $co['picture'];
+                            $usernameWorker = $co['username'];
+                            $profile_picture = pg_unescape_bytea($propic);
+                            $picture_filename = "storage/image_$usernameWorker.png";
+                            file_put_contents($picture_filename, $profile_picture);
+                            echo '<img src="' . $picture_filename . '" class="img-fluid rounded" style="width: 30px; aspect-ratio: 1; object-fit: cover;">';
+                            } else {
+                            echo '<img src="images/default-profile.png" class="img-fluid rounded" style="width: 30px; aspect-ratio: 1; object-fit: cover;">';
+                            }
+                        } else {
+                          echo '<img src="images/default-profile.png" class="img-fluid rounded" style="width: 30px; aspect-ratio: 1; object-fit: cover;">';
+                        }
+                        if(isset($result19)) pg_free_result($result19);
+                        pg_close($dbconn);
+                        ?>
+                      <div><?php echo $_SESSION['user'] ?></div>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" style="--bs-dropdown-min-width: 10px; --bs-dropdown-bg: #F9FBFE; --bs-dropdown-link-hover-color: var(--intersection-color-3); --bs-dropdown-link-active-color: var(--intersection-color-3); --bs-dropdown-link-active-bg: transparent; transition: none;">
+                      <li><div class="dropdown-header">Actions</div></li>
+                      <li><a class="dropdown-item" href=" <?php echo 'indexUtenti.php?uid=' . $_SESSION['uid'] . '&sa=' . $_SESSION['sa'] ?> ">Profile</a></li>
+                      <li><a class="dropdown-item" href="Logout.php">Logout</a></li>
+                    </ul>
+                </div>
+              </div>
+            <?php elseif( $_SESSION['sa'] == 1 ) : ?>
+              <div class="menu-container d-flex align-items-center gap-4">
+                <div class="dropdown">
+                    <button class="btn dropdown-toggle fw-bold" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border: none;">IT</button>
+                    <ul class="dropdown-menu dropdown-menu-end" style="--bs-dropdown-min-width: 10px; --bs-dropdown-bg: #F9FBFE; --bs-dropdown-link-hover-color: var(--intersection-color-3); --bs-dropdown-link-active-color: var(--intersection-color-3); --bs-dropdown-link-active-bg: transparent; transition: none;">
+                      <li><div class="dropdown-header">Select language</div></li>
+                      <li><a class="dropdown-item" href="#">Italiano</a></li>
+                      <li><a class="dropdown-item" href="#">English</a></li>
+                    </ul>
+                </div>
+                <a href=" <?php echo 'indexJobOffers.php?uid=' . $_SESSION['uid'] . '&sa=' . $_SESSION['sa'] ?> " class="btn fw-bold py-2 px-3 border border-2 rounded" style="border-color: var(--intersection-color-3) !important; color: var(--intersection-color-3) !important;">Lista offerte</a>
+                <div class="dropdown">
+                    <button class="btn dropdown-toggle fw-bold d-flex align-items-center gap-2" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border: none;">
+                      <?php 
+                        if( file_exists('.env') ) {
+                          // per il sito in locale
+                          $env = parse_ini_file('.env');
+                          $PGHOST = $env['PGHOST'];
+                          $PGPORT = $env['PGPORT'];
+                          $PGDATABASE = $env['PGDATABASE'];
+                          $PGUSER = $env['PGUSER'];
+                          $PGPASSWORD = $env['PGPASSWORD'];
+                        } else {
+                          // per il sito deployato
+                          $PGHOST = getenv('PGHOST');
+                          $PGPORT = getenv('PGPORT');
+                          $PGDATABASE = getenv('PGDATABASE');
+                          $PGUSER = getenv('PGUSER');
+                          $PGPASSWORD = getenv('PGPASSWORD');
+                        }
+                        $dbconn = pg_connect( "host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER password=$PGPASSWORD" ) or header( "Location: indexErrore.php?er=100" );
+                        $q19 = "SELECT * FROM company WHERE company_id=$1 LIMIT 1";
+                        $result19 = pg_query_params( $dbconn, $q19, array($_SESSION['uid']) );
+                        if( pg_num_rows( $result19 ) > 0) {
+                          $co=pg_fetch_assoc($result19);  
+                          if( isset( $co['logo'] ) ) {
+                            $logo = $co['logo'];
+                            $usernameCompany = $co['username'];
+                            $logo = pg_unescape_bytea($logo);
+                            $logo_filename = "storage/image_$usernameCompany.png";
+                            file_put_contents($logo_filename, $logo);
+                            echo '<img src="' . $logo_filename . '" class="img-fluid rounded" style="width: 30px; aspect-ratio: 1; object-fit: cover;">';
+                          } else {
+                            echo '<img src="images/default-profile.png" class="img-fluid rounded" style="width: 30px; aspect-ratio: 1; object-fit: cover;">';
+                          }
+                        } else {
+                          echo '<img src="images/default-profile.png" class="img-fluid rounded" style="width: 30px; aspect-ratio: 1; object-fit: cover;">';
+                        }
+                        if(isset($result19)) pg_free_result($result19);
+                        pg_close($dbconn);
+                      ?>
+                      <div><?php echo $_SESSION['user'] ?></div>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" style="--bs-dropdown-min-width: 10px; --bs-dropdown-bg: #F9FBFE; --bs-dropdown-link-hover-color: var(--intersection-color-3); --bs-dropdown-link-active-color: var(--intersection-color-3); --bs-dropdown-link-active-bg: transparent; transition: none;">
+                      <li><div class="dropdown-header">Actions</div></li>
+                      <li><a class="dropdown-item" href=" <?php echo 'indexUtenti.php?uid=' . $_SESSION['uid'] . '&sa=' . $_SESSION['sa'] ?> ">Profile</a></li>
+                      <li><a class="dropdown-item" href="Logout.php">Logout</a></li>
+                    </ul>
+                </div>
+              </div>
+            <?php endif; ?>
+          <?php endif; ?>
+        </div>
+      </header>
+      <?php endif; ?>
 
       <!-- Page content -->
       <div class="page-content">
