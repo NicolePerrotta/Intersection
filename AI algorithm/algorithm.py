@@ -10,8 +10,7 @@ import nltk
 import numpy as np
 import pandas as pd
 import pdfplumber
-from sentence_transformers import SentenceTransformer, util
-from torch import tensor
+from sentence_transformers import SentenceTransformer
 
 model_name = 'distiluse-base-multilingual-cased-v2'
 
@@ -59,12 +58,15 @@ def encode(sentences: list[str], progress_bar: bool = False) -> np.ndarray:
     """ Compute the embedding that represents all the text of a document """
     model = SentenceTransformer(model_name, device='cpu')
     sentences_enc: np.ndarray = model.encode(sentences, show_progress_bar=progress_bar, convert_to_numpy=True)
-    return np.mean(sentences_enc, axis=0)
+    # Compress all the sentences into a single embedding
+    embedding: np.ndarray = np.mean(sentences_enc, axis=0)
+    # Return the normalized embedding
+    return embedding / np.linalg.norm(embedding)
 
 
 def compute_relevance(a: np.ndarray, b: np.ndarray) -> np.ndarray:
     """ Use the embeddings to compute the relevance between two or more documents """
-    return util.cos_sim(tensor(a), tensor(b)).numpy().transpose()
+    return np.dot(b, a.T)
 
 
 def sort_by_relevance(df1: pd.DataFrame, df2: pd.DataFrame) -> pd.DataFrame:
