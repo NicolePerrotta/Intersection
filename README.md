@@ -9,4 +9,4 @@ L'idea del progetto è
 Le funzionalità del sito sono
 
 ## Specifiche tecniche
-Per la realizzazione del sito web sono state utilizzate le seguenti tecnologie: HTML, CSS, Bootstrap, JavaScript, PHP.
+Per la realizzazione del sito web sono state utilizzate le seguenti tecnologie: HTML, CSS (+ Bootstrap), JavaScript, PHP.

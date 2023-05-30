@@ -1,22 +1,24 @@
+/*
 CREATE EXTENSION citext;
 CREATE DOMAIN email AS citext
   CHECK ( value ~ '^[a-zA-Z0-9.!#$%&''*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$' );
+*/
 
 CREATE TABLE worker
 (
    worker_id SERIAL PRIMARY KEY,
-   name VARCHAR(30) NOT NULL,
-   surname VARCHAR(30) NOT NULL,
-   username VARCHAR(50) UNIQUE,
-   email EMAIL UNIQUE,
-   password VARCHAR(50) UNIQUE,
+   name varchar(100) NOT NULL,
+   surname varchar(100) NOT NULL,
+   username varchar(100) UNIQUE,
+   email varchar(100) UNIQUE,
+   password varchar(100) UNIQUE,
    birth_date DATE NOT NULL,
-   address VARCHAR(50),
-   city VARCHAR(50),
-   country VARCHAR(50),
-   genre VARCHAR(50),
-   contact_email VARCHAR(100) NOT NULL,
-   telephone_number VARCHAR(50),
+   address varchar(100),
+   city varchar(100),
+   country varchar(100),
+   gender varchar(50),
+   contact_email varchar(100) NOT NULL,
+   telephone_number varchar(100),
    curriculum BYTEA NOT NULL,
    embedding FLOAT4 ARRAY[512] NOT NULL,
    picture BYTEA
@@ -25,16 +27,16 @@ CREATE TABLE worker
 CREATE TABLE company
 (
    company_id SERIAL PRIMARY KEY,
-   company_name varchar(50) NOT NULL,
-   username varchar(50) UNIQUE,
-   email email UNIQUE,
-   password varchar(50) UNIQUE,
-   VAT_number numeric(11,0) UNIQUE,
-   address varchar(50),
-   city varchar(50),
-   country varchar(50),
+   company_name varchar(100) NOT NULL,
+   username varchar(100) UNIQUE,
+   email varchar(100) UNIQUE,
+   password varchar(100) UNIQUE,
+   VAT_number varchar(100) UNIQUE,
+   address varchar(100),
+   city varchar(100),
+   country varchar(100),
    description text NOT NULL,
-   contact_email VARCHAR(100) NOT NULL,
-   telephone_number varchar(75),
+   contact_email varchar(100) NOT NULL,
+   telephone_number varchar(100),
    logo BYTEA
 );

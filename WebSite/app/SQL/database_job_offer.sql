@@ -2,10 +2,10 @@ CREATE TABLE job_offer
 (
   offer_id SERIAL PRIMARY KEY,
   company_id integer NOT NULL, -- company_id SERIAL REFERENCES company(company_id),
-  title VARCHAR(50) NOT NULL,
-  description varchar(2000) DEFAULT NULL,
-  salary varchar(500) DEFAULT NULL,
-  period varchar(500) DEFAULT NULL,
+  title varchar(100) NOT NULL,
+  description text DEFAULT NULL,
+  salary varchar(100) DEFAULT NULL,
+  period varchar(100) DEFAULT NULL,
   embedding FLOAT4 ARRAY[512]
 );
 

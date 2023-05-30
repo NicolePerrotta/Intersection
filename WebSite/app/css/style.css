@@ -1,0 +1,51 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    font-family: 'Hanken Grotesk', sans-serif;
+    transition: all 0.3s ease;
+}
+
+:root {
+    --header-height: 40px;
+    --intersection-color-1: #00b8d9;
+    --intersection-color-2: #183B56;
+    --intersection-color-3: #1565D8;
+    --intersection-color-4: #0D2436;
+    --intersection-color-5: #5A7184;
+}
+
+body {
+    background-color: #F9FBFE !important;
+}
+
+.bg-color-1 {
+    background-color: var(--intersection-color-1);
+}
+
+.bg-color-1-light {
+    background-color: rgba(0, 184, 217, 0.1);
+}
+
+.bg-color-4 {
+    background-color: var(--intersection-color-4);
+}
+
+.text-color-2 {
+    color: var(--intersection-color-2);
+}
+
+.text-color-3 {
+    color: var(--intersection-color-3);
+}
+
+.text-color-5 {
+    color: var(--intersection-color-5);
+}
+
+a.text-color-5:hover {
+    color: white;
+}
+
+.page-content {
+    min-height: 80vh;
+}

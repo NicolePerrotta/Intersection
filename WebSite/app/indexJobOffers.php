@@ -16,8 +16,8 @@ if( !isset( $_GET['lang'] ) ) {
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>
         <?php 
-          if( $_SESSION['lang'] == 'it' ) { echo "Intersection - Trova lavoro con l'intelligenza artificiale"; }
-          if( $_SESSION['lang'] == 'en' ) { echo "Intersection - Find your job with artificial intelligence"; }
+          if( $_SESSION['lang'] == 'it' ) { echo "Lista offerte di lavoro - Intersection"; }
+          if( $_SESSION['lang'] == 'en' ) { echo "Job offers list - Intersection"; }
         ?>
       </title>
       <link rel="icon" href="images/favi-1.png" type="favicon">
@@ -33,7 +33,7 @@ if( !isset( $_GET['lang'] ) ) {
 
       <?php if( $_SESSION['lang'] == 'it' ): ?>
       <!-- Header IT -->
-      <header class="position-absolute top-0 w-100">
+      <header class="top-0 w-100">
         <div class="container px-2 d-flex flex-column flex-md-row justify-content-between align-items-center gap-5 py-4">
           <div class="logo-container">
             <a href="index.php">
@@ -46,8 +46,8 @@ if( !isset( $_GET['lang'] ) ) {
               <button class="btn dropdown-toggle fw-bold" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border: none;">IT</button>
                 <ul class="dropdown-menu dropdown-menu-end" style="--bs-dropdown-min-width: 10px; --bs-dropdown-bg: #F9FBFE; --bs-dropdown-link-hover-color: var(--intersection-color-3); --bs-dropdown-link-active-color: var(--intersection-color-3); --bs-dropdown-link-active-bg: transparent; transition: none;">
                   <li><div class="dropdown-header">Seleziona lingua</div></li>
-                  <li><a class="dropdown-item" href="index.php?lang=it">Italiano</a></li>
-                  <li><a class="dropdown-item" href="index.php?lang=en">English</a></li>
+                  <li><a class="dropdown-item" href="indexJobOffers.php?lang=it">Italiano</a></li>
+                  <li><a class="dropdown-item" href="indexJobOffers.php?lang=en">English</a></li>
                 </ul>
             </div>
             <a href="indexLogin.php" class="text-decoration-none text-color-2 fw-bold">Accedi</a>
@@ -67,8 +67,8 @@ if( !isset( $_GET['lang'] ) ) {
                     <button class="btn dropdown-toggle fw-bold" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border: none;">IT</button>
                     <ul class="dropdown-menu dropdown-menu-end" style="--bs-dropdown-min-width: 10px; --bs-dropdown-bg: #F9FBFE; --bs-dropdown-link-hover-color: var(--intersection-color-3); --bs-dropdown-link-active-color: var(--intersection-color-3); --bs-dropdown-link-active-bg: transparent; transition: none;">
                       <li><div class="dropdown-header">Seleziona lingua</div></li>
-                      <li><a class="dropdown-item" href="index.php?lang=it">Italiano</a></li>
-                      <li><a class="dropdown-item" href="index.php?lang=en">English</a></li>
+                      <li><a class="dropdown-item" href="indexJobOffers.php?lang=it">Italiano</a></li>
+                      <li><a class="dropdown-item" href="indexJobOffers.php?lang=en">English</a></li>
                     </ul>
                 </div>
                 <a href=" <?php echo 'indexListJobs.php?uid=' . $_SESSION['uid'] . '&sa=' . $_SESSION['sa'] ?> " class="btn fw-bold py-2 px-3 border border-2 rounded" style="border-color: var(--intersection-color-3) !important; color: var(--intersection-color-3) !important;">Lista lavori</a>
@@ -127,8 +127,8 @@ if( !isset( $_GET['lang'] ) ) {
                     <button class="btn dropdown-toggle fw-bold" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border: none;">IT</button>
                     <ul class="dropdown-menu dropdown-menu-end" style="--bs-dropdown-min-width: 10px; --bs-dropdown-bg: #F9FBFE; --bs-dropdown-link-hover-color: var(--intersection-color-3); --bs-dropdown-link-active-color: var(--intersection-color-3); --bs-dropdown-link-active-bg: transparent; transition: none;">
                       <li><div class="dropdown-header">Seleziona lingua</div></li>
-                      <li><a class="dropdown-item" href="index.php?lang=it">Italiano</a></li>
-                      <li><a class="dropdown-item" href="index.php?lang=en">English</a></li>
+                      <li><a class="dropdown-item" href="indexJobOffers.php?lang=it">Italiano</a></li>
+                      <li><a class="dropdown-item" href="indexJobOffers.php?lang=en">English</a></li>
                     </ul>
                 </div>
                 <a href=" <?php echo 'indexJobOffers.php?uid=' . $_SESSION['uid'] . '&sa=' . $_SESSION['sa'] ?> " class="btn fw-bold py-2 px-3 border border-2 rounded" style="border-color: var(--intersection-color-3) !important; color: var(--intersection-color-3) !important;">Lista offerte</a>
@@ -189,7 +189,7 @@ if( !isset( $_GET['lang'] ) ) {
 
       <?php if( $_SESSION['lang'] == 'en' ): ?>
       <!-- Header EN -->
-      <header class="position-absolute top-0 w-100">
+      <header class="top-0 w-100">
         <div class="container px-2 d-flex flex-column flex-md-row justify-content-between align-items-center gap-5 py-4">
           <div class="logo-container">
             <a href="index.php">
@@ -202,8 +202,8 @@ if( !isset( $_GET['lang'] ) ) {
               <button class="btn dropdown-toggle fw-bold" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border: none;">EN</button>
                 <ul class="dropdown-menu dropdown-menu-end" style="--bs-dropdown-min-width: 10px; --bs-dropdown-bg: #F9FBFE; --bs-dropdown-link-hover-color: var(--intersection-color-3); --bs-dropdown-link-active-color: var(--intersection-color-3); --bs-dropdown-link-active-bg: transparent; transition: none;">
                   <li><div class="dropdown-header">Select language</div></li>
-                  <li><a class="dropdown-item" href="index.php?lang=it">Italiano</a></li>
-                  <li><a class="dropdown-item" href="index.php?lang=en">English</a></li>
+                  <li><a class="dropdown-item" href="indexJobOffers.php?lang=it">Italiano</a></li>
+                  <li><a class="dropdown-item" href="indexJobOffers.php?lang=en">English</a></li>
                 </ul>
             </div>
             <a href="indexLogin.php" class="text-decoration-none text-color-2 fw-bold">Login</a>
@@ -223,8 +223,8 @@ if( !isset( $_GET['lang'] ) ) {
                     <button class="btn dropdown-toggle fw-bold" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border: none;">EN</button>
                     <ul class="dropdown-menu dropdown-menu-end" style="--bs-dropdown-min-width: 10px; --bs-dropdown-bg: #F9FBFE; --bs-dropdown-link-hover-color: var(--intersection-color-3); --bs-dropdown-link-active-color: var(--intersection-color-3); --bs-dropdown-link-active-bg: transparent; transition: none;">
                       <li><div class="dropdown-header">Select language</div></li>
-                      <li><a class="dropdown-item" href="#">Italiano</a></li>
-                      <li><a class="dropdown-item" href="#">English</a></li>
+                      <li><a class="dropdown-item" href="indexJobOffers.php?lang=it">Italiano</a></li>
+                      <li><a class="dropdown-item" href="indexJobOffers.php?lang=en">English</a></li>
                     </ul>
                 </div>
                 <a href=" <?php echo 'indexListJobs.php?uid=' . $_SESSION['uid'] . '&sa=' . $_SESSION['sa'] ?> " class="btn fw-bold py-2 px-3 border border-2 rounded" style="border-color: var(--intersection-color-3) !important; color: var(--intersection-color-3) !important;">Jobs list</a>
@@ -283,8 +283,8 @@ if( !isset( $_GET['lang'] ) ) {
                     <button class="btn dropdown-toggle fw-bold" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border: none;">EN</button>
                     <ul class="dropdown-menu dropdown-menu-end" style="--bs-dropdown-min-width: 10px; --bs-dropdown-bg: #F9FBFE; --bs-dropdown-link-hover-color: var(--intersection-color-3); --bs-dropdown-link-active-color: var(--intersection-color-3); --bs-dropdown-link-active-bg: transparent; transition: none;">
                       <li><div class="dropdown-header">Select language</div></li>
-                      <li><a class="dropdown-item" href="#">Italiano</a></li>
-                      <li><a class="dropdown-item" href="#">English</a></li>
+                      <li><a class="dropdown-item" href="indexJobOffers.php?lang=it">Italiano</a></li>
+                      <li><a class="dropdown-item" href="indexJobOffers.php?lang=en">English</a></li>
                     </ul>
                 </div>
                 <a href=" <?php echo 'indexJobOffers.php?uid=' . $_SESSION['uid'] . '&sa=' . $_SESSION['sa'] ?> " class="btn fw-bold py-2 px-3 border border-2 rounded" style="border-color: var(--intersection-color-3) !important; color: var(--intersection-color-3) !important;">Offers list</a>
@@ -346,196 +346,164 @@ if( !isset( $_GET['lang'] ) ) {
       <?php if( $_SESSION['lang'] == 'it' ): ?>
       <!-- Page content IT -->
       <div class="page-content">
-        <section id="hero" class="bg-color-1-light">
-          <div class="container px-5 px-md-2" style="padding: 200px 0;">
-            <div class="row align-items-center gap-5 gap-md-0">
-              <div class="col-md-6 d-flex flex-column gap-5">
-                <div>
-                  <img src="images/home-dots-1.png" style="width: auto; height: 30px;">
-                </div>
-                <h2 class="text-color-2 fw-bold fs-1">Il primo sito che aiuta a trovare lavoro con l'intelligenza artificiale</h2>
-              </div>
-              <div class="col-md-6 d-flex justify-content-end">
-                <img src="images/home-hero.jpg" class="img-fluid" style="border-radius: 0 30px 0 30px;">
-              </div>
-            </div>
-          </div>
-        </section>
 
-        <?php if(!isset($_SESSION['sa']) || (isset($_SESSION['sa']) && $_SESSION['sa'] !== 0 )) : ?>
-        <section id="aziende">
-          <div class="container px-3" style="padding: 140px 0 100px 0;">
-            <div class="d-flex flex-column-reverse flex-lg-row align-items-center gap-5">
-              <div style="flex: 1;">
-                <img src="images/home-azienda.jpg" class="img-fluid rounded">
+        <section id="main">
+          <div class="container px-3" style="padding: 60px 0 120px;">
+            <div class="col-md-8 mx-auto d-flex flex-column gap-5">
+              <div>
+                <h1 class="text-color-2 fw-bold">Offerte di lavoro</h1>
+                <div class="text-color-5">Ecco le offerte di lavoro pubblicate dalla tua azienda.</div>
               </div>
-              <div class="d-flex flex-column gap-3" style="flex: 2; padding: 3rem;">
-              <?php if( !isset( $_SESSION['uid'] ) || !isset( $_SESSION['sa'] ) ) : ?>
-                <h2 class="text-color-2 fw-bold fs-1">Sei un'azienda?</h2>
-                <p class="text-color-5" style="font-size: 24px;">Carica la tua offerta di lavoro e scopri qual è il candidato perfetto per te grazie al nostro algoritmo di Intelligenza Artificiale!</p>
-                <a href=" <?php echo 'indexRegistrazioneAziendale.php' ?> " class="text-color-3 text-decoration-none fw-bold py-2 px-3 border border-2 rounded" style="border-color: var(--intersection-color-3) !important; width: fit-content;">Registrati come azienda</a>
-              <?php else : ?>
-                <h2 class="text-color-2 fw-bold fs-1">Sei un'azienda.</h2>
-                <p class="text-color-5" style="font-size: 24px;">Carica la tua offerta di lavoro e scopri qual è il candidato perfetto per te grazie al nostro algoritmo di Intelligenza Artificiale!</p>
-                <a href=" <?php echo 'indexJobOffers.php?uid=' . $_SESSION['uid'] . '&sa=' . $_SESSION['sa'] ?> " class="text-color-3 text-decoration-none fw-bold py-2 px-3 border border-2 rounded" style="border-color: var(--intersection-color-3) !important; width: fit-content;">Vai alle offerte di lavoro pubblicate</a>
+              <div class="d-flex flex-column gap-4">
+                <?php 
+
+                  if( file_exists('.env') ) {
+                    // per il sito in locale
+                    $env = parse_ini_file('.env');
+
+                    $PGHOST = $env['PGHOST'];
+                    $PGPORT = $env['PGPORT'];
+                    $PGDATABASE = $env['PGDATABASE'];
+                    $PGUSER = $env['PGUSER'];
+                    $PGPASSWORD = $env['PGPASSWORD'];
+                  } else {
+                    // per il sito deployato
+                    $PGHOST = getenv('PGHOST');
+                    $PGPORT = getenv('PGPORT');
+                    $PGDATABASE = getenv('PGDATABASE');
+                    $PGUSER = getenv('PGUSER');
+                    $PGPASSWORD = getenv('PGPASSWORD');
+                  }
+
+                  $dbconn = pg_connect( "host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER password=$PGPASSWORD" )  or header( "Location: indexErrore.php?er=100" );
+                  $company_id = $_SESSION['uid'];
+                  $query = "SELECT * FROM job_offer WHERE company_id=$1 ORDER BY title";
+                  $result = pg_query_params( $dbconn, $query, array($company_id) );
+                  while ( $line = pg_fetch_array( $result, null, PGSQL_ASSOC) ) :
+                    $offer_id = $line['offer_id'];
+                    $company_id = $line['company_id'];
+                    $title = $line['title'];
+                    $description = $line['description'];
+                    $salary = $line['salary'];
+                    $period = $line['period'];
+                    $q19 = "SELECT count(*) AS number FROM applies_to WHERE offer_id=$1 GROUP BY (offer_id)";
+                    $result19 = pg_query_params( $dbconn, $q19, array($offer_id) );
+                    $res = pg_fetch_assoc( $result19 );
+                    if( $res ) {
+                      $applications = $res['number'];
+                    } else {
+                      $applications = 0;
+                    }
+                    ?>
+                      <div class="offerta d-flex flex-column flex-lg-row gap-4 p-4 bg-light border border-3 rounded" style="border-color: var(--intersection-color-5) !important;">
+                        <div class="col d-flex flex-column gap-2" style="flex: 2;">
+                          <div class="offer-title fw-bold fs-4"><?php echo $title ?></div>
+                          <div class="offer-remuneration"><span class="fw-bold">Retribuzione:</span> <?php echo $salary ?></div>
+                          <div class="offer-duration"><span class="fw-bold">Durata:</span> <?php echo $period ?></div>
+                          <div class="offer-applications"><span class="fw-bold">Candidature:</span> <?php echo $applications ?></div>
+                        </div>
+                        <div class="col d-flex justify-content-end align-items-center gap-3" style="flex: 1;">
+                          <a href=" <?php echo 'indexInfoJobOffer.php?offer_id=' . $offer_id ?> " class="btn btn-primary" style="--bs-btn-bg: var(--intersection-color-3); --bs-btn-hover-bg: var(--intersection-color-2)">Dettagli</a>
+                          <?php // <a href="/elimina-offerta.html" class="btn btn-warning">Elimina</a> ?>
+                        </div>
+                      </div>
+                    <?php 
+                  endwhile;
+
+                  if(isset($result)) pg_free_result($result);
+                  #if(isset($result19)) pg_free_result($result19);
+                  pg_close($dbconn);
+                ?>
+              </div>
+              <?php if( isset( $_SESSION['uid'] ) && $_SESSION['sa'] == 1 ) : ?>
+                <a href="indexCreateJobOffer.php" class="btn btn-primary" style="--bs-btn-bg: var(--intersection-color-5); --bs-btn-border-color: var(--intersection-color-5); --bs-btn-hover-bg: var(--intersection-color-2)">Crea nuova offerta</a>
               <?php endif; ?>
-              </div>
             </div>
           </div>
         </section>
-        <?php endif; ?>
 
-        <?php if(!isset($_SESSION['sa']) || (isset($_SESSION['sa']) && $_SESSION['sa'] !== 1 )) : ?>
-        <section id="professionisti">
-          <div class="container px-3" style="padding: 100px 0;">
-            <div class="d-flex flex-column-reverse flex-lg-row-reverse align-items-center gap-5">
-              <div style="flex: 1;">
-                <img src="images/home-professionista.jpg" class="img-fluid rounded">
-              </div>
-              <div class="d-flex flex-column gap-3" style="flex: 2; padding: 3rem;">
-              <?php if( !isset( $_SESSION['uid'] ) || !isset( $_SESSION['sa'] ) ) : ?>
-                <h2 class="text-color-2 fw-bold fs-1">Sei un professionista?</h2>
-                <p class="text-color-5" style="font-size: 24px;">Carica il tuo curriculum: penseremo noi a tutto il resto con il nostro algoritmo di Intelligenza Artificiale!</p>
-                <a href=" <?php echo 'indexRegistrazione.php' ?> " class="text-color-3 text-decoration-none fw-bold py-2 px-3 border border-2 rounded" style="border-color: var(--intersection-color-3) !important; width: fit-content;">Registrati come professionista</a>
-              <?php else : ?>
-                <h2 class="text-color-2 fw-bold fs-1">Sei un professionista.</h2>
-                <p class="text-color-5" style="font-size: 24px;">Carica il tuo curriculum: penseremo noi a tutto il resto con il nostro algoritmo di Intelligenza Artificiale!</p>
-                <a href=" <?php echo 'indexListJobs.php?uid=' . $_SESSION['uid'] . '&sa=' . $_SESSION['sa'] ?> " class="text-color-3 text-decoration-none fw-bold py-2 px-3 border border-2 rounded" style="border-color: var(--intersection-color-3) !important; width: fit-content;">Vai alle offerte di lavoro selezionate per te</a>
-              <?php endif; ?>
-              </div>
-            </div>
-          </div>
-        </section>
-        <?php endif; ?>
-
-        <section id="testimonial">
-          <div class="container px-3" style="padding: 100px 0 140px 0;">
-            <div class="d-flex flex-column gap-5">
-              <h2 class="text-color-2 fw-bold fs-1 text-center">Aiutiamo le aziende a trovare il candidato ideale tra migliaia di professionisti</h2>
-              <div class="d-flex flex-column-reverse flex-lg-row align-items-center gap-5 position-relative">
-                <img src="images/home-testimonial.jpg" class="img-fluid rounded" style="width: 40%;">
-                <div class="testimonials-container row flex-column flex-md-row gap-3 z-2 mt-0 ms-0">
-                  <style scoped>
-                    .testimonials-container { @media (min-width: 992px) { position: absolute; margin: 60px 0 0 30% !important; } }
-                  </style>
-                  <div class="col d-flex flex-column align-items-center gap-4 p-5 bg-white rounded">
-                    <img src="images/netflix-logo.png" alt="Netflix" class="img-fluid">
-                    <div class="border-bottom border-3 opacity-25 w-25 rounded" style="--bs-border-color: var(--intersection-color-5);"></div>
-                    <div class="text-center text-color-5">Abbiamo aiutato Netflix a trovare il candidato adatto alle esigenze dell'azienda</div>
-                  </div>
-                  <div class="col d-flex flex-column align-items-center gap-4 p-5 bg-white rounded">
-                    <img src="images/unionbank-logo.png" alt="Netflix" class="img-fluid">
-                    <div class="border-bottom border-3 opacity-25 w-25 rounded" style="--bs-border-color: var(--intersection-color-5);"></div>
-                    <div class="text-center text-color-5">Siamo al fianco di UnionBank per comporre team sempre più efficienti</div>
-                  </div>
-                  <div class="col d-flex flex-column align-items-center gap-4 p-5 bg-white rounded">
-                    <img src="images/google-logo.png" alt="Netflix" class="img-fluid">
-                    <div class="border-bottom border-3 opacity-25 w-25 rounded" style="--bs-border-color: var(--intersection-color-5);"></div>
-                    <div class="text-center text-color-5">Supportiamo Google nella ricerca di sviluppatori in linea con gli standard</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
       </div>
       <?php endif; ?>
 
       <?php if( $_SESSION['lang'] == 'en' ): ?>
       <!-- Page content EN -->
       <div class="page-content">
-        <section id="hero" class="bg-color-1-light">
-          <div class="container px-5 px-md-2" style="padding: 200px 0;">
-            <div class="row align-items-center gap-5 gap-md-0">
-              <div class="col-md-6 d-flex flex-column gap-5">
-                <div>
-                  <img src="images/home-dots-1.png" style="width: auto; height: 30px;">
-                </div>
-                <h2 class="text-color-2 fw-bold fs-1">The first website that helps you find your next job with artificial intelligence</h2>
-              </div>
-              <div class="col-md-6 d-flex justify-content-end">
-                <img src="images/home-hero.jpg" class="img-fluid" style="border-radius: 0 30px 0 30px;">
-              </div>
-            </div>
-          </div>
-        </section>
 
-        <?php if(!isset($_SESSION['sa']) || (isset($_SESSION['sa']) && $_SESSION['sa'] !== 0 )) : ?>
-        <section id="aziende">
-          <div class="container px-3" style="padding: 140px 0 100px 0;">
-            <div class="d-flex flex-column-reverse flex-lg-row align-items-center gap-5">
-              <div style="flex: 1;">
-                <img src="images/home-azienda.jpg" class="img-fluid rounded">
+        <section id="main">
+          <div class="container px-3" style="padding: 60px 0 120px;">
+            <div class="col-md-8 mx-auto d-flex flex-column gap-5">
+              <div>
+                <h1 class="text-color-2 fw-bold">Job offers</h1>
+                <div class="text-color-5">Here are the job offers posted by your company.</div>
               </div>
-              <div class="d-flex flex-column gap-3" style="flex: 2; padding: 3rem;">
-              <?php if( !isset( $_SESSION['uid'] ) || !isset( $_SESSION['sa'] ) ) : ?>
-                <h2 class="text-color-2 fw-bold fs-1">Are you a company?</h2>
-                <p class="text-color-5" style="font-size: 24px;">Upload your job offer and find out which candidate is perfect for you thanks to our Artificial Intelligence algorithm!</p>
-                <a href=" <?php echo 'indexRegistrazioneAziendale.php' ?> " class="text-color-3 text-decoration-none fw-bold py-2 px-3 border border-2 rounded" style="border-color: var(--intersection-color-3) !important; width: fit-content;">Sign up as company</a>
-              <?php else : ?>
-                <h2 class="text-color-2 fw-bold fs-1">You are a company.</h2>
-                <p class="text-color-5" style="font-size: 24px;">Upload your job offer and find out which candidate is perfect for you thanks to our Artificial Intelligence algorithm!</p>
-                <a href=" <?php echo 'indexJobOffers.php?uid=' . $_SESSION['uid'] . '&sa=' . $_SESSION['sa'] ?> " class="text-color-3 text-decoration-none fw-bold py-2 px-3 border border-2 rounded" style="border-color: var(--intersection-color-3) !important; width: fit-content;">Go to the published job offers</a>
+              <div class="d-flex flex-column gap-4">
+                <?php 
+
+                  if( file_exists('.env') ) {
+                    // per il sito in locale
+                    $env = parse_ini_file('.env');
+
+                    $PGHOST = $env['PGHOST'];
+                    $PGPORT = $env['PGPORT'];
+                    $PGDATABASE = $env['PGDATABASE'];
+                    $PGUSER = $env['PGUSER'];
+                    $PGPASSWORD = $env['PGPASSWORD'];
+                  } else {
+                    // per il sito deployato
+                    $PGHOST = getenv('PGHOST');
+                    $PGPORT = getenv('PGPORT');
+                    $PGDATABASE = getenv('PGDATABASE');
+                    $PGUSER = getenv('PGUSER');
+                    $PGPASSWORD = getenv('PGPASSWORD');
+                  }
+
+                  $dbconn = pg_connect( "host=$PGHOST port=$PGPORT dbname=$PGDATABASE user=$PGUSER password=$PGPASSWORD" )  or header( "Location: indexErrore.php?er=100" );
+                  $company_id = $_SESSION['uid'];
+                  $query = "SELECT * FROM job_offer WHERE company_id=$1 ORDER BY title";
+                  $result = pg_query_params( $dbconn, $query, array($company_id) );
+                  while ( $line = pg_fetch_array( $result, null, PGSQL_ASSOC) ) :
+                    $offer_id = $line['offer_id'];
+                    $company_id = $line['company_id'];
+                    $title = $line['title'];
+                    $description = $line['description'];
+                    $salary = $line['salary'];
+                    $period = $line['period'];
+                    $q19 = "SELECT count(*) AS number FROM applies_to WHERE offer_id=$1 GROUP BY (offer_id)";
+                    $result19 = pg_query_params( $dbconn, $q19, array($offer_id) );
+                    $res = pg_fetch_assoc( $result19 );
+                    if( $res ) {
+                      $applications = $res['number'];
+                    } else {
+                      $applications = 0;
+                    }
+                    ?>
+                      <div class="offerta d-flex flex-column flex-lg-row gap-4 p-4 bg-light border border-3 rounded" style="border-color: var(--intersection-color-5) !important;">
+                        <div class="col d-flex flex-column gap-2" style="flex: 2;">
+                          <div class="offer-title fw-bold fs-4"><?php echo $title ?></div>
+                          <div class="offer-remuneration"><span class="fw-bold">Salary:</span> <?php echo $salary ?></div>
+                          <div class="offer-duration"><span class="fw-bold">Period:</span> <?php echo $period ?></div>
+                          <div class="offer-applications"><span class="fw-bold">Applications:</span> <?php echo $applications ?></div>
+                        </div>
+                        <div class="col d-flex justify-content-end align-items-center gap-3" style="flex: 1;">
+                          <a href=" <?php echo 'indexInfoJobOffer.php?offer_id=' . $offer_id ?> " class="btn btn-primary" style="--bs-btn-bg: var(--intersection-color-3); --bs-btn-hover-bg: var(--intersection-color-2)">Details</a>
+                          <?php // <a href="/elimina-offerta.html" class="btn btn-warning">Elimina</a> ?>
+                        </div>
+                      </div>
+                    <?php 
+                  endwhile;
+
+                  if(isset($result)) pg_free_result($result);
+                  #if(isset($result19)) pg_free_result($result19);
+                  pg_close($dbconn);
+                ?>
+              </div>
+              <?php if( isset( $_SESSION['uid'] ) && $_SESSION['sa'] == 1 ) : ?>
+                <a href="indexCreateJobOffer.php" class="btn btn-primary" style="--bs-btn-bg: var(--intersection-color-5); --bs-btn-border-color: var(--intersection-color-5); --bs-btn-hover-bg: var(--intersection-color-2)">Post new job offer</a>
               <?php endif; ?>
-              </div>
             </div>
           </div>
         </section>
-        <?php endif; ?>
 
-        <?php if(!isset($_SESSION['sa']) || (isset($_SESSION['sa']) && $_SESSION['sa'] !== 1 )) : ?>
-        <section id="professionisti">
-          <div class="container px-3" style="padding: 100px 0;">
-            <div class="d-flex flex-column-reverse flex-lg-row-reverse align-items-center gap-5">
-              <div style="flex: 1;">
-                <img src="images/home-professionista.jpg" class="img-fluid rounded">
-              </div>
-              <div class="d-flex flex-column gap-3" style="flex: 2; padding: 3rem;">
-              <?php if( !isset( $_SESSION['uid'] ) || !isset( $_SESSION['sa'] ) ) : ?>
-                <h2 class="text-color-2 fw-bold fs-1">Are you a professional?</h2>
-                <p class="text-color-5" style="font-size: 24px;">Upload your CV: we will take care of everything else with our Artificial Intelligence algorithm!</p>
-                <a href=" <?php echo 'indexRegistrazione.php' ?> " class="text-color-3 text-decoration-none fw-bold py-2 px-3 border border-2 rounded" style="border-color: var(--intersection-color-3) !important; width: fit-content;">Sign up as professional</a>
-              <?php else : ?>
-                <h2 class="text-color-2 fw-bold fs-1">You are a professional.</h2>
-                <p class="text-color-5" style="font-size: 24px;">Upload your CV: we will take care of everything else with our Artificial Intelligence algorithm!</p>
-                <a href=" <?php echo 'indexListJobs.php?uid=' . $_SESSION['uid'] . '&sa=' . $_SESSION['sa'] ?> " class="text-color-3 text-decoration-none fw-bold py-2 px-3 border border-2 rounded" style="border-color: var(--intersection-color-3) !important; width: fit-content;">Go to the job offers selected for you</a>
-              <?php endif; ?>
-              </div>
-            </div>
-          </div>
-        </section>
-        <?php endif; ?>
-
-        <section id="testimonial">
-          <div class="container px-3" style="padding: 100px 0 140px 0;">
-            <div class="d-flex flex-column gap-5">
-              <h2 class="text-color-2 fw-bold fs-1 text-center">We help companies find the ideal candidate among thousands of professionals</h2>
-              <div class="d-flex flex-column-reverse flex-lg-row align-items-center gap-5 position-relative">
-                <img src="images/home-testimonial.jpg" class="img-fluid rounded" style="width: 40%;">
-                <div class="testimonials-container row flex-column flex-md-row gap-3 z-2 mt-0 ms-0">
-                  <style scoped>
-                    .testimonials-container { @media (min-width: 992px) { position: absolute; margin: 60px 0 0 30% !important; } }
-                  </style>
-                  <div class="col d-flex flex-column align-items-center gap-4 p-5 bg-white rounded">
-                    <img src="images/netflix-logo.png" alt="Netflix" class="img-fluid">
-                    <div class="border-bottom border-3 opacity-25 w-25 rounded" style="--bs-border-color: var(--intersection-color-5);"></div>
-                    <div class="text-center text-color-5">We helped Netflix find the right candidate for the company's needs</div>
-                  </div>
-                  <div class="col d-flex flex-column align-items-center gap-4 p-5 bg-white rounded">
-                    <img src="images/unionbank-logo.png" alt="Netflix" class="img-fluid">
-                    <div class="border-bottom border-3 opacity-25 w-25 rounded" style="--bs-border-color: var(--intersection-color-5);"></div>
-                    <div class="text-center text-color-5">We work alongside UnionBank to compose ever more efficient teams</div>
-                  </div>
-                  <div class="col d-flex flex-column align-items-center gap-4 p-5 bg-white rounded">
-                    <img src="images/google-logo.png" alt="Netflix" class="img-fluid">
-                    <div class="border-bottom border-3 opacity-25 w-25 rounded" style="--bs-border-color: var(--intersection-color-5);"></div>
-                    <div class="text-center text-color-5">We support Google in finding developers in line with the standards</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
       </div>
       <?php endif; ?>
 
@@ -590,6 +558,6 @@ if( !isset( $_GET['lang'] ) ) {
         </div>
       </footer>
       <?php endif; ?>
-
+    
     </body>
   </html>
